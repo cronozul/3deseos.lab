@@ -32,13 +32,12 @@ const About = () => {
             className="space-y-10"
           >
             <div className="space-y-6">
-              {/* Accent Line */}
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: 60 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="h-[2px] bg-brand-blue" 
-              />
+
+              
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
+                <Heart className="w-4 h-4 text-brand-red" />
+                <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('about.badge')}</span>
+              </div>
               
               <div className="space-y-2">
                 <h1 className="text-7xl md:text-8xl font-reem font-bold text-white tracking-tighter leading-tight">

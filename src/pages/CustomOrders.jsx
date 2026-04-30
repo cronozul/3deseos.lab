@@ -33,8 +33,11 @@ const CustomOrders = () => {
           className="flex flex-col gap-8"
         >
           <div>
-            <span className="text-[10px] tracking-[0.5em] text-brand-blue uppercase mb-4 block font-bold">Proceso Creativo</span>
-            <h1 className="text-5xl md:text-7xl font-reem font-bold mb-6 tracking-tight leading-tight">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
+            <Lightbulb className="w-4 h-4 text-brand-yellow" />
+            <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('custom.badge')}</span>
+          </div>
+            <h1 className="text-6xl md:text-8xl font-reem font-bold mb-8 tracking-tighter leading-none">
               {t('custom.title')}
             </h1>
             <p className="text-white/40 font-light text-lg leading-relaxed max-w-md">
@@ -90,8 +93,8 @@ const CustomOrders = () => {
               <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <step.icon className={`w-6 h-6 ${step.color}`} />
               </div>
-              <h3 className={`text-lg font-reem mb-2 text-white transition-colors ${step.hoverColor}`}>{step.title}</h3>
-              <p className="text-white/30 text-xs font-light leading-relaxed">{step.desc}</p>
+              <h3 className={`text-xl font-reem mb-2 text-white transition-colors ${step.hoverColor}`}>{step.title}</h3>
+              <p className="text-white/30 text-sm font-light leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>

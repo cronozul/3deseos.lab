@@ -13,7 +13,7 @@ const ProductCard = ({ id, productKey, collectionData }) => {
   let priceColorClass = 'text-brand-green';
   if (product.collection === 'tornasol') priceColorClass = 'text-[#C084FC]';
   else if (product.collection === 'geek') priceColorClass = 'text-brand-green';
-  else if (product.collection === 'hogar') priceColorClass = 'text-blue-300';
+  else if (product.collection === 'hogar') priceColorClass = 'text-[#C6AC8F]';
 
   return (
     <Link to={`/products/${productKey}`}>

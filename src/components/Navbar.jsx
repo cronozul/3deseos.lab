@@ -41,7 +41,7 @@ const Navbar = () => {
         {/* Logo Section */}
         <Link to="/" className="flex items-center gap-3 group relative z-50">
           <LampAnimation isNavbar={true} />
-          <span className="font-reem text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-brand-gradient">
+          <span className="font-reem text-xl md:text-2xl font-medium tracking-wider text-white transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-brand-gradient">
             3deseos<span className="transition-colors">.lab</span>
           </span>
         </Link>

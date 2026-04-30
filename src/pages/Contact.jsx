@@ -53,7 +53,11 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-reem font-bold mb-6">{t('contact.title')}</h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
+            <Mail className="w-4 h-4 text-brand-green" />
+            <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('contact.badge')}</span>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-reem font-bold mb-8 tracking-tighter leading-none">{t('contact.title')}</h1>
           <p className="text-white/60 font-light max-w-md mb-12">
             {t('contact.subtitle')}
           </p>

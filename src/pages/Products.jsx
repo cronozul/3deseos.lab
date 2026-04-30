@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
@@ -32,26 +32,14 @@ const collectionMeta = {
 const Products = () => {
   const { t, getRaw } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const blobY = useTransform(scrollYProgress, [0, 1], [0, 500]);
-  const blob2Y = useTransform(scrollYProgress, [0, 1], [0, -300]);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-[#050505] overflow-hidden">
-      {/* Dynamic Background Blobs */}
-      <motion.div 
-        style={{ y: blobY }}
-        className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/20 blur-[150px] rounded-full pointer-events-none" 
-      />
-      <motion.div 
-        style={{ y: blob2Y }}
-        className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-blue/10 blur-[150px] rounded-full pointer-events-none" 
-      />
+    <div className="relative min-h-screen bg-[#050505]">
+      {/* Background Glows (Static for performance) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-purple/10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-blue/5 blur-[150px] rounded-full" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         
@@ -64,7 +52,7 @@ const Products = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-brand-yellow" />
-            <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">Artesanía Digital</span>
+            <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('products.badge')}</span>
           </div>
           <h1 className="text-6xl md:text-8xl font-reem font-bold mb-8 tracking-tighter leading-none">
             {t('products.title').split(' ')[0]} <br />
@@ -104,8 +92,8 @@ const Products = () => {
         </div>
 
         {/* Product Sections */}
-        <div className="space-y-40">
-          <AnimatePresence mode="popLayout">
+        <div>
+          <AnimatePresence mode="wait">
             {Object.keys(collectionMeta)
               .filter(key => activeFilter === 'all' || activeFilter === key)
               .map((key) => {
@@ -116,12 +104,11 @@ const Products = () => {
                 return (
                   <motion.section 
                     key={key}
-                    layout
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative mb-40 last:mb-0"
                   >
                     {/* Section Header */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

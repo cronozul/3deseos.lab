@@ -12,7 +12,10 @@ const translations = {
       cart: "Carrito"
     },
     footer: {
-      location: "3deseos.lab • Bogotá, Colombia"
+      location: "3deseos.lab • Bogotá, Colombia",
+      explore: "Explorar",
+      social: "Redes Sociales",
+      tagline: "Laboratorio de materialización digital y manufactura aditiva."
     },
     home: {
       heroSubtitle: "Diseño de Vanguardia",
@@ -23,6 +26,7 @@ const translations = {
       customOrder: "Pedido Personalizado"
     },
     about: {
+      badge: "Nuestro ADN",
       title: "Jessica & Gabriel",
       subtitle: "Los humanos detrás del laboratorio.",
       desc1: "Somos una pareja joven con base en Bogotá, unidos por la curiosidad técnica y la obsesión por lo estético. 3deseos.lab es el punto de encuentro entre nuestras profesiones y nuestra pasión compartida por la manufactura aditiva.",
@@ -37,6 +41,7 @@ const translations = {
       ]
     },
     custom: {
+      badge: "Proceso Creativo",
       title: "Diseño Personalizado",
       subtitle: "Trae tu propio diseño 3D o cuéntanos tu idea. Nosotros lo hacemos físico con la más alta calidad en Bogotá.",
       step1Title: "La Idea",
@@ -51,6 +56,7 @@ const translations = {
       ctaButton: "Iniciar Conversación"
     },
     contact: {
+      badge: "Contacto Directo",
       title: "Contacto",
       subtitle: "Inicia una conversación y cuéntanos qué deseas materializar.",
       whatsapp: "WhatsApp",
@@ -64,7 +70,7 @@ const translations = {
       formError: "Error al enviar el mensaje. Inténtalo de nuevo.",
     },
     community: {
-      badge: "Testimonios Reales",
+      badge: "Comunidad Global",
       title: "Nuestra Comunidad",
       subtitle: "Historias materializadas por nuestros clientes. Cada pieza cuenta un deseo cumplido.",
       testimonials: [
@@ -82,6 +88,7 @@ const translations = {
       ]
     },
     products: {
+      badge: "Artesanía Digital",
       title: "Colecciones",
       subtitle: "Explora nuestros archivos de impresión 3D. Cada colección es una exploración de materiales, formas y funcionalidad.",
       collections: {
@@ -184,7 +191,10 @@ const translations = {
       cart: "Cart"
     },
     footer: {
-      location: "3deseos.lab • Bogotá, Colombia"
+      location: "3deseos.lab • Bogotá, Colombia",
+      explore: "Explore",
+      social: "Social",
+      tagline: "Digital materialization and additive manufacturing laboratory."
     },
     home: {
       heroSubtitle: "Vanguard Design",
@@ -195,6 +205,7 @@ const translations = {
       customOrder: "Custom Order"
     },
     about: {
+      badge: "Our DNA",
       title: "Jessica & Gabriel",
       subtitle: "The humans behind the lab.",
       desc1: "We are a young couple based in Bogotá, united by technical curiosity and an obsession with aesthetics. 3deseos.lab is the meeting point between our professions and our shared passion for additive manufacturing.",
@@ -209,6 +220,7 @@ const translations = {
       ]
     },
     custom: {
+      badge: "Creative Process",
       title: "Custom Design",
       subtitle: "Bring your own 3D design or tell us your idea. We make it physical with the highest quality in Bogotá.",
       step1Title: "The Idea",
@@ -223,6 +235,7 @@ const translations = {
       ctaButton: "Send Request"
     },
     contact: {
+      badge: "Direct Contact",
       title: "Contact",
       subtitle: "Initiate a transmission. Tell us what you want to materialize.",
       whatsapp: "WhatsApp",
@@ -236,7 +249,7 @@ const translations = {
       formError: "Error sending message. Please try again.",
     },
     community: {
-      badge: "Real Testimonials",
+      badge: "Global Community",
       title: "Our Community",
       subtitle: "Stories materialized for our customers. Every piece is a dream come true.",
       testimonials: [
@@ -254,6 +267,7 @@ const translations = {
       ]
     },
     products: {
+      badge: "Digital Craftsmanship",
       title: "Collections",
       subtitle: "Explore our 3D printed collections. Each collection is an exploration of materials, shapes, and functionality.",
       collections: {
