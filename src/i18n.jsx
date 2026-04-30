@@ -15,50 +15,50 @@ const translations = {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explorar",
       social: "Redes Sociales",
-      tagline: "Laboratorio de materialización digital y manufactura aditiva."
+      tagline: "El laboratorio donde creamos lo que sueñas."
     },
     home: {
-      heroSubtitle: "Diseño de Vanguardia",
+      heroSubtitle: "Hecho para ti",
       heroTitle: "Creamos",
       heroHighlight: "lo que sueñas.",
-      heroDesc: "Somos un pequeño laboratorio de personas curiosas y apasionadas por la impresión 3D, ubicada en Bogotá. Transformamos archivos digitales en objetos reales mediante cuidado técnico, precisión en cada capa y acabados únicos.",
+      heroDesc: "Somos un pequeño laboratorio de personas curiosas y apasionadas por la impresión 3D. Transformamos archivos digitales en objetos reales mediante cuidado técnico, precisión en cada capa y acabados únicos.",
       explore: "Explorar Colecciones",
       customOrder: "Pedido Personalizado"
     },
     about: {
       badge: "Nuestro ADN",
       title: "Jessica & Gabriel",
-      subtitle: "Los humanos detrás del laboratorio.",
-      desc1: "Somos una pareja joven con base en Bogotá, unidos por la curiosidad técnica y la obsesión por lo estético. 3deseos.lab es el punto de encuentro entre nuestras profesiones y nuestra pasión compartida por la manufactura aditiva.",
-      desc2: "Gabriel es Científico de Computación, el encargado de la precisión algorítmica y la optimización de cada capa. Jessica es Diseñadora UX y escritora, quien aporta la visión humana, el concepto y la narrativa detrás de cada pieza.",
-      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de objetos que nadie más tiene. No creemos en lo genérico; creamos artefactos únicos que proyectan personalidad y propósito en el espacio físico.",
+      subtitle: "¿Quiénes hacemos 3deseos.lab?",
+      desc1: "Somos una pareja joven, unidos por la curiosidad técnica y la fijación por lo estético. 3deseos.lab es el punto de encuentro entre nuestros conocimientos y nuestra pasión compartida por la creación de objetos únicos y funcionales.",
+      desc2: "Gabriel es el encargado de la precisión técnica, la optimización de cada capa y la calidad de cada impresión. Jessica es quien maneja la contabilidad, marketing y comunicación con ustedes.",
+      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de objetos que nadie más tiene. No somos genéricos, creamos piezas que proyectan personalidad y propósito.",
       location: "BOGOTÁ, COLOMBIA",
       features: [
-        { icon: 'Code', label: 'Computer Science' },
-        { icon: 'PenTool', label: 'UX Design & Writing' },
-        { icon: 'Music', label: 'Music Lovers' },
-        { icon: 'Heart', label: 'Power Couple' }
+        { icon: 'Code', label: 'Ciencias de la Computación' },
+        { icon: 'PenTool', label: 'Diseño y Escritura' },
+        { icon: 'Music', label: 'Amantes de la música' },
+        { icon: 'Heart', label: 'Pareja Creativa' }
       ]
     },
     custom: {
       badge: "Proceso Creativo",
       title: "Diseño Personalizado",
-      subtitle: "Trae tu propio diseño 3D o cuéntanos tu idea. Nosotros lo hacemos físico con la más alta calidad en Bogotá.",
+      subtitle: "Trae tu propio diseño 3D o cuéntanos tu idea. Nosotros lo hacemos realidad.",
       step1Title: "La Idea",
       step1Desc: "Envíanos un boceto, imagen o referencia de lo que quieres crear. También puedes compartirnos un archivo 3D (MakerWorld, Cults3D, Thingiverse, Printables, etc).",
       step2Title: "Validación",
-      step2Desc: "Analizamos tu solicitud, elegimos el material y dimensionamos tu pieza con precisión.",
+      step2Desc: "Analizamos tu solicitud, de ser necesario creamos un prototipo y pruebas de impresión. Te orientamos con el material, acabado y dimensionamos tu pieza con precisión.",
       step3Title: "Producción",
-      step3Desc: "El objeto cobra vida capa por capa mediante manufactura aditiva de precisión.",
+      step3Desc: "El objeto cobra vida capa por capa en nuestra impresora 3D de alta precisión.",
       step4Title: "Entrega",
-      step4Desc: "Recibes un artefacto único y personalizado, directo en tus manos.",
+      step4Desc: "Hacemos envíos por medio de Uber en Bogotá, y a nivel nacional mediante transportadora. Recibes tu pedido directo en tus manos.",
       ctaTitle: "¿Listo para ver tu deseo materializado?",
       ctaButton: "Iniciar Conversación"
     },
     contact: {
       badge: "Contacto Directo",
       title: "Contacto",
-      subtitle: "Inicia una conversación y cuéntanos qué deseas materializar.",
+      subtitle: "Inicia una conversación. Cuéntanos qué sueño quieres materializar.",
       whatsapp: "WhatsApp",
       instagram: "@3deseos.lab",
       location: "Bogotá, Colombia",
@@ -66,13 +66,13 @@ const translations = {
       formEmail: "Correo",
       formMessage: "Tu idea o diseño",
       formSubmit: "Enviar Mensaje",
-      formSuccess: "Mensaje enviado exitosamente. Te contactaremos pronto.",
+      formSuccess: "Mensaje recibido exitosamente. Te contactaremos pronto.",
       formError: "Error al enviar el mensaje. Inténtalo de nuevo.",
     },
     community: {
       badge: "Comunidad Global",
       title: "Nuestra Comunidad",
-      subtitle: "Historias materializadas por nuestros clientes. Cada pieza cuenta un deseo cumplido.",
+      subtitle: "Historias materializadas por y para nuestros clientes. Cada pieza cuenta un deseo cumplido.",
       testimonials: [
         { author: "Andrés F.", handle: "@andresf_3d", text: "La calidad del acabado es increíble. No parece una impresión 3D convencional, es una pieza de arte." },
         { author: "Mariana L.", handle: "@marianalópez", text: "Pedí un regalo personalizado y superó mis expectativas. La atención al detalle es única." },
@@ -113,25 +113,25 @@ const translations = {
         qty: "Cantidad:",
         orderBtn: "Agregar al Carrito",
         addedBtn: "Agregado",
-        shippingInfo: "Producido bajo demanda en Bogotá. Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo."
+        shippingInfo: "Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo."
       },
       items: {
-        't-carita': { name: "Matera Carita Feliz", image: "happy pot.png", price: 30000, priceStr: "$30.000 COP", desc: "Aporta energía y diseño a tus espacios con esta maceta minimalista impresa en 3D, ideal para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "124 g", collection: "tornasol" },
-        't-amigos': { name: "Matera Amigos", image: "buddies.png", price: 27000, priceStr: "$27.000 COP", desc: "Un diseño doble perfectamente equilibrado, ideal para exhibir especies complementarias en tu escritorio o estudio.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
-        't-ballenita': { name: "Matera Ballenita", image: "little whale.png", price: 28000, priceStr: "$28.000 COP", desc: "Escultura decorativa funcional inspirada en la vida marina. Un toque estético único gracias a su acabado que refracta la luz.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "116 g", collection: "tornasol" },
-        't-florero': { name: "Florero Prisma", image: "vase.png", price: 36000, priceStr: "$36.000 COP", desc: "Elegancia paramétrica. Este florero impreso en 3D captura la luz y transforma el ambiente de cualquier habitación.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "144 g", collection: "tornasol" },
-        't-trex': { name: "Portalápices T-Rex", image: "dinosaur.png", price: 27000, priceStr: "$27.000 COP", desc: "Organizador de escritorio disruptivo. Mantén tu espacio de trabajo ordenado con una estética low-poly fascinante.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
-        't-sardinas': { name: "Joyero Sardinas", image: "sardines.png", price: 21000, priceStr: "$21.000 COP", desc: "Cápsula organizadora irónica y sofisticada. Protege y exhibe tus joyas con un diseño inspirado en latas de conserva.", size: "26 mm", material: "Filamento PLA", color: "Tornasol y Blanco", weight: "27 g", collection: "tornasol" },
-        'h-latas': { name: "Organizador de latas", price: 47000, priceStr: "$47.000 COP", desc: "Optimización espacial. Dispensador de latas diseñado ergonómicamente para maximizar el almacenamiento de tu refrigerador.", size: "180 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "260 g", collection: "hogar" },
-        'h-waffle': { name: "Waffle Bowl", price: 21000, priceStr: "$21.000 COP", desc: "Centro de mesa minimalista. Su estructura de rejilla impresa en 3D aporta un alto contraste visual a cualquier superficie.", size: "10 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "60 g", collection: "hogar" },
-        'h-angel': { name: "Escultura Ángel", price: 16000, priceStr: "$16.000 COP", desc: "Figura artística pintada a mano. Un objeto decorativo sutil que proyecta calma y sofisticación espacial.", size: "85 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "20 g", collection: "hogar" },
-        'h-llaves': { name: "Colgador de llaves Home", price: 16000, priceStr: "$16.000 COP", desc: "Soporte arquitectónico para llaves. La fusión perfecta entre utilidad y diseño moderno de líneas limpias.", size: "7.5 mm", material: "Filamento PLA", color: "Negro Matte", weight: "34 g", collection: "hogar" },
-        'h-ovejita': { name: "Soporte Ovejita Shaun", price: 11000, priceStr: "$11.000 COP", desc: "Un toque de ironía y orden para el baño. Soporte para papel higiénico que transforma lo cotidiano en algo memorable.", size: "19.1 mm", material: "Filamento PLA", color: "Negro Matte", weight: "11 g", collection: "hogar" },
-        'g-spiderman': { name: "Llavero Spiderman", price: 22000, priceStr: "$22.000 COP", desc: "Artefacto coleccionable en miniatura. Un tributo pintado a mano a la cultura pop con acabados de alta durabilidad.", size: "4 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek" },
-        'g-gow': { name: "Llavero Espadas GOW", price: 38000, priceStr: "$38.000 COP", desc: "Réplicas milimétricas del mundo del gaming. Piezas de colección acabadas artesanalmente para fanáticos exigentes.", size: "2.6 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "4 g", collection: "geek" },
+        't-carita': { name: "Matera Carita Feliz", image: "happy pot.png", price: 30000, priceStr: "$30.000 COP", desc: "Aporta energía y diseño a tus espacios con esta maceta, ideal para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "124 g", collection: "tornasol" },
+        't-amigos': { name: "Matera Amigos", image: "buddies.png", price: 27000, priceStr: "$27.000 COP", desc: "Un diseño doble y equilibrado, ideal para exhibir plantas complementarias en tu escritorio o estudio.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
+        't-ballenita': { name: "Matera Ballenita", image: "little whale.png", price: 28000, priceStr: "$28.000 COP", desc: "Maceta inspirada en la vida marina. Un toque estético único.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "116 g", collection: "tornasol" },
+        't-florero': { name: "Florero Prisma", image: "vase.png", price: 36000, priceStr: "$36.000 COP", desc: "Elegancia paramétrica. Este florero transforma el ambiente de cualquier habitación.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "144 g", collection: "tornasol" },
+        't-trex': { name: "Portalápices T-Rex", image: "dinosaur.png", price: 27000, priceStr: "$27.000 COP", desc: "Portalápices para tus esenciales. Mantén tu espacio de trabajo ordenado con una estética tierna.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
+        't-sardinas': { name: "Joyero Sardinas", image: "sardines.png", price: 21000, priceStr: "$21.000 COP", desc: "Protege y exhibe tus joyas con un diseño inspirado en latas de conserva.", size: "26 mm", material: "Filamento PLA", color: "Tornasol y Blanco", weight: "27 g", collection: "tornasol" },
+        'h-latas': { name: "Organizador de latas", price: 47000, priceStr: "$47.000 COP", desc: "Dispensador de latas diseñado para maximizar el almacenamiento de tu refrigerador.", size: "180 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "260 g", collection: "hogar" },
+        'h-waffle': { name: "Waffle Bowl", price: 21000, priceStr: "$21.000 COP", desc: "Centro de mesa o frutero minimalista. Su estructura de rejilla aporta un alto contraste visual a cualquier superficie.", size: "10 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "60 g", collection: "hogar" },
+        'h-angel': { name: "Escultura Ángel", price: 16000, priceStr: "$16.000 COP", desc: "Figura decorativa que aporta protección y calma. Perfecta para cualquier rincón de tu hogar.", size: "85 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "20 g", collection: "hogar" },
+        'h-llaves': { name: "Colgador de llaves Home", price: 16000, priceStr: "$16.000 COP", desc: "Soporte resistente para llaves. La fusión perfecta entre utilidad y diseño moderno.", size: "7.5 mm", material: "Filamento PLA", color: "Negro Matte", weight: "34 g", collection: "hogar" },
+        'h-ovejita': { name: "Soporte Ovejita Shaun", price: 11000, priceStr: "$11.000 COP", desc: "Un toque de humor y orden para el baño. Soporte para papel higiénico que transforma lo cotidiano en algo memorable.", size: "19.1 mm", material: "Filamento PLA", color: "Negro Matte", weight: "11 g", collection: "hogar" },
+        'g-spiderman': { name: "Llavero Spiderman", price: 22000, priceStr: "$22.000 COP", desc: "Llavero inspirado en Spiderman. Un tributo pintado a mano.", size: "4 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek" },
+        'g-gow': { name: "Llavero Espadas GOW", price: 38000, priceStr: "$38.000 COP", desc: "Réplicas milimétricas del mundo de Kratos.", size: "2.6 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "4 g", collection: "geek" },
         'g-jinx': { name: "Bomba Jinx", price: 55000, priceStr: "$55.000 COP", desc: "Caos en la palma de tu mano. Reproducción fiel y detallada pintada a mano para elevar tu setup o llaves.", size: "50 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "7 g", collection: "geek" },
-        'g-hollow': { name: "Llavero Hollow Knight", price: 32000, priceStr: "$32.000 COP", desc: "El guardián de Hollownest materializado. Precisión y arte combinados en un accesorio exclusivo.", size: "49 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek" },
-        'g-dados': { name: "Castillo Torre de Dados", price: 24000, priceStr: "$24.000 COP", desc: "Estructura arquitectónica funcional para tabletop gaming. Cada lanzamiento de dados se convierte en una experiencia.", size: "178 mm", material: "Filamento PLA", color: "Azul Geométrico", weight: "116 g", collection: "geek" }
+        'g-hollow': { name: "Llavero Hollow Knight", price: 32000, priceStr: "$32.000 COP", desc: "El guardián de Hollownest materializado.", size: "49 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek" },
+        'g-dados': { name: "Castillo Torre de Dados", price: 24000, priceStr: "$24.000 COP", desc: "Estructura funcional para tabletop gaming. Cada lanzamiento de dados se convierte en una experiencia.", size: "178 mm", material: "Filamento PLA", color: "Azul Geométrico", weight: "116 g", collection: "geek" }
       }
     },
     cart: {
@@ -173,8 +173,8 @@ const translations = {
       },
       confirmation: {
         title: "¡Deseo Recibido!",
-        subtitle: "Tu pedido ha sido materializado exitosamente.",
-        desc: "Te contactaremos pronto para confirmar los detalles de entrega.",
+        subtitle: "Tu pedido ha sido confirmado exitosamente.",
+        desc: "Te contactaremos pronto para confirmar cualquier detalle.",
         orderNumber: "Número de Pedido",
         backHome: "Volver al Inicio"
       }
@@ -194,29 +194,29 @@ const translations = {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explore",
       social: "Social",
-      tagline: "Digital materialization and additive manufacturing laboratory."
+      tagline: "The lab where we bring your dreams to life."
     },
     home: {
-      heroSubtitle: "Vanguard Design",
+      heroSubtitle: "Made for you",
       heroTitle: "We create",
       heroHighlight: "what you dream of.",
-      heroDesc: "We are a small lab of curious people passionate about 3D printing, located in Bogotá. We transform digital files into real objects through technical care, precision in every layer and unique finishes.",
+      heroDesc: "We are a small studio made up of curious people who are passionate about 3D printing. We transform digital files into real objects through technical expertise, precision in every layer, and unique finishes.",
       explore: "Explore Collections",
       customOrder: "Custom Order"
     },
     about: {
       badge: "Our DNA",
       title: "Jessica & Gabriel",
-      subtitle: "The humans behind the lab.",
-      desc1: "We are a young couple based in Bogotá, united by technical curiosity and an obsession with aesthetics. 3deseos.lab is the meeting point between our professions and our shared passion for additive manufacturing.",
-      desc2: "Gabriel is a Computer Scientist, in charge of algorithmic precision and layer optimization. Jessica is a UX Designer and writer, who brings the human vision, concept, and narrative behind each piece.",
-      desc3: "We love music, disruptive creativity, and the constant search for objects that no one else has. We don't believe in the generic; we create unique artifacts that project personality and purpose in physical space.",
+      subtitle: "Who are the people behind 3deseos.lab?",
+      desc1: "We are a young couple, united by a shared interest in technology and a passion for aesthetics. 3deseos.lab is where our expertise and our shared passion for creating unique and functional objects come together.",
+      desc2: "Gabriel is responsible for technical precision, optimizing each layer, and ensuring the quality of every print. Jessica handles accounting, marketing, and communication with you.",
+      desc3: "We love music, disruptive creativity, and the constant search for unique items. We don't do run-of-the-mill; we create pieces that exude personality and purpose.",
       location: "BOGOTÁ, COLOMBIA",
       features: [
         { icon: 'Code', label: 'Computer Science' },
-        { icon: 'PenTool', label: 'UX Design & Writing' },
+        { icon: 'PenTool', label: 'Design & Writing' },
         { icon: 'Music', label: 'Music Lovers' },
-        { icon: 'Heart', label: 'Power Couple' }
+        { icon: 'Heart', label: 'Creative Couple' }
       ]
     },
     custom: {
@@ -226,18 +226,18 @@ const translations = {
       step1Title: "The Idea",
       step1Desc: "Send us a sketch, a reference image, or a digital file (Thingiverse, Printables).",
       step2Title: "Validation",
-      step2Desc: "We evaluate feasibility, choose the ideal polymer, and structure the geometry.",
+      step2Desc: "We analyze your request, create a prototype and test prints if necessary. We advise you on the material and finish, and precisely dimension your part.",
       step3Title: "Production",
-      step3Desc: "The object comes to life layer by layer through precision additive manufacturing.",
+      step3Desc: "The object comes to life layer by layer in our high-precision 3D printer.",
       step4Title: "Delivery",
-      step4Desc: "You receive a unique and personalized artifact, delivered right to your hands.",
+      step4Desc: "We ship via Uber in Bogotá and through a shipping carrier nationwide. Your order will be delivered directly to you.",
       ctaTitle: "Ready to make it real?",
       ctaButton: "Send Request"
     },
     contact: {
       badge: "Direct Contact",
       title: "Contact",
-      subtitle: "Initiate a transmission. Tell us what you want to materialize.",
+      subtitle: "Start a conversation. Tell us what dream you want to make come true.",
       whatsapp: "WhatsApp",
       instagram: "@3deseos.lab",
       location: "Bogotá, Colombia",
@@ -251,7 +251,7 @@ const translations = {
     community: {
       badge: "Global Community",
       title: "Our Community",
-      subtitle: "Stories materialized for our customers. Every piece is a dream come true.",
+      subtitle: "Stories brought to life by and for our customers. Each piece represents a wish come true.",
       testimonials: [
         { author: "Andres F.", handle: "@andresf_3d", text: "The finish quality is incredible. It doesn't look like conventional 3D printing; it's a piece of art." },
         { author: "Mariana L.", handle: "@marianalópez", text: "I ordered a personalized gift and it exceeded my expectations. The attention to detail is unique." },
@@ -292,25 +292,25 @@ const translations = {
         qty: "Quantity:",
         orderBtn: "Add to Cart",
         addedBtn: "Added",
-        shippingInfo: "Produced on demand in Bogotá. Estimated time: 3-5 business days."
+        shippingInfo: "Estimated time: 5–7 business days. This may take longer depending on the references or the complexity of the model."
       },
       items: {
-        't-carita': { name: "Happy Face Planter", image: "happy pot.png", price: 30000, priceStr: "$30,000 COP", desc: "Bring energy and design to your spaces with this minimalist 3D printed planter, ideal for succulents and small plants.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "124 g", collection: "tornasol" },
-        't-amigos': { name: "Friends Planter", image: "buddies.png", price: 27000, priceStr: "$27,000 COP", desc: "A perfectly balanced dual design, ideal for displaying complementary species on your desk or studio.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "76 g", collection: "tornasol" },
-        't-ballenita': { name: "Whale Planter", image: "little whale.png", price: 28000, priceStr: "$28,000 COP", desc: "Functional decorative sculpture inspired by marine life. A unique aesthetic touch thanks to its light-refracting finish.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "116 g", collection: "tornasol" },
-        't-florero': { name: "Prism Vase", image: "vase.png", price: 36000, priceStr: "$36,000 COP", desc: "Parametric elegance. This 3D printed vase captures light and transforms the ambiance of any room.", size: "120 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "144 g", collection: "tornasol" },
-        't-trex': { name: "T-Rex Pen Holder", image: "dinosaur.png", price: 27000, priceStr: "$27,000 COP", desc: "Disruptive desk organizer. Keep your workspace tidy with a fascinating low-poly aesthetic.", size: "120 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "76 g", collection: "tornasol" },
-        't-sardinas': { name: "Sardine Jewelry Box", image: "sardines.png", price: 21000, priceStr: "$21,000 COP", desc: "Ironic and sophisticated organizing capsule. Protect and display your jewelry with a design inspired by tin cans.", size: "26 mm", material: "PLA Filament", color: "Tornasol and White", weight: "27 g", collection: "tornasol" },
-        'h-latas': { name: "Fridge Can Organizer", price: 47000, priceStr: "$47,000 COP", desc: "Spatial optimization. Ergonomically designed can dispenser to maximize your refrigerator storage.", size: "180 mm", material: "Premium PLA Filament", color: "White", weight: "260 g", collection: "hogar" },
-        'h-waffle': { name: "Waffle Bowl", price: 21000, priceStr: "$21,000 COP", desc: "Minimalist centerpiece. Its 3D printed grid structure brings high visual contrast to any surface.", size: "10 mm", material: "Premium PLA Filament", color: "White", weight: "60 g", collection: "hogar" },
-        'h-angel': { name: "Angel Sculpture", price: 16000, priceStr: "$16,000 COP", desc: "Hand-painted artistic figure. A subtle decorative object projecting spatial calm and sophistication.", size: "85 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "20 g", collection: "hogar" },
-        'h-llaves': { name: "Minimal Key Holder", price: 16000, priceStr: "$16,000 COP", desc: "Architectural key holder. The perfect fusion between utility and modern clean-lined design.", size: "7.5 mm", material: "PLA Filament", color: "Matte Black", weight: "34 g", collection: "hogar" },
-        'h-ovejita': { name: "Shaun the Sheep Holder", price: 11000, priceStr: "$11,000 COP", desc: "A touch of irony and order for the bathroom. A toilet paper holder that transforms the everyday into something memorable.", size: "19.1 mm", material: "PLA Filament", color: "Matte Black", weight: "11 g", collection: "hogar" },
-        'g-spiderman': { name: "Spiderman Keychain", price: 22000, priceStr: "$22,000 COP", desc: "Miniature collectible artifact. A hand-painted tribute to pop culture with highly durable finishes.", size: "4 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek" },
-        'g-gow': { name: "GOW Blades Keychain", price: 38000, priceStr: "$38,000 COP", desc: "Millimetric replicas from the gaming world. Artisan-finished collectibles for demanding fans.", size: "2.6 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "4 g", collection: "geek" },
-        'g-jinx': { name: "Jinx Bomb Keychain", price: 55000, priceStr: "$55,000 COP", desc: "Chaos in the palm of your hand. Faithful and detailed hand-painted reproduction to elevate your setup or keys.", size: "50 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "7 g", collection: "geek" },
-        'g-hollow': { name: "Hollow Knight Keychain", price: 32000, priceStr: "$32,000 COP", desc: "The guardian of Hollownest materialized. Precision and art combined in an exclusive accessory.", size: "49 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek" },
-        'g-dados': { name: "Dice Tower Castle", price: 24000, priceStr: "$24,000 COP", desc: "Functional architectural structure for tabletop gaming. Every dice roll becomes an experience.", size: "178 mm", material: "PLA Filament", color: "Geometric Blue", weight: "116 g", collection: "geek" }
+        't-carita': { name: "Happy Face Planter", image: "happy pot.png", price: 30000, priceStr: "$30,000 COP", desc: "Bring energy and style to your spaces with this planter, perfect for succulents and small plants.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "124 g", collection: "tornasol" },
+        't-amigos': { name: "Friends Planter", image: "buddies.png", price: 27000, priceStr: "$27,000 COP", desc: "A balanced, two-tiered design, perfect for displaying complementary plants on your desk or in your study.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "76 g", collection: "tornasol" },
+        't-ballenita': { name: "Whale Planter", image: "little whale.png", price: 28000, priceStr: "$28,000 COP", desc: "A plant pot inspired by marine life. A unique aesthetic touch.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "116 g", collection: "tornasol" },
+        't-florero': { name: "Prism Vase", image: "vase.png", price: 36000, priceStr: "$36,000 COP", desc: "Parametric elegance. This vase transforms the atmosphere of any room.", size: "120 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "144 g", collection: "tornasol" },
+        't-trex': { name: "T-Rex Pen Holder", image: "dinosaur.png", price: 27000, priceStr: "$27,000 COP", desc: "A pencil holder for your essentials. Keep your workspace tidy with a cute design.", size: "120 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "76 g", collection: "tornasol" },
+        't-sardinas': { name: "Sardine Jewelry Box", image: "sardines.png", price: 21000, priceStr: "$21,000 COP", desc: "Protect and display your jewelry with a design inspired by tin cans.", size: "26 mm", material: "PLA Filament", color: "Tornasol and White", weight: "27 g", collection: "tornasol" },
+        'h-latas': { name: "Fridge Can Organizer", price: 47000, priceStr: "$47,000 COP", desc: "Can dispenser designed to maximize storage space in your refrigerator.", size: "180 mm", material: "Premium PLA Filament", color: "White", weight: "260 g", collection: "hogar" },
+        'h-waffle': { name: "Waffle Bowl", price: 21000, priceStr: "$21,000 COP", desc: "A minimalist centerpiece or fruit bowl. Its lattice design adds striking visual contrast to any surface.", size: "10 mm", material: "Premium PLA Filament", color: "White", weight: "60 g", collection: "hogar" },
+        'h-angel': { name: "Angel Sculpture", price: 16000, priceStr: "$16,000 COP", desc: "A decorative figurine that brings protection and calm. Perfect for any corner of your home.", size: "85 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "20 g", collection: "hogar" },
+        'h-llaves': { name: "Minimal Key Holder", price: 16000, priceStr: "$16,000 COP", desc: "Sturdy key holder. The perfect blend of functionality and modern design.", size: "7.5 mm", material: "PLA Filament", color: "Matte Black", weight: "34 g", collection: "hogar" },
+        'h-ovejita': { name: "Shaun the Sheep Holder", price: 11000, priceStr: "$11,000 COP", desc: "A touch of humor and organization for the bathroom. A toilet paper holder that turns the everyday into something memorable.", size: "19.1 mm", material: "PLA Filament", color: "Matte Black", weight: "11 g", collection: "hogar" },
+        'g-spiderman': { name: "Spiderman Keychain", price: 22000, priceStr: "$22,000 COP", desc: "Spider-Man-inspired keychain. A hand-painted tribute.", size: "4 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek" },
+        'g-gow': { name: "GOW Blades Keychain", price: 38000, priceStr: "$38,000 COP", desc: "Life-size replicas of Kratos' world.", size: "2.6 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "4 g", collection: "geek" },
+        'g-jinx': { name: "Jinx Bomb Keychain", price: 55000, priceStr: "$55,000 COP", desc: "Chaos in the palm of your hand. A faithful, detailed hand-painted reproduction to elevate your setup or keys.", size: "50 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "7 g", collection: "geek" },
+        'g-hollow': { name: "Hollow Knight Keychain", price: 32000, priceStr: "$32,000 COP", desc: "The guardian of Hollownest materialized.", size: "49 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek" },
+        'g-dados': { name: "Dice Tower Castle", price: 24000, priceStr: "$24,000 COP", desc: "A functional framework for tabletop gaming. Every roll of the dice becomes an experience.", size: "178 mm", material: "PLA Filament", color: "Geometric Blue", weight: "116 g", collection: "geek" }
       }
     },
     cart: {
@@ -352,8 +352,8 @@ const translations = {
       },
       confirmation: {
         title: "Wish Received!",
-        subtitle: "Your order has been materialized successfully.",
-        desc: "We will contact you soon to confirm delivery details.",
+        subtitle: "Your order has been confirmed successfully.",
+        desc: "We'll contact you shortly to confirm the details.",
         orderNumber: "Order Number",
         backHome: "Back to Home"
       }
