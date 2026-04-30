@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Instagram, MessageCircle, MapPin, Mail, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Instagram, MapPin, Mail, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import WhatsApp from '../components/WhatsApp';
 import { useLanguage } from '../i18n';
 
 const Contact = () => {
@@ -75,7 +76,7 @@ const Contact = () => {
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-green group-hover:text-brand-green transition-colors">
-                <MessageCircle className="w-5 h-5" />
+                <WhatsApp className="w-5 h-5" />
               </div>
               <span className="font-jost">{t('contact.whatsapp')}</span>
             </a>

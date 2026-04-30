@@ -23,18 +23,17 @@ const translations = {
       customOrder: "Pedido Personalizado"
     },
     about: {
-      title: "El Concepto del Deseo",
-      subtitle: "Materializando Pensamientos",
-      desc1: "No somos una fábrica. No hacemos producción en masa.",
-      desc2: "3deseos.lab nace de la idea filosófica de que un deseo es una entidad digital, abstracta, que vive en el pensamiento. Nuestro objetivo es ser el mecanismo que le otorga presencia física en este plano.",
-      desc3: "Utilizamos luz, polímeros avanzados y precisión numérica para materializar ideas. Cada pieza que sale de nuestro laboratorio de impresión 3D es un artefacto, diseñado meticulosamente y construido capa por capa para integrarse en tu vida.",
-      location: "Bogotá, Colombia",
+      title: "Jessica & Gabriel",
+      subtitle: "Los humanos detrás del laboratorio.",
+      desc1: "Somos una pareja joven con base en Bogotá, unidos por la curiosidad técnica y la obsesión por lo estético. 3deseos.lab es el punto de encuentro entre nuestras profesiones y nuestra pasión compartida por la manufactura aditiva.",
+      desc2: "Gabriel es Científico de Computación, el encargado de la precisión algorítmica y la optimización de cada capa. Jessica es Diseñadora UX y escritora, quien aporta la visión humana, el concepto y la narrativa detrás de cada pieza.",
+      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de objetos que nadie más tiene. No creemos en lo genérico; creamos artefactos únicos que proyectan personalidad y propósito en el espacio físico.",
+      location: "BOGOTÁ, COLOMBIA",
       features: [
-        { icon: 'Code', label: 'Precisión' },
-        { icon: 'PenTool', label: 'Diseño' },
-        { icon: 'Box', label: 'Volumen' },
-        { icon: 'Music', label: 'Armonía' },
-        { icon: 'Heart', label: 'Pasión' }
+        { icon: 'Code', label: 'Computer Science' },
+        { icon: 'PenTool', label: 'UX Design & Writing' },
+        { icon: 'Music', label: 'Music Lovers' },
+        { icon: 'Heart', label: 'Power Couple' }
       ]
     },
     custom: {
@@ -196,18 +195,17 @@ const translations = {
       customOrder: "Custom Order"
     },
     about: {
-      title: "The Wish Concept",
-      subtitle: "Materializing Thoughts",
-      desc1: "We are not a factory. We don't do mass production.",
-      desc2: "3deseos.lab was born from the philosophical idea that a wish is a digital, abstract entity living in thought. Our goal is to be the mechanism that grants it physical presence in this realm.",
-      desc3: "We use light, advanced polymers, and numerical precision to materialize ideas. Every piece that leaves our 3D printing lab is an artifact, meticulously designed and built layer by layer to integrate into your life.",
-      location: "Bogotá, Colombia",
+      title: "Jessica & Gabriel",
+      subtitle: "The humans behind the lab.",
+      desc1: "We are a young couple based in Bogotá, united by technical curiosity and an obsession with aesthetics. 3deseos.lab is the meeting point between our professions and our shared passion for additive manufacturing.",
+      desc2: "Gabriel is a Computer Scientist, in charge of algorithmic precision and layer optimization. Jessica is a UX Designer and writer, who brings the human vision, concept, and narrative behind each piece.",
+      desc3: "We love music, disruptive creativity, and the constant search for objects that no one else has. We don't believe in the generic; we create unique artifacts that project personality and purpose in physical space.",
+      location: "BOGOTÁ, COLOMBIA",
       features: [
-        { icon: 'Code', label: 'Precision' },
-        { icon: 'PenTool', label: 'Design' },
-        { icon: 'Box', label: 'Volume' },
-        { icon: 'Music', label: 'Harmony' },
-        { icon: 'Heart', label: 'Passion' }
+        { icon: 'Code', label: 'Computer Science' },
+        { icon: 'PenTool', label: 'UX Design & Writing' },
+        { icon: 'Music', label: 'Music Lovers' },
+        { icon: 'Heart', label: 'Power Couple' }
       ]
     },
     custom: {

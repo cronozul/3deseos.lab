@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lightbulb, CheckCircle2, Box, Truck, Instagram, MessageCircle, ArrowRight } from 'lucide-react';
+import { Lightbulb, CheckCircle2, Box, Truck, Instagram, ArrowRight } from 'lucide-react';
+import WhatsApp from '../components/WhatsApp';
 import { useLanguage } from '../i18n';
 
 const CustomOrders = () => {
@@ -46,10 +47,13 @@ const CustomOrders = () => {
               href="https://wa.me/573172575398?text=Hola!%20Estoy%20interesadx%20en%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 px-10 py-5 rounded-full bg-white text-black font-reem font-bold text-lg hover:bg-brand-blue hover:text-white transition-all shadow-xl"
+              className="group relative px-10 py-5 rounded-full overflow-hidden transition-all active:scale-95 bg-white text-black font-reem font-bold text-lg shadow-xl"
             >
-              {t('custom.ctaButton')}
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 bg-brand-blue translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <span className="relative z-10 flex items-center gap-4 group-hover:text-white transition-colors">
+                {t('custom.ctaButton')}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </a>
             
             <div className="flex gap-4">
@@ -59,7 +63,7 @@ const CustomOrders = () => {
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center bg-white/5 hover:border-brand-green hover:text-brand-green transition-all"
               >
-                <MessageCircle className="w-6 h-6" />
+                <WhatsApp className="w-6 h-6" />
               </a>
               <a 
                 href="https://www.instagram.com/3deseos.lab" 

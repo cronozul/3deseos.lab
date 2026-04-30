@@ -41,13 +41,8 @@ const Navbar = () => {
         {/* Logo Section */}
         <Link to="/" className="flex items-center gap-3 group relative z-50">
           <LampAnimation isNavbar={true} />
-          <span
-            className="font-reem text-2xl md:text-3xl font-bold tracking-wider text-white transition-colors duration-200"
-            style={{ color: location.pathname === '/' ? '#F5C00C' : '' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#F5C00C'}
-            onMouseLeave={e => e.currentTarget.style.color = location.pathname === '/' ? '#F5C00C' : ''}
-          >
-            3deseos<span className="text-brand-blue">.lab</span>
+          <span className="font-reem text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-brand-gradient">
+            3deseos<span className="transition-colors">.lab</span>
           </span>
         </Link>
         
