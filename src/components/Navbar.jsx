@@ -39,33 +39,42 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050505]/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo Section */}
-        <Link to="/" className="flex items-center gap-3 group relative z-50" style={{ '--hover-yellow': '#F5C00C' }}>
+        <Link to="/" className="flex items-center gap-3 group relative z-50">
           <LampAnimation isNavbar={true} />
           <span
             className="font-reem text-2xl md:text-3xl font-bold tracking-wider text-white transition-colors duration-200"
+            style={{ color: location.pathname === '/' ? '#F5C00C' : '' }}
             onMouseEnter={e => e.currentTarget.style.color = '#F5C00C'}
-            onMouseLeave={e => e.currentTarget.style.color = ''}
+            onMouseLeave={e => e.currentTarget.style.color = location.pathname === '/' ? '#F5C00C' : ''}
           >
             3deseos<span className="text-brand-blue">.lab</span>
           </span>
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-white/70">
           {navLinks.map((link) => {
-            const isActive = location.pathname.startsWith(link.to);
+            const isActive = location.pathname === link.to;
             return (
               <Link 
                 key={link.to} 
                 to={link.to} 
                 className="transition-colors duration-200 relative py-2 group"
-                style={{ color: isActive ? '#F5C00C' : '' }}
-                onMouseEnter={e => { if(!isActive) e.currentTarget.style.color = '#F5C00C'; e.currentTarget.querySelector('span').style.width = '100%'; }}
-                onMouseLeave={e => { if(!isActive) e.currentTarget.style.color = ''; e.currentTarget.querySelector('span').style.width = isActive ? '100%' : '0'; }}
+                style={{ color: isActive ? '#F5C00C' : 'rgba(255,255,255,0.7)' }}
+                onMouseEnter={e => { 
+                  e.currentTarget.style.color = '#F5C00C'; 
+                  const line = e.currentTarget.querySelector('.nav-line');
+                  if (line) line.style.width = '100%';
+                }}
+                onMouseLeave={e => { 
+                  e.currentTarget.style.color = isActive ? '#F5C00C' : 'rgba(255,255,255,0.7)'; 
+                  const line = e.currentTarget.querySelector('.nav-line');
+                  if (line && !isActive) line.style.width = '0';
+                }}
               >
                 {link.label}
                 <span 
-                  className="absolute bottom-0 left-0 h-px transition-all duration-300" 
+                  className="nav-line absolute bottom-0 left-0 h-px transition-all duration-300" 
                   style={{ 
                     width: isActive ? '100%' : '0',
                     background: '#F5C00C'
@@ -143,7 +152,7 @@ const Navbar = () => {
             <div className="relative z-10 flex flex-col h-full pt-32 px-8">
               <div className="flex flex-col gap-8">
                 {navLinks.map((link, idx) => {
-                  const isActive = location.pathname.startsWith(link.to);
+                  const isActive = location.pathname === link.to;
                   return (
                     <motion.div
                       key={link.to}
@@ -155,11 +164,25 @@ const Navbar = () => {
                         to={link.to} 
                         className="text-4xl font-reem font-bold transition-colors duration-200 flex items-center justify-between"
                         style={{ color: isActive ? '#F5C00C' : 'white' }}
-                        onMouseEnter={e => { e.currentTarget.style.color = '#F5C00C'; const span = e.currentTarget.querySelector('span'); if(span) { span.style.width = '48px'; span.style.background = '#F5C00C'; } }}
-                        onMouseLeave={e => { if(!isActive) e.currentTarget.style.color = 'white'; const span = e.currentTarget.querySelector('span'); if(span && !isActive) { span.style.width = '0'; } }}
+                        onMouseEnter={e => { 
+                          e.currentTarget.style.color = '#F5C00C'; 
+                          const span = e.currentTarget.querySelector('.mobile-nav-line'); 
+                          if(span) span.style.width = '48px'; 
+                        }}
+                        onMouseLeave={e => { 
+                          if (!isActive) e.currentTarget.style.color = 'white'; 
+                          const span = e.currentTarget.querySelector('.mobile-nav-line'); 
+                          if(span && !isActive) span.style.width = '0'; 
+                        }}
                       >
                         {link.label}
-                        <span className="h-px transition-all duration-500" style={{ width: isActive ? '48px' : '0', background: '#F5C00C' }} />
+                        <span 
+                          className="mobile-nav-line h-px transition-all duration-500" 
+                          style={{ 
+                            width: isActive ? '48px' : '0', 
+                            background: '#F5C00C' 
+                          }} 
+                        />
                       </Link>
                     </motion.div>
                   );
