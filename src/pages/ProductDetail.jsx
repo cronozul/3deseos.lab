@@ -51,8 +51,16 @@ const ProductDetail = () => {
           <div className={`absolute inset-0 bg-gradient-to-br ${getCollectionGradient(product.collection)} opacity-40`} />
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-30 mix-blend-overlay" />
           
-          <div className="absolute inset-0 flex items-center justify-center">
-             <Box className="w-48 h-48 text-white/20 group-hover:scale-105 transition-transform duration-700" strokeWidth={1} />
+          <div className="absolute inset-0 flex items-center justify-center p-12 md:p-20">
+            {product.image ? (
+              <img 
+                src={new URL(`../images/${product.image}`, import.meta.url).href}
+                alt={product.name}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 relative z-10 drop-shadow-[0_20px_50px_rgba(255,255,255,0.15)]"
+              />
+            ) : (
+              <Box className="w-48 h-48 text-white/20 group-hover:scale-105 transition-transform duration-700" strokeWidth={1} />
+            )}
           </div>
         </motion.div>
 
