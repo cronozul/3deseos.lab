@@ -46,7 +46,7 @@ const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 min-h-[80vh] flex items-center">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,8 +58,8 @@ const Contact = () => {
           </p>
 
           <div className="space-y-6">
-            <a 
-              href="mailto:3deseos.lab@gmail.com" 
+            <a
+              href="mailto:3deseos.lab@gmail.com"
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-blue group-hover:text-brand-blue transition-colors">
@@ -68,8 +68,8 @@ const Contact = () => {
               <span className="font-jost">3deseos.lab@gmail.com</span>
             </a>
 
-            <a 
-              href="https://wa.me/573172575398" 
+            <a
+              href="https://wa.me/573172575398"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
@@ -79,9 +79,9 @@ const Contact = () => {
               </div>
               <span className="font-jost">{t('contact.whatsapp')}</span>
             </a>
-            
-            <a 
-              href="https://www.instagram.com/3deseos.lab" 
+
+            <a
+              href="https://www.instagram.com/3deseos.lab"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
@@ -91,7 +91,7 @@ const Contact = () => {
               </div>
               <span className="font-jost">{t('contact.instagram')}</span>
             </a>
-            
+
             <div className="flex items-center gap-4 text-white/70 group">
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111]">
                 <MapPin className="w-5 h-5 text-brand-blue" />
@@ -108,10 +108,10 @@ const Contact = () => {
           className="bg-[#111111] border border-white/10 rounded-[2rem] p-8 relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-brand-blue/10 blur-[80px] rounded-full pointer-events-none" />
-          
+
           <AnimatePresence mode="wait">
             {status === 'success' ? (
-              <motion.div 
+              <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -122,7 +122,7 @@ const Contact = () => {
                   <CheckCircle2 className="w-10 h-10 text-brand-green" />
                 </div>
                 <h3 className="text-2xl font-reem font-bold mb-4">{t('contact.formSuccess')}</h3>
-                <button 
+                <button
                   onClick={() => setStatus('idle')}
                   className="text-white/50 hover:text-white transition-colors underline underline-offset-4"
                 >
@@ -130,7 +130,7 @@ const Contact = () => {
                 </button>
               </motion.div>
             ) : (
-              <form 
+              <form
                 key="form"
                 onSubmit={handleSubmit}
                 name="contact"
@@ -146,9 +146,9 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm text-white/50 mb-2">{t('contact.formName')}</label>
-                  <input 
+                  <input
                     required
-                    type="text" 
+                    type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -157,9 +157,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-sm text-white/50 mb-2">{t('contact.formEmail')}</label>
-                  <input 
+                  <input
                     required
-                    type="email" 
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -168,7 +168,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-sm text-white/50 mb-2">{t('contact.formMessage')}</label>
-                  <textarea 
+                  <textarea
                     required
                     name="message"
                     rows={4}
@@ -179,7 +179,7 @@ const Contact = () => {
                 </div>
 
                 {status === 'error' && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm"
@@ -189,7 +189,7 @@ const Contact = () => {
                   </motion.div>
                 )}
 
-                <button 
+                <button
                   disabled={status === 'loading'}
                   type="submit"
                   className="w-full py-4 rounded-xl bg-white text-[#050505] font-reem font-bold hover:bg-white/90 transition-all mt-4 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"

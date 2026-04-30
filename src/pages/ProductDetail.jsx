@@ -46,21 +46,59 @@ const ProductDetail = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative aspect-square rounded-[2rem] border border-white/10 bg-[#111111] overflow-hidden group glow-brand"
+          className="relative aspect-square rounded-[2rem] border border-white/10 bg-[#111111] overflow-hidden group glow-brand flex flex-col justify-between"
         >
-          <div className={`absolute inset-0 bg-gradient-to-br ${getCollectionGradient(product.collection)} opacity-40`} />
+          <motion.div 
+            className={`absolute inset-0 bg-gradient-to-br ${getCollectionGradient(product.collection)}`} 
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-30 mix-blend-overlay" />
           
-          <div className="absolute inset-0 flex items-center justify-center p-12 md:p-20">
+          <div className="relative z-20 p-6 md:p-8 flex justify-start">
+            <h1 className="text-3xl md:text-4xl font-reem font-bold text-white drop-shadow-lg">
+              {product.name}
+            </h1>
+          </div>
+
+          <div className="absolute inset-0 flex items-center justify-center p-12 md:p-20 z-10 pointer-events-none">
             {product.image ? (
-              <img 
-                src={new URL(`../images/${product.image}`, import.meta.url).href}
-                alt={product.name}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 relative z-10 drop-shadow-[0_20px_50px_rgba(255,255,255,0.15)]"
-              />
+              <motion.div
+                className="w-full h-full pointer-events-auto"
+                animate={{ 
+                  y: [-8, 8, -8],
+                  rotate: [-1.5, 1.5, -1.5]
+                }}
+                transition={{
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+                }}
+              >
+                <img 
+                  src={new URL(`../images/${product.image}`, import.meta.url).href}
+                  alt={product.name}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 relative z-10 drop-shadow-[0_20px_50px_rgba(255,255,255,0.15)]"
+                />
+              </motion.div>
             ) : (
-              <Box className="w-48 h-48 text-white/20 group-hover:scale-105 transition-transform duration-700" strokeWidth={1} />
+              <Box className="w-48 h-48 text-white/20 group-hover:scale-105 transition-transform duration-700 pointer-events-auto" strokeWidth={1} />
             )}
+          </div>
+
+          <div className="relative z-20 p-6 md:p-8 flex justify-between items-center mt-auto">
+            <p className="text-sm md:text-base text-brand-green tracking-widest uppercase font-medium drop-shadow-lg">
+              {t(`products.collections.${product.collection}.title`)}
+            </p>
+            <p className="text-4xl md:text-5xl font-jost font-bold text-white drop-shadow-lg">
+              ${product.price.toLocaleString('en-US')}
+            </p>
           </div>
         </motion.div>
 
@@ -70,14 +108,6 @@ const ProductDetail = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex flex-col gap-8"
         >
-          <div>
-            <p className="text-sm text-brand-green tracking-widest uppercase mb-2">
-              {t(`products.collections.${product.collection}.title`)}
-            </p>
-            <h1 className="text-4xl md:text-5xl font-reem font-bold mb-2">{product.name}</h1>
-            <p className="text-2xl font-jost text-brand-blue">{product.priceStr}</p>
-          </div>
-
           <div className="space-y-4 text-white/70 font-light leading-relaxed">
             <p>{product.desc}</p>
             

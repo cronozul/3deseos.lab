@@ -5,8 +5,9 @@ const translations = {
     nav: {
       home: "Inicio",
       products: "Colecciones",
-      about: "Sobre nosotros",
       custom: "Pedidos",
+      community: "Comunidad",
+      about: "Sobre nosotros",
       contact: "Contacto",
       cart: "Carrito"
     },
@@ -22,10 +23,49 @@ const translations = {
       customOrder: "Pedido Personalizado"
     },
     about: {
-      title: "El Concepto del Deseo",
-      desc1: "No somos una fábrica. No hacemos producción en masa.",
-      desc2: "3deseos.lab nace de la idea filosófica de que un deseo es una entidad digital, abstracta, que vive en el pensamiento. Nuestro objetivo es ser el mecanismo que le otorga presencia física en este plano.",
-      desc3: "Utilizamos luz, polímeros avanzados y precisión numérica para materializar ideas. Cada pieza que sale de nuestro laboratorio de impresión 3D es un artefacto, diseñado meticulosamente y construido capa por capa para integrarse en tu vida."
+      title: "Jessica & Gabriel",
+      subtitle: "Los humanos detrás del laboratorio",
+      desc1: "Somos una pareja joven con base en Bogotá, unidos por la curiosidad técnica y la obsesión por lo estético. 3deseos.lab es el punto de encuentro entre nuestras profesiones y nuestra pasión compartida por la manufactura aditiva.",
+      desc2: "Gabriel es Científico de Computación, el encargado de la precisión algorítmica y la optimización de cada capa. Jessica es Diseñadora UX y escritora, quien aporta la visión humana, el concepto y la narrativa detrás de cada pieza.",
+      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de objetos que nadie más tiene. No creemos en lo genérico; creamos artefactos únicos que proyectan personalidad y propósito en el espacio físico.",
+      location: "BOGOTÁ, COLOMBIA",
+      features: [
+        { label: "COMPUTER SCIENCE", icon: "Code" },
+        { label: "UX DESIGN & WRITING", icon: "PenTool" },
+        { label: "3D", icon: "Box" },
+        { label: "MUSIC LOVERS", icon: "Music" },
+        { label: "YOUNG COUPLE", icon: "Heart" }
+      ]
+    },
+    community: {
+      badge: "TESTIMONIOS REALES",
+      title: "Nuestra Comunidad",
+      subtitle: "Historias materializadas por nuestros clientes. Cada pieza cuenta un deseo cumplido.",
+      testimonials: [
+        {
+          text: "La calidad del acabado es increíble. No parece una impresión 3D convencional, es una pieza de arte.",
+          author: "Andrés F.",
+          handle: "@andresf"
+        },
+        {
+          text: "Pedí un regalo personalizado y superó mis expectativas. La atención al detalle es única.",
+          author: "Mariana L.",
+          handle: "@marial"
+        },
+        {
+          text: "El efecto tornasol es mágico. Dependiendo de la luz, la pieza cambia de personalidad.",
+          author: "Carlos P.",
+          handle: "@cp_3d"
+        }
+      ]
+    },
+    instagram: {
+      handle: "@3deseos.lab",
+      cards: [
+        { label: "TORNASOL VIBES" },
+        { label: "GARDEN DECO" },
+        { label: "CUSTOM DESIGN" }
+      ]
     },
     custom: {
       title: "Diseño Personalizado",
@@ -39,7 +79,7 @@ const translations = {
       step4Title: "Entrega",
       step4Desc: "Recibes un artefacto único y personalizado, directo en tus manos.",
       ctaTitle: "¿Listo para ver tu deseo materializado?",
-      ctaButton: "Iniciar Conversación"
+      ctaButton: "Iniciar Pedido"
     },
     contact: {
       title: "Contacto",
@@ -150,8 +190,9 @@ const translations = {
     nav: {
       home: "Home",
       products: "Collections",
-      about: "About us",
       custom: "Custom",
+      community: "Community",
+      about: "About us",
       contact: "Contact",
       cart: "Cart"
     },
@@ -167,10 +208,49 @@ const translations = {
       customOrder: "Custom Order"
     },
     about: {
-      title: "The Wish Concept",
-      desc1: "We are not a factory. We don't do mass production.",
-      desc2: "3deseos.lab was born from the philosophical idea that a wish is a digital, abstract entity living in thought. Our goal is to be the mechanism that grants it physical presence in this realm.",
-      desc3: "We use light, advanced polymers, and numerical precision to materialize ideas. Every piece that leaves our 3D printing lab is an artifact, meticulously designed and built layer by layer to integrate into your life."
+      title: "Jessica & Gabriel",
+      subtitle: "The humans behind the lab",
+      desc1: "We are a young couple based in Bogotá, united by technical curiosity and an obsession with aesthetics. 3deseos.lab is the meeting point between our professions and our shared passion for additive manufacturing.",
+      desc2: "Gabriel is a Computer Scientist, in charge of algorithmic precision and the optimization of each layer. Jessica is a UX Designer and writer, who contributes the human vision, the concept, and the narrative behind each piece.",
+      desc3: "We love music, disruptive creativity, and the constant search for objects that no one else has. We don't believe in the generic; we create unique artifacts that project personality and purpose in physical space.",
+      location: "BOGOTÁ, COLOMBIA",
+      features: [
+        { label: "COMPUTER SCIENCE", icon: "Code" },
+        { label: "UX DESIGN & WRITING", icon: "PenTool" },
+        { label: "3D", icon: "Box" },
+        { label: "MUSIC LOVERS", icon: "Music" },
+        { label: "YOUNG COUPLE", icon: "Heart" }
+      ]
+    },
+    community: {
+      badge: "REAL TESTIMONIALS",
+      title: "Our Community",
+      subtitle: "Stories materialized by our customers. Every piece tells a wish fulfilled.",
+      testimonials: [
+        {
+          text: "The finish quality is incredible. It doesn't look like conventional 3D printing, it's a piece of art.",
+          author: "Andrés F.",
+          handle: "@andresf"
+        },
+        {
+          text: "I ordered a personalized gift and it exceeded my expectations. The attention to detail is unique.",
+          author: "Mariana L.",
+          handle: "@marial"
+        },
+        {
+          text: "The tornasol effect is magical. Depending on the light, the piece changes personality.",
+          author: "Carlos P.",
+          handle: "@cp_3d"
+        }
+      ]
+    },
+    instagram: {
+      handle: "@3deseos.lab",
+      cards: [
+        { label: "TORNASOL VIBES" },
+        { label: "GARDEN DECO" },
+        { label: "CUSTOM DESIGN" }
+      ]
     },
     custom: {
       title: "Custom Design",
@@ -184,7 +264,7 @@ const translations = {
       step4Title: "Delivery",
       step4Desc: "You receive a unique and personalized artifact, delivered right to your hands.",
       ctaTitle: "Ready to make it real?",
-      ctaButton: "Send Request"
+      ctaButton: "Start Order"
     },
     contact: {
       title: "Contact",

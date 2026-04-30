@@ -10,6 +10,7 @@ import ProductDetail from './pages/ProductDetail';
 import About from './pages/About';
 import CustomOrders from './pages/CustomOrders';
 import Contact from './pages/Contact';
+import Community from './pages/Community';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/custom" element={<CustomOrders />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
