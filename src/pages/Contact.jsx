@@ -29,12 +29,15 @@ const Contact = () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...formData })
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Form submission failed with status: ${response.status}`);
+        }
         setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', 'bot-field': '' });
       })
       .catch((error) => {
-        console.error(error);
+        console.error('Contact form error:', error);
         setStatus('error');
       });
   };

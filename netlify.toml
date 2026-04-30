@@ -6,6 +6,12 @@
   NPM_CONFIG_LEGACY_PEER_DEPS = "true"
 
 [[redirects]]
+  from = "/__forms"
+  to = "/__forms"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
