@@ -57,7 +57,7 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
-            <Mail className="w-4 h-4 text-brand-green" />
+            <Mail className="w-4 h-4 text-brand-yellow" />
             <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('contact.badge')}</span>
           </div>
           <h1 className="text-6xl md:text-8xl font-reem font-bold mb-8 tracking-tighter leading-none">{t('contact.title')}</h1>
@@ -70,7 +70,7 @@ const Contact = () => {
               href="mailto:3deseos.lab@gmail.com"
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
             >
-              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-blue group-hover:text-brand-blue transition-colors">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-yellow group-hover:text-brand-yellow transition-colors">
                 <Mail className="w-5 h-5" />
               </div>
               <span className="font-jost">3deseos.lab@gmail.com</span>

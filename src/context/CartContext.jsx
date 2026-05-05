@@ -12,17 +12,21 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('3deseos_cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (productKey, quantity = 1) => {
+  const addToCart = (productKey, quantity = 1, options = {}) => {
     setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.productKey === productKey);
+      const existingItem = prevCart.find(item => 
+        item.productKey === productKey && 
+        JSON.stringify(item.options || {}) === JSON.stringify(options)
+      );
+      
       if (existingItem) {
         return prevCart.map(item =>
-          item.productKey === productKey
+          (item.productKey === productKey && JSON.stringify(item.options || {}) === JSON.stringify(options))
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prevCart, { productKey, quantity }];
+      return [...prevCart, { productKey, quantity, options }];
     });
   };
 

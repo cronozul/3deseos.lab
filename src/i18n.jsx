@@ -91,6 +91,15 @@ const translations = {
       badge: "Artesanía Digital",
       title: "Colecciones",
       subtitle: "Explora nuestros archivos de impresión 3D. Cada colección es una exploración de materiales, formas y funcionalidad.",
+      all: "Todos",
+      exploreMore: "Explorar más",
+      showless: "Ver menos",
+      collectionLabel: "Colección",
+      customCTA: {
+        title: "¿Tienes un diseño en mente?",
+        desc: "Realizamos impresiones personalizadas con la misma calidad y acabado de nuestras colecciones exclusivas.",
+        button: "Pedido Personalizado"
+      },
       collections: {
         tornasol: {
           title: "Tornasol",
@@ -108,12 +117,27 @@ const translations = {
       detail: {
         dimensions: "Dimensiones:",
         material: "Material:",
-        finish: "Color / Acabado:",
+        finish: "Color",
         weight: "Peso:",
         qty: "Cantidad:",
-        orderBtn: "Agregar al Carrito",
+        orderBtn: "Agregar",
         addedBtn: "Agregado",
-        shippingInfo: "Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo."
+        shippingInfo: "Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo.",
+        options: {
+          color: "Selecciona un color:",
+          paint: "¿Te gustaría que pintemos tu pieza?",
+          yes: "Sí, por favor",
+          no: "No, gracias",
+          colors: {
+            white: "Blanco",
+            black: "Negro",
+            red: "Rojo",
+            blue: "Azul",
+            gold: "Dorado",
+            gray: "Gris Metálico",
+            tornasol: "Tornasol"
+          }
+        }
       },
       items: {
         't-carita': { name: "Matera Carita Feliz", image: "happy pot.png", price: 30000, priceStr: "$30.000 COP", desc: "Aporta energía y diseño a tus espacios con esta maceta, ideal para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "124 g", collection: "tornasol" },
@@ -125,7 +149,7 @@ const translations = {
         'h-latas': { name: "Organizador de latas", price: 47000, priceStr: "$47.000 COP", desc: "Dispensador de latas diseñado para maximizar el almacenamiento de tu refrigerador.", size: "180 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "260 g", collection: "hogar" },
         'h-waffle': { name: "Waffle Bowl", price: 21000, priceStr: "$21.000 COP", desc: "Centro de mesa o frutero minimalista. Su estructura de rejilla aporta un alto contraste visual a cualquier superficie.", size: "10 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "60 g", collection: "hogar" },
         'h-angel': { name: "Escultura Ángel", price: 16000, priceStr: "$16.000 COP", desc: "Figura decorativa que aporta protección y calma. Perfecta para cualquier rincón de tu hogar.", size: "85 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "20 g", collection: "hogar" },
-        'h-llaves': { name: "Colgador de llaves Home", price: 16000, priceStr: "$16.000 COP", desc: "Soporte resistente para llaves. La fusión perfecta entre utilidad y diseño moderno.", size: "7.5 mm", material: "Filamento PLA", color: "Negro Matte", weight: "34 g", collection: "hogar" },
+        'h-llaves': { name: "Colgador de llaves", price: 16000, priceStr: "$16.000 COP", desc: "Soporte resistente para llaves. La fusión perfecta entre utilidad y diseño moderno.", size: "7.5 mm", material: "Filamento PLA", color: "Negro Matte", weight: "34 g", collection: "hogar" },
         'h-ovejita': { name: "Soporte Ovejita Shaun", price: 11000, priceStr: "$11.000 COP", desc: "Un toque de humor y orden para el baño. Soporte para papel higiénico que transforma lo cotidiano en algo memorable.", size: "19.1 mm", material: "Filamento PLA", color: "Negro Matte", weight: "11 g", collection: "hogar" },
         'g-spiderman': { name: "Llavero Spiderman", price: 22000, priceStr: "$22.000 COP", desc: "Llavero inspirado en Spiderman. Un tributo pintado a mano.", size: "4 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek" },
         'g-gow': { name: "Llavero Espadas GOW", price: 38000, priceStr: "$38.000 COP", desc: "Réplicas milimétricas del mundo de Kratos.", size: "2.6 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "4 g", collection: "geek" },
@@ -270,6 +294,15 @@ const translations = {
       badge: "Digital Craftsmanship",
       title: "Collections",
       subtitle: "Explore our 3D printed collections. Each collection is an exploration of materials, shapes, and functionality.",
+      all: "All",
+      exploreMore: "Explore more",
+      showless: "Show less",
+      collectionLabel: "Collection",
+      customCTA: {
+        title: "Have a design in mind?",
+        desc: "We make custom prints with the same quality and finish as our exclusive collections.",
+        button: "Custom Order"
+      },
       collections: {
         tornasol: {
           title: "Tornasol",
@@ -287,12 +320,27 @@ const translations = {
       detail: {
         dimensions: "Dimensions:",
         material: "Material:",
-        finish: "Color / Finish:",
+        finish: "Color",
         weight: "Weight:",
         qty: "Quantity:",
-        orderBtn: "Add to Cart",
+        orderBtn: "Add",
         addedBtn: "Added",
-        shippingInfo: "Estimated time: 5–7 business days. This may take longer depending on the references or the complexity of the model."
+        shippingInfo: "Estimated time: 5-7 business days. May vary based on references or model complexity.",
+        options: {
+          color: "Select a color:",
+          paint: "Would you like us to paint your piece?",
+          yes: "Yes, please",
+          no: "No, thanks",
+          colors: {
+            white: "White",
+            black: "Black",
+            red: "Red",
+            blue: "Blue",
+            gold: "Gold",
+            gray: "Metallic Gray",
+            tornasol: "Tornasol"
+          }
+        }
       },
       items: {
         't-carita': { name: "Happy Face Planter", image: "happy pot.png", price: 30000, priceStr: "$30,000 COP", desc: "Bring energy and style to your spaces with this planter, perfect for succulents and small plants.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "124 g", collection: "tornasol" },

@@ -32,6 +32,14 @@ const collectionMeta = {
 const Products = () => {
   const { t, getRaw } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
+  const [expandedCollections, setExpandedCollections] = useState({});
+
+  const toggleCollection = (key) => {
+    setExpandedCollections(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
 
   return (
     <div className="relative min-h-screen bg-[#050505]">
@@ -72,7 +80,7 @@ const Products = () => {
               onClick={() => setActiveFilter('all')}
               className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/40 hover:text-white'}`}
             >
-              Todos
+              {t('products.all')}
             </button>
             {Object.keys(collectionMeta).map((key) => {
               const meta = collectionMeta[key];
@@ -99,6 +107,8 @@ const Products = () => {
               .map((key) => {
                 const meta = collectionMeta[key];
                 const cData = getRaw(`products.collections.${key}`);
+                const isExpanded = expandedCollections[key];
+                const displayedItems = isExpanded ? meta.items : meta.items.slice(0, 4);
                 
                 if (!cData) return null;
                 return (
@@ -122,15 +132,22 @@ const Products = () => {
                         <h2 className="text-4xl md:text-5xl font-reem font-bold mb-4">{cData.title}</h2>
                         <p className="text-white/40 font-light leading-relaxed">{cData.desc}</p>
                       </div>
-                      <div className="flex items-center gap-3 group cursor-pointer border-b border-white/5 pb-2">
-                        <span className="text-sm font-jost tracking-widest text-white/50 group-hover:text-white transition-colors uppercase">Explorar mas</span>
-                        <ChevronRight className="w-4 h-4 text-white/30 group-hover:text-white transition-all transform group-hover:translate-x-1" />
-                      </div>
+                      {meta.items.length > 4 && (
+                        <div 
+                          onClick={() => toggleCollection(key)}
+                          className="flex items-center gap-3 group cursor-pointer border-b border-white/5 pb-2"
+                        >
+                          <span className="text-sm font-jost tracking-widest text-white/50 group-hover:text-white transition-colors uppercase">
+                            {isExpanded ? t('products.showless') : t('products.exploreMore')}
+                          </span>
+                          <ChevronRight className={`w-4 h-4 text-white/30 group-hover:text-white transition-all transform ${isExpanded ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                        </div>
+                      )}
                     </div>
 
                     {/* Product Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                      {meta.items.map((productKey, pIdx) => (
+                      {displayedItems.map((productKey, pIdx) => (
                         <motion.div
                           key={productKey}
                           initial={{ opacity: 0, y: 40 }}
@@ -153,22 +170,38 @@ const Products = () => {
 
         {/* Bottom CTA */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-60 p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 text-center relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mt-60 p-12 md:p-24 rounded-[4rem] bg-[#0A0A0A] border border-white/5 text-center relative overflow-hidden group/cta shadow-2xl"
         >
-          <div className="absolute inset-0 bg-brand-gradient opacity-[0.03] blur-3xl" />
-          <h2 className="text-4xl md:text-6xl font-reem font-bold mb-8 relative z-10">¿Tienes un diseño en mente?</h2>
-          <p className="text-white/50 mb-12 max-w-xl mx-auto relative z-10">Realizamos impresiones personalizadas con la misma calidad y acabado de nuestras colecciones exclusivas.</p>
-          <Link to="/custom">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 rounded-full bg-white text-black font-reem font-bold shadow-[0_0_50px_rgba(255,255,255,0.2)] relative z-10"
-            >
-              Pedido Personalizado
-            </motion.button>
-          </Link>
+          {/* Decorative Gradients */}
+          <div className="absolute inset-0 bg-brand-gradient opacity-[0.02] group-hover/cta:opacity-[0.05] transition-opacity duration-1000" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-purple/10 blur-[100px] rounded-full" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-blue/10 blur-[100px] rounded-full" />
+          
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-reem font-bold mb-8 tracking-tighter leading-none">
+              {t('products.customCTA.title')}
+            </h2>
+            <p className="text-white/40 text-lg md:text-xl font-light mb-12 leading-relaxed">
+              {t('products.customCTA.desc')}
+            </p>
+            
+            <Link to="/custom" className="inline-block">
+              <motion.div 
+                whileTap={{ scale: 0.95 }}
+                className="group relative px-12 py-6 rounded-full overflow-hidden transition-all bg-white text-black font-reem font-bold text-xl shadow-[0_20px_50px_rgba(255,255,255,0.1)]"
+              >
+                <div className="absolute inset-0 bg-brand-blue translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                <span className="relative z-10 flex items-center gap-4 group-hover:text-white transition-colors">
+                  {t('products.customCTA.button')}
+                  <Sparkles className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                </span>
+              </motion.div>
+            </Link>
+          </div>
         </motion.div>
       </div>
     </div>
