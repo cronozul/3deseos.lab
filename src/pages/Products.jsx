@@ -25,7 +25,7 @@ const collectionMeta = {
     icon: Home,
     gradient: 'from-[#EAE0D5] to-[#C6AC8F]', 
     accent: '#C6AC8F',
-    items: ['h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita', 'h-osito'] 
+    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita'] 
   }
 };
 
