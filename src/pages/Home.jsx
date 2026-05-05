@@ -27,11 +27,11 @@ const Home = () => {
         {/* Subtle Decorative Frame */}
         <div className="absolute inset-4 md:inset-8 border border-white/[0.03] rounded-[2rem] pointer-events-none" />
         <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.5em] text-white/20 uppercase font-light pointer-events-none">
-          3deseos.lab • Digital Foundry
+          3deseos.lab • Sueños en 3D
         </div>
 
         <div className="max-w-5xl mx-auto text-center relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -65,7 +65,7 @@ const Home = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
-              <Link 
+              <Link
                 to="/products"
                 style={{ cursor: 'pointer' }}
                 className="group relative px-10 py-5 rounded-full overflow-hidden transition-all active:scale-95 bg-white text-black font-reem font-bold text-lg"
@@ -77,7 +77,7 @@ const Home = () => {
                 </span>
               </Link>
 
-              <Link 
+              <Link
                 to="/custom"
                 style={{ cursor: 'pointer' }}
                 className="px-10 py-5 rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 backdrop-blur-md transition-all text-white font-reem font-bold text-lg active:scale-95"
@@ -90,10 +90,9 @@ const Home = () => {
 
         {/* Bottom Status Bar */}
         <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center text-[10px] tracking-widest text-white/20 font-light uppercase pointer-events-none">
-          <span>Bogotá, Colombia</span>
           <div className="flex gap-4">
-            <span>FDM / Resin</span>
-            <span>Est. 2024</span>
+            <span>PLA</span>
+            <span>Est. 2026</span>
           </div>
         </div>
       </section>

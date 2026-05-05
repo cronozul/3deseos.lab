@@ -79,8 +79,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-white/10 tracking-widest font-light">
         <span>© {new Date().getFullYear()} 3DESEOS.LAB</span>
-        <span>LAYER BY LAYER • MATERIALIZING DREAMS</span>
-      </div>
+             </div>
     </footer>
   );
 };
