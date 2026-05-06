@@ -15,13 +15,14 @@ const CustomOrders = () => {
   ];
 
   return (
-    <div className="relative h-[100dvh] overflow-hidden bg-[#050505] flex items-center justify-center px-6">
+    <div className="relative min-h-screen bg-[#050505] flex items-center justify-center px-6 py-24 md:py-0">
       {/* Decorative Background Elements */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-brand-purple/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-blue/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-brand-purple/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-blue/5 blur-[120px] rounded-full pointer-events-none" />
       
-      {/* Frame Border */}
-      <div className="absolute inset-4 md:inset-8 border border-white/[0.03] rounded-[2rem] pointer-events-none" />
+      {/* Frame Border - Hidden on mobile, fixed on desktop */}
+      <div className="fixed inset-4 md:inset-8 border border-white/[0.03] rounded-[2rem] pointer-events-none hidden md:block" />
+
 
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
         
@@ -37,10 +38,10 @@ const CustomOrders = () => {
             <Lightbulb className="w-4 h-4 text-brand-yellow" />
             <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('custom.badge')}</span>
           </div>
-            <h1 className="text-6xl md:text-8xl font-reem font-bold mb-8 tracking-tighter leading-none">
+            <h1 className="text-5xl md:text-8xl font-reem font-bold mb-4 md:mb-8 tracking-tighter leading-none">
               {t('custom.title')}
             </h1>
-            <p className="text-white/40 font-light text-lg leading-relaxed max-w-md">
+            <p className="text-white/40 font-light text-base md:text-lg leading-relaxed max-w-md">
               {t('custom.subtitle')}
             </p>
           </div>

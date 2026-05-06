@@ -67,7 +67,7 @@ const Contact = () => {
 
           <div className="space-y-6">
             <a
-              href="mailto:3deseos.lab@gmail.com"
+              href="mailto:3deseos.lab@gmail.com?subject=Consulta desde la web"
               className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group"
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-yellow group-hover:text-brand-yellow transition-colors">
@@ -100,9 +100,9 @@ const Contact = () => {
               <span className="font-jost">{t('contact.instagram')}</span>
             </a>
 
-            <div className="flex items-center gap-4 text-white/70 group">
-              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111]">
-                <MapPin className="w-5 h-5 text-brand-blue" />
+            <div className="flex items-center gap-4 text-white/70 hover:text-white transition-colors group cursor-default">
+              <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[#111111] group-hover:border-brand-blue group-hover:text-brand-blue transition-colors">
+                <MapPin className="w-5 h-5" />
               </div>
               <span className="font-jost">{t('contact.location')}</span>
             </div>
