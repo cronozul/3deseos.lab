@@ -68,7 +68,7 @@ const Products = () => {
               {t('products.title').split(' ').slice(1).join(' ')}
             </span>
           </h1>
-          <p className="text-white/40 font-light max-w-2xl text-lg md:text-xl leading-relaxed mx-auto md:mx-0">
+          <p className="text-white/60 font-light max-w-2xl text-lg md:text-xl leading-relaxed mx-auto md:mx-0">
             {t('products.subtitle')}
           </p>
         </motion.div>
@@ -78,7 +78,7 @@ const Products = () => {
           <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
             <button 
               onClick={() => setActiveFilter('all')}
-              className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/40 hover:text-white'}`}
+              className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
               {t('products.all')}
             </button>
@@ -89,7 +89,7 @@ const Products = () => {
                 <button 
                   key={key}
                   onClick={() => setActiveFilter(key)}
-                  className={`px-6 py-3 rounded-xl text-sm font-reem transition-all flex items-center gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/40 hover:text-white'}`}
+                  className={`px-6 py-3 rounded-xl text-sm font-reem transition-all flex items-center gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
                 >
                   <Icon className={`w-4 h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
                   {getRaw(`products.collections.${key}.title`)}
@@ -130,7 +130,7 @@ const Products = () => {
                           className="h-1 bg-gradient-to-r from-brand-blue to-transparent mb-8"
                         />
                         <h2 className="text-4xl md:text-5xl font-reem font-bold mb-4">{cData.title}</h2>
-                        <p className="text-white/40 font-light leading-relaxed">{cData.desc}</p>
+                        <p className="text-white/60 font-light leading-relaxed">{cData.desc}</p>
                       </div>
                       {meta.items.length > 4 && (
                         <div 
@@ -140,7 +140,7 @@ const Products = () => {
                           <span className="text-sm font-jost tracking-widest text-white/50 group-hover:text-white transition-colors uppercase">
                             {isExpanded ? t('products.showless') : t('products.exploreMore')}
                           </span>
-                          <ChevronRight className={`w-4 h-4 text-white/30 group-hover:text-white transition-all transform ${isExpanded ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+                          <ChevronRight className={`w-4 h-4 text-white/60 group-hover:text-white transition-all transform ${isExpanded ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
                         </div>
                       )}
                     </div>
@@ -185,7 +185,7 @@ const Products = () => {
             <h2 className="text-5xl md:text-7xl font-reem font-bold mb-8 tracking-tighter leading-none">
               {t('products.customCTA.title')}
             </h2>
-            <p className="text-white/40 text-lg md:text-xl font-light mb-12 leading-relaxed">
+            <p className="text-white/60 text-lg md:text-xl font-light mb-12 leading-relaxed">
               {t('products.customCTA.desc')}
             </p>
             

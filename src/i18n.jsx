@@ -7,7 +7,6 @@ const translations = {
       products: "Colecciones",
       about: "Sobre nosotros",
       custom: "Pedidos",
-      community: "Comunidad",
       contact: "Contacto",
       cart: "Carrito"
     },
@@ -69,16 +68,6 @@ const translations = {
       formSuccess: "Mensaje recibido exitosamente. Te contactaremos pronto.",
       formError: "Error al enviar el mensaje. Inténtalo de nuevo.",
     },
-    community: {
-      badge: "Comunidad Global",
-      title: "Nuestra Comunidad",
-      subtitle: "Historias materializadas por y para nuestros clientes. Cada pieza cuenta un deseo cumplido.",
-      testimonials: [
-        { author: "Andrés F.", handle: "@andresf_3d", text: "La calidad del acabado es increíble. No parece una impresión 3D convencional, es una pieza de arte." },
-        { author: "Mariana L.", handle: "@marianalópez", text: "Pedí un regalo personalizado y superó mis expectativas. La atención al detalle es única." },
-        { author: "Carlos P.", handle: "@carlosp_art", text: "El efecto tornasol es mágico. Dependiendo de la luz, la pieza cambia de personalidad." }
-      ]
-    },
     instagram: {
       handle: "@3deseos.lab",
       cards: [
@@ -123,11 +112,13 @@ const translations = {
         orderBtn: "Agregar",
         addedBtn: "Agregado",
         shippingInfo: "Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo.",
+        madeToOrder: "Hecho por encargo · 5–7 días",
         options: {
           color: "Selecciona un color:",
           paint: "¿Te gustaría que pintemos tu pieza?",
           yes: "Sí, por favor",
           no: "No, gracias",
+          paintBadge: "Pintado a mano",
           colors: {
             white: "Blanco",
             black: "Negro",
@@ -167,40 +158,35 @@ const translations = {
       summary: "Resumen de Pedido",
       subtotal: "Subtotal",
       remove: "Eliminar",
-      keepShopping: "Seguir Comprando"
+      keepShopping: "Seguir Comprando",
+      shipping: "Envío",
+      shippingValue: "Gratis en Bogotá",
+      madeToOrder: "Cada pieza se hace por encargo (aprox. 5–7 días hábiles). Enviamos a todo el país por transportadora; coordinamos el envío por WhatsApp."
     },
     checkout: {
-      title: "Checkout",
-      step1: "Información",
-      step2: "Resumen",
-      step3: "Pago",
+      title: "Finalizar pedido",
+      subtitle: "Revisa tu pedido y déjanos tus datos. Al confirmar, abriremos WhatsApp con todo listo para enviarnos — ahí coordinamos el pago y el envío.",
+      step1: "Datos de contacto y envío",
       form: {
         name: "Nombre Completo",
-        email: "Correo Electrónico",
-        phone: "Teléfono",
+        email: "Correo Electrónico (opcional)",
+        phone: "WhatsApp / Teléfono",
         city: "Ciudad",
         address: "Dirección",
         notes: "Notas adicionales (opcional)",
-        next: "Siguiente Paso",
-        back: "Regresar"
+        back: "Volver al carrito"
       },
-      payment: {
-        title: "Método de Pago",
-        pse: "PSE (Débito)",
-        pseDesc: "Paga desde tu cuenta bancaria colombiana.",
-        wompi: "Wompi",
-        wompiDesc: "Pasarela de pagos segura.",
-        mp: "Mercado Pago",
-        mpDesc: "Usa tu cuenta o tarjetas locales.",
-        card: "Tarjeta de Crédito/Débito",
-        cardPlaceholder: "Número de tarjeta",
-        pay: "Pagar"
+      whatsapp: {
+        cta: "Finalizar pedido por WhatsApp",
+        howItWorks: "No realizamos cobros en línea. Coordinamos el pago (transferencia, Nequi o contra entrega) y el envío directamente por WhatsApp.",
+        greeting: "¡Hola 3deseos.lab! 🌟 Quiero confirmar este pedido:",
+        shipping: "Envío: Gratis (Bogotá)"
       },
       confirmation: {
-        title: "¡Deseo Recibido!",
-        subtitle: "Tu pedido ha sido confirmado exitosamente.",
-        desc: "Te contactaremos pronto para confirmar cualquier detalle.",
-        orderNumber: "Número de Pedido",
+        title: "¡Tu pedido está listo! 🎉",
+        subtitle: "Te estamos redirigiendo a WhatsApp para confirmarlo.",
+        desc: "Si WhatsApp no se abrió automáticamente, toca el botón de abajo. Por ahí coordinamos el pago y el envío.",
+        openWhatsapp: "Abrir WhatsApp",
         backHome: "Volver al Inicio"
       }
     }
@@ -211,7 +197,6 @@ const translations = {
       products: "Collections",
       about: "About us",
       custom: "Custom",
-      community: "Community",
       contact: "Contact",
       cart: "Cart"
     },
@@ -273,16 +258,6 @@ const translations = {
       formSuccess: "Message sent successfully. We will contact you soon.",
       formError: "Error sending message. Please try again.",
     },
-    community: {
-      badge: "Global Community",
-      title: "Our Community",
-      subtitle: "Stories brought to life by and for our customers. Each piece represents a wish come true.",
-      testimonials: [
-        { author: "Andres F.", handle: "@andresf_3d", text: "The finish quality is incredible. It doesn't look like conventional 3D printing; it's a piece of art." },
-        { author: "Mariana L.", handle: "@marianalópez", text: "I ordered a personalized gift and it exceeded my expectations. The attention to detail is unique." },
-        { author: "Carlos P.", handle: "@carlosp_art", text: "The tornasol effect is magical. Depending on the light, the piece changes its personality." }
-      ]
-    },
     instagram: {
       handle: "@3deseos.lab",
       cards: [
@@ -327,11 +302,13 @@ const translations = {
         orderBtn: "Add",
         addedBtn: "Added",
         shippingInfo: "Estimated time: 5-7 business days. May vary based on references or model complexity.",
+        madeToOrder: "Made to order · 5–7 days",
         options: {
           color: "Select a color:",
           paint: "Would you like us to paint your piece?",
           yes: "Yes, please",
           no: "No, thanks",
+          paintBadge: "Hand-painted",
           colors: {
             white: "White",
             black: "Black",
@@ -371,40 +348,35 @@ const translations = {
       summary: "Order Summary",
       subtotal: "Subtotal",
       remove: "Remove",
-      keepShopping: "Keep Shopping"
+      keepShopping: "Keep Shopping",
+      shipping: "Shipping",
+      shippingValue: "Free in Bogotá",
+      madeToOrder: "Each piece is made to order (approx. 5–7 business days). We ship nationwide via carrier; we arrange shipping over WhatsApp."
     },
     checkout: {
-      title: "Checkout",
-      step1: "Information",
-      step2: "Summary",
-      step3: "Payment",
+      title: "Complete your order",
+      subtitle: "Review your order and leave us your details. When you confirm, we'll open WhatsApp with everything ready to send — that's where we arrange payment and delivery.",
+      step1: "Contact & shipping details",
       form: {
         name: "Full Name",
-        email: "Email Address",
-        phone: "Phone Number",
+        email: "Email Address (optional)",
+        phone: "WhatsApp / Phone",
         city: "City",
         address: "Address",
         notes: "Additional notes (optional)",
-        next: "Next Step",
-        back: "Go Back"
+        back: "Back to cart"
       },
-      payment: {
-        title: "Payment Method",
-        pse: "PSE (Debit)",
-        pseDesc: "Pay from your Colombian bank account.",
-        wompi: "Wompi",
-        wompiDesc: "Secure payment gateway.",
-        mp: "Mercado Pago",
-        mpDesc: "Use your account or local cards.",
-        card: "Credit/Debit Card",
-        cardPlaceholder: "Card number",
-        pay: "Pay Now"
+      whatsapp: {
+        cta: "Complete order via WhatsApp",
+        howItWorks: "No online payments. We arrange payment (bank transfer, Nequi, or cash on delivery) and shipping directly over WhatsApp.",
+        greeting: "Hi 3deseos.lab! 🌟 I'd like to confirm this order:",
+        shipping: "Shipping: Free (Bogotá)"
       },
       confirmation: {
-        title: "Wish Received!",
-        subtitle: "Your order has been confirmed successfully.",
-        desc: "We'll contact you shortly to confirm the details.",
-        orderNumber: "Order Number",
+        title: "Your order is ready! 🎉",
+        subtitle: "We're redirecting you to WhatsApp to confirm it.",
+        desc: "If WhatsApp didn't open automatically, tap the button below. That's where we arrange payment and delivery.",
+        openWhatsapp: "Open WhatsApp",
         backHome: "Back to Home"
       }
     }

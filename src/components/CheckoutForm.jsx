@@ -10,7 +10,7 @@ const CheckoutForm = ({ formData, setFormData }) => {
   };
 
   const inputClasses = "w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/30 transition-all";
-  const labelClasses = "block text-xs font-medium text-white/40 uppercase tracking-widest mb-2 ml-1";
+  const labelClasses = "block text-xs font-medium text-white/60 uppercase tracking-widest mb-2 ml-1";
 
   return (
     <div className="space-y-6">

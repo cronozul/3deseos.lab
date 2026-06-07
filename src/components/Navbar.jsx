@@ -30,7 +30,6 @@ const Navbar = () => {
   const navLinks = [
     { to: "/products", label: t('nav.products') },
     { to: "/custom", label: t('nav.custom') },
-    { to: "/community", label: t('nav.community') },
     { to: "/about", label: t('nav.about') },
     { to: "/contact", label: t('nav.contact') },
   ];
