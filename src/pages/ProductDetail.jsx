@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box, ShoppingBag, Check, Paintbrush, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Box, ShoppingBag, Check, Paintbrush, Palette, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 import { useLanguage } from '../i18n';
 import { useCart } from '../context/CartContext';
 
@@ -17,7 +17,13 @@ const ProductDetail = () => {
 
   const product = getRaw(`products.items.${id}`);
   const [[currentSlide, direction], setSlide] = useState([0, 0]);
-  const totalSlides = 3;
+  // Galería del producto: soporta un array `images` para varias fotos.
+  // Si solo hay una (campo `image`), el carrusel se desactiva automáticamente.
+  const images = product?.images && product.images.length > 0
+    ? product.images
+    : (product?.image ? [product.image] : []);
+  const totalSlides = images.length;
+  const hasCarousel = totalSlides > 1;
 
   useEffect(() => {
     if (!product) {
@@ -107,9 +113,9 @@ const ProductDetail = () => {
             <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-[0.05] mix-blend-overlay" />
             
             <div className="absolute inset-0 flex items-center justify-center p-0 overflow-hidden">
-              {product.image ? (
+              {totalSlides > 0 ? (
                 <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                  <motion.img 
+                  <motion.img
                     key={currentSlide}
                     custom={direction}
                     variants={variants}
@@ -121,47 +127,51 @@ const ProductDetail = () => {
                       opacity: { duration: 0.2 },
                       rotateY: { duration: 0.4 }
                     }}
-                    src={new URL(`../images/${product.image}`, import.meta.url).href}
+                    src={new URL(`../images/${images[currentSlide]}`, import.meta.url).href}
                     alt={product.name}
                     className="w-full h-full object-contain relative z-10 drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)] scale-110"
                     style={{ perspective: 1000 }}
                   />
                 </AnimatePresence>
               ) : (
-                <Box className="w-48 h-48 text-white/10" strokeWidth={1} />
+                <Box className="w-48 h-48 text-white/50" strokeWidth={1} />
               )}
             </div>
 
-            {/* Carousel Arrows */}
-            <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
-              <button 
+            {/* Carousel Arrows — solo si hay 2+ imágenes */}
+            {hasCarousel && (
+            <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-30">
+              <button
                 onClick={() => paginate(-1)}
-                className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+                className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
-              <button 
+              <button
                 onClick={() => paginate(1)}
-                className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+                className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
+            )}
 
-            {/* Carousel Dots */}
+            {/* Carousel Dots — solo si hay 2+ imágenes */}
+            {hasCarousel && (
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-30">
               {[...Array(totalSlides)].map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goToSlide(i)}
                   className={`transition-all duration-300 rounded-full ${
-                    currentSlide === i 
-                    ? 'w-10 h-2 bg-white' 
+                    currentSlide === i
+                    ? 'w-10 h-2 bg-white'
                     : 'w-2 h-2 bg-white/20 hover:bg-white/40'
                   }`}
                 />
               ))}
             </div>
+            )}
           </motion.div>
         </div>
 
@@ -177,6 +187,9 @@ const ProductDetail = () => {
             </p>
             <h1 className="text-5xl md:text-6xl font-reem font-bold mb-4 tracking-tighter">{product.name}</h1>
             <p className="text-3xl font-jost font-bold text-white tracking-tight">${product.price.toLocaleString('es-CO')}</p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-xs text-white/60 bg-white/5 border border-white/10 rounded-full px-3 py-1.5">
+              <Clock className="w-3.5 h-3.5 text-brand-blue" /> {t('products.detail.madeToOrder')}
+            </span>
           </div>
 
           <div className="space-y-8">
@@ -187,7 +200,7 @@ const ProductDetail = () => {
               
               {/* Color Selection */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-white/40 uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-sm font-medium text-white/60 uppercase tracking-widest">
                   <Palette className="w-4 h-4" />
                   {t('products.detail.options.color')}
                 </div>
@@ -212,14 +225,14 @@ const ProductDetail = () => {
                     </button>
                   ))}
                 </div>
-                <p className="text-xs text-white/30 font-medium italic">
+                <p className="text-xs text-white/60 font-medium italic">
                   {t(`products.detail.options.colors.${selectedColor}`)}
                 </p>
               </div>
 
               {/* Painting Option */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-white/40 uppercase tracking-widest">
+                <div className="flex items-center gap-2 text-sm font-medium text-white/60 uppercase tracking-widest">
                   <Paintbrush className="w-4 h-4" />
                   {t('products.detail.options.paint')}
                 </div>
@@ -234,7 +247,7 @@ const ProductDetail = () => {
                       className={`px-6 py-3 rounded-xl border text-sm font-reem transition-all duration-300 ${
                         wantsPainting === option.val
                         ? 'bg-white text-black border-white shadow-xl'
-                        : 'bg-white/5 text-white/40 border-white/10 hover:border-white/30'
+                        : 'bg-white/5 text-white/60 border-white/10 hover:border-white/30'
                       }`}
                     >
                       {option.label}
@@ -247,19 +260,19 @@ const ProductDetail = () => {
             {/* Technical Specs */}
             <ul className="grid grid-cols-2 gap-4 pt-8 border-t border-white/5">
               <li className="flex flex-col">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.2em] mb-1">{t('products.detail.dimensions')}</span>
+                <span className="text-[11px] text-white/60 uppercase tracking-[0.2em] mb-1">{t('products.detail.dimensions')}</span>
                 <span className="text-sm text-white/80 font-medium">{product.size}</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.2em] mb-1">{t('products.detail.material')}</span>
+                <span className="text-[11px] text-white/60 uppercase tracking-[0.2em] mb-1">{t('products.detail.material')}</span>
                 <span className="text-sm text-white/80 font-medium">{product.material}</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.2em] mb-1">{t('products.detail.finish')}</span>
+                <span className="text-[11px] text-white/60 uppercase tracking-[0.2em] mb-1">{t('products.detail.finish')}</span>
                 <span className="text-sm text-white/80 font-medium">{product.color}</span>
               </li>
               <li className="flex flex-col">
-                <span className="text-[10px] text-white/20 uppercase tracking-[0.2em] mb-1">{t('products.detail.weight')}</span>
+                <span className="text-[11px] text-white/60 uppercase tracking-[0.2em] mb-1">{t('products.detail.weight')}</span>
                 <span className="text-sm text-white/80 font-medium">{product.weight}</span>
               </li>
             </ul>
@@ -267,11 +280,11 @@ const ProductDetail = () => {
 
           <div className="pt-8 border-t border-white/5">
             <div className="flex items-center justify-between mb-8">
-              <span className="text-sm font-bold text-white/40 uppercase tracking-[0.2em]">{t('products.detail.qty')}</span>
+              <span className="text-sm font-bold text-white/60 uppercase tracking-[0.2em]">{t('products.detail.qty')}</span>
               <div className="flex items-center gap-6 bg-white/5 border border-white/10 rounded-2xl px-6 py-3">
-                <button onClick={() => setQty(Math.max(1, qty - 1))} className="text-white/40 hover:text-white transition-colors text-xl">-</button>
+                <button onClick={() => setQty(Math.max(1, qty - 1))} className="text-white/60 hover:text-white transition-colors text-xl">-</button>
                 <span className="w-8 text-center text-white font-bold text-xl">{qty}</span>
-                <button onClick={() => setQty(qty + 1)} className="text-white/40 hover:text-white transition-colors text-xl">+</button>
+                <button onClick={() => setQty(qty + 1)} className="text-white/60 hover:text-white transition-colors text-xl">+</button>
               </div>
             </div>
 
@@ -308,7 +321,7 @@ const ProductDetail = () => {
                 )}
               </AnimatePresence>
             </button>
-            <p className="text-center text-xs text-white/30 mt-4 font-light">
+            <p className="text-center text-xs text-white/60 mt-4 font-light">
               {t('products.detail.shippingInfo')}
             </p>
           </div>

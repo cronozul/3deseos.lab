@@ -41,7 +41,7 @@ const CustomOrders = () => {
             <h1 className="text-5xl md:text-8xl font-reem font-bold mb-4 md:mb-8 tracking-tighter leading-none">
               {t('custom.title')}
             </h1>
-            <p className="text-white/40 font-light text-base md:text-lg leading-relaxed max-w-md">
+            <p className="text-white/60 font-light text-base md:text-lg leading-relaxed max-w-md">
               {t('custom.subtitle')}
             </p>
           </div>
@@ -95,14 +95,14 @@ const CustomOrders = () => {
                 <step.icon className={`w-6 h-6 ${step.color}`} />
               </div>
               <h3 className={`text-xl font-reem mb-2 text-white transition-colors ${step.hoverColor}`}>{step.title}</h3>
-              <p className="text-white/30 text-sm font-light leading-relaxed">{step.desc}</p>
+              <p className="text-white/60 text-sm font-light leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Bottom Footer Accent */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.5em] text-white/10 uppercase font-light pointer-events-none">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.5em] text-white/50 uppercase font-light pointer-events-none">
         Layer by Layer • 3deseos.lab
       </div>
     </div>

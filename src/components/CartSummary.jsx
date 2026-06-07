@@ -36,17 +36,19 @@ const CartSummary = ({ isCheckout = false }) => {
           <span className="font-jost text-white">{formatCurrency(subtotal)}</span>
         </div>
         <div className="flex justify-between items-center text-white/50">
-          <span>Envío</span>
-          <span className="font-jost text-brand-green">Gratis (Bogotá)</span>
+          <span>{t('cart.shipping')}</span>
+          <span className="font-jost text-brand-green">{t('cart.shippingValue')}</span>
         </div>
       </div>
 
-      <div className="border-t border-white/10 pt-6 mb-8">
+      <div className="border-t border-white/10 pt-6 mb-6">
         <div className="flex justify-between items-center">
           <span className="text-lg font-reem text-white">{t('cart.total')}</span>
           <span className="text-2xl font-jost text-brand-blue font-bold">{formatCurrency(subtotal)}</span>
         </div>
       </div>
+
+      <p className="text-xs text-white/55 leading-relaxed mb-8">{t('cart.madeToOrder')}</p>
 
       {!isCheckout && (
         <button 

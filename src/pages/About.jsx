@@ -55,7 +55,7 @@ const About = () => {
               <p>{t('about.desc3')}</p>
             </div>
 
-            <div className="flex items-center gap-3 text-white/30 pt-4 border-t border-white/5 w-fit">
+            <div className="flex items-center gap-3 text-white/60 pt-4 border-t border-white/5 w-fit">
               <MapPin className="w-4 h-4" />
               <span className="text-[10px] tracking-[0.4em] font-bold uppercase">{t('about.location')}</span>
             </div>
@@ -108,7 +108,7 @@ const About = () => {
                     <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-white/5 flex items-center justify-center transition-colors ${colors.bg}`}>
                       <IconComponent className={`w-5 h-5 lg:w-6 lg:h-6 transition-colors ${colors.text}`} />
                     </div>
-                    <span className={`text-[9px] lg:text-[10px] tracking-[0.2em] font-bold uppercase transition-colors leading-tight ${colors.hover} text-white/40`}>
+                    <span className={`text-[10px] lg:text-[11px] tracking-[0.2em] font-bold uppercase transition-colors leading-tight ${colors.hover} text-white/60`}>
                       {item.label}
                     </span>
                   </motion.div>

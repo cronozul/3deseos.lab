@@ -19,7 +19,7 @@ const Cart = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="w-24 h-24 rounded-full bg-surface/50 border border-white/5 flex items-center justify-center mb-8"
         >
-          <ShoppingBag className="w-10 h-10 text-white/20" strokeWidth={1} />
+          <ShoppingBag className="w-10 h-10 text-white/55" strokeWidth={1} />
         </motion.div>
         <h1 className="text-4xl font-reem mb-4">{t('cart.empty')}</h1>
         <Link 
@@ -41,7 +41,7 @@ const Cart = () => {
         className="mb-12"
       >
         <h1 className="text-5xl font-reem font-bold mb-4">{t('cart.title')}</h1>
-        <Link to="/products" className="text-white/40 hover:text-white transition-colors text-sm flex items-center gap-2">
+        <Link to="/products" className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
           {t('cart.keepShopping')}
         </Link>

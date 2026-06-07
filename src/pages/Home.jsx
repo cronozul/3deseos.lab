@@ -26,7 +26,7 @@ const Home = () => {
       >
         {/* Subtle Decorative Frame */}
         <div className="absolute inset-4 md:inset-8 border border-white/[0.03] rounded-[2rem] pointer-events-none" />
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.5em] text-white/20 uppercase font-light pointer-events-none">
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.5em] text-white/55 uppercase font-light pointer-events-none">
           3deseos.lab • Sueños en 3D
         </div>
 
@@ -59,7 +59,7 @@ const Home = () => {
             </h1>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-white/40 font-light max-w-xl leading-relaxed mx-auto mt-4">
+            <p className="text-base md:text-lg text-white/60 font-light max-w-xl leading-relaxed mx-auto mt-4">
               {t('home.heroDesc')}
             </p>
 
@@ -89,7 +89,7 @@ const Home = () => {
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center text-[10px] tracking-widest text-white/20 font-light uppercase pointer-events-none">
+        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center text-[10px] tracking-widest text-white/55 font-light uppercase pointer-events-none">
           <div className="flex gap-4">
             <span>PLA</span>
             <span>Est. 2026</span>

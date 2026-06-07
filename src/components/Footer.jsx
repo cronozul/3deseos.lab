@@ -23,7 +23,7 @@ const Footer = () => {
               3deseos<span>.lab</span>
             </span>
           </Link>
-          <p className="text-white/40 font-light text-lg leading-relaxed max-w-sm">
+          <p className="text-white/60 font-light text-lg leading-relaxed max-w-sm">
             {t('footer.tagline')}
           </p>
         </div>
@@ -35,11 +35,10 @@ const Footer = () => {
             {[
               { to: "/products", label: t('nav.products') },
               { to: "/custom", label: t('nav.custom') },
-              { to: "/community", label: t('nav.community') },
               { to: "/about", label: t('nav.about') }
             ].map(link => (
               <li key={link.to}>
-                <Link to={link.to} className="text-white/30 hover:text-brand-blue transition-colors font-light">
+                <Link to={link.to} className="text-white/60 hover:text-brand-blue transition-colors font-light">
                   {link.label}
                 </Link>
               </li>
@@ -68,7 +67,7 @@ const Footer = () => {
               <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" />
             </a>
           </div>
-          <div className="pt-4 flex items-center gap-3 text-white/20">
+          <div className="pt-4 flex items-center gap-3 text-white/55">
              <MapPin className="w-4 h-4" />
              <span className="text-sm font-light tracking-wide">{t('footer.location')}</span>
           </div>
@@ -77,7 +76,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/[0.03] flex flex-col items-center gap-4 text-[11px] text-white/10 tracking-widest font-light">
+      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/[0.03] flex flex-col items-center gap-4 text-[11px] text-white/50 tracking-widest font-light">
         <span>© {new Date().getFullYear()} 3DESEOS.LAB</span>
       </div>
     </footer>

@@ -15,7 +15,13 @@ const ProductCard = ({ productKey, collectionData }) => {
   
   if (!product) return null;
 
-  const totalSlides = 3;
+  // Galería del producto: soporta un array `images` para varias fotos.
+  // Si solo hay una (campo `image`), el carrusel se desactiva automáticamente.
+  const images = product.images && product.images.length > 0
+    ? product.images
+    : (product.image ? [product.image] : []);
+  const totalSlides = images.length;
+  const hasCarousel = totalSlides > 1;
 
   const paginate = (newDirection) => {
     const nextSlide = (currentSlide + newDirection + totalSlides) % totalSlides;
@@ -111,27 +117,29 @@ const ProductCard = ({ productKey, collectionData }) => {
           {/* Animated Glow (Light Curtain) */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none z-20" />
           
-          {/* Carousel Arrows */}
-          <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
-            <button 
+          {/* Carousel Arrows — solo si hay 2+ imágenes */}
+          {hasCarousel && (
+          <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-30">
+            <button
               onClick={prevSlide}
-              className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+              className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
-              className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all active:scale-90"
+              className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
+          )}
 
           {/* Product Image - Full Width */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-            {product.image ? (
+            {totalSlides > 0 ? (
               <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                <motion.img 
+                <motion.img
                   key={currentSlide}
                   custom={direction}
                   variants={variants}
@@ -142,8 +150,10 @@ const ProductCard = ({ productKey, collectionData }) => {
                     x: { type: "spring", stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 }
                   }}
-                  src={new URL(`../images/${product.image}`, import.meta.url).href}
+                  src={new URL(`../images/${images[currentSlide]}`, import.meta.url).href}
                   alt={product.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain relative z-10"
                   style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.4))" }}
                 />
@@ -153,20 +163,22 @@ const ProductCard = ({ productKey, collectionData }) => {
             )}
           </div>
 
-          {/* Carousel Dots - Only show on hover */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* Carousel Dots — solo si hay 2+ imágenes */}
+          {hasCarousel && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
             {[...Array(totalSlides)].map((_, i) => (
               <button
                 key={i}
                 onClick={(e) => goToSlide(e, i)}
                 className={`transition-all duration-300 rounded-full ${
-                  currentSlide === i 
-                  ? 'w-6 h-1.5 bg-white' 
+                  currentSlide === i
+                  ? 'w-6 h-1.5 bg-white'
                   : 'w-1.5 h-1.5 bg-white/20 hover:bg-white/40'
                 }`}
               />
             ))}
           </div>
+          )}
 
           {/* Grain overlay */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-[0.05] mix-blend-overlay pointer-events-none"></div>
@@ -175,7 +187,7 @@ const ProductCard = ({ productKey, collectionData }) => {
         {/* Bottom: Content Section */}
         <div className="p-8 flex flex-col gap-5 flex-grow">
           <div className="space-y-1">
-            <p className="text-[10px] text-white/30 tracking-[0.3em] uppercase font-light">
+            <p className="text-[10px] text-white/60 tracking-[0.3em] uppercase font-light">
               {collectionData.title}
             </p>
             <h3 className={`text-xl font-reem font-bold text-white ${colors.text} transition-colors duration-300`}>
@@ -212,14 +224,14 @@ const ProductCard = ({ productKey, collectionData }) => {
             <div className="flex items-center bg-white/5 border border-white/10 rounded-2xl p-1">
               <button 
                 onClick={(e) => updateQty(e, -1)}
-                className="w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/5 transition-all"
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-all"
               >
                 <Minus className="w-3 h-3" />
               </button>
               <span className="text-xs text-white font-bold w-6 text-center">{qty}</span>
               <button 
                 onClick={(e) => updateQty(e, 1)}
-                className="w-8 h-8 rounded-xl flex items-center justify-center text-white/30 hover:text-white hover:bg-white/5 transition-all"
+                className="w-8 h-8 rounded-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-all"
               >
                 <Plus className="w-3 h-3" />
               </button>
