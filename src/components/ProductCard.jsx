@@ -122,15 +122,17 @@ const ProductCard = ({ productKey, collectionData }) => {
           <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-30">
             <button
               onClick={prevSlide}
+              aria-label={`Imagen anterior de ${product.name}`}
               className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" aria-hidden="true" />
             </button>
             <button
               onClick={nextSlide}
+              aria-label={`Imagen siguiente de ${product.name}`}
               className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all active:scale-90"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
           )}
@@ -165,10 +167,13 @@ const ProductCard = ({ productKey, collectionData }) => {
 
           {/* Carousel Dots — solo si hay 2+ imágenes */}
           {hasCarousel && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+          <div role="tablist" aria-label={`Fotos de ${product.name}`} className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
             {[...Array(totalSlides)].map((_, i) => (
               <button
                 key={i}
+                role="tab"
+                aria-selected={currentSlide === i}
+                aria-label={`Foto ${i + 1} de ${totalSlides}`}
                 onClick={(e) => goToSlide(e, i)}
                 className={`transition-all duration-300 rounded-full ${
                   currentSlide === i

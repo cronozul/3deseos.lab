@@ -8,8 +8,8 @@ import CartSummary from '../components/CartSummary';
 import WhatsApp from '../components/WhatsApp';
 import { ArrowLeft, ShieldCheck } from 'lucide-react';
 
-// Número de WhatsApp del negocio (mismo que el del Footer)
-const WHATSAPP_NUMBER = '573172575398';
+// Número de WhatsApp — se define como variable de entorno (no se sube a GitHub)
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
 
 const Checkout = () => {
   const { t, getRaw } = useLanguage();

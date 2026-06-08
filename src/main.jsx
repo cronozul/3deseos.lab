@@ -11,6 +11,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <LanguageProvider>
         <CartProvider>
+          {/* Skip-to-content: accesibilidad para teclado/lectores de pantalla */}
+          <a href="#main-content" className="skip-to-content">
+            Ir al contenido principal
+          </a>
           <App />
         </CartProvider>
       </LanguageProvider>

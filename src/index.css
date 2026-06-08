@@ -6,34 +6,42 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Prevent content from going under the notch on iOS */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
   body {
     @apply bg-background text-white font-jost antialiased selection:bg-brand-blue/30 selection:text-white;
     overflow-x: hidden;
     width: 100%;
+    /* Prevent iOS text size inflation */
+    -webkit-text-size-adjust: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-reem;
   }
 
-  /* Responsive Font Scaling */
-  @media (max-width: 480px) {
-    h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
-    h2 { font-size: clamp(1.5rem, 7vw, 2.5rem); }
+  /* Skip-to-content link for keyboard/screen-reader users */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-brand-yellow focus:text-black focus:font-bold focus:rounded-xl;
   }
+}
 
-  /* Focus management — only show ring for keyboard navigation */
-  :focus-visible {
-    outline: 2px solid #316DBC;
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* Remove default focus outline when not using keyboard */
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
+/* ────────── Accessibility: focus ring ────────── */
+*:focus-visible {
+  outline: 2px solid #F5C00C;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #F5C00C;
+  outline-offset: 3px;
+}
+/* Remove default browser outline when we handle it */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Custom scrollbar */
@@ -49,15 +57,6 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #316DBC;
-}
-
-/* Hide scrollbar for collection filter tabs on mobile */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 /* Grain overlay */
@@ -89,25 +88,4 @@
 
 .glow-hover:hover {
   box-shadow: 0 10px 40px rgba(146, 222, 139, 0.15);
-}
-
-/* ===== ACCESIBILIDAD ===== */
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* High contrast mode */
-@media (forced-colors: active) {
-  button, a {
-    forced-color-adjust: auto;
-  }
 }
