@@ -7,17 +7,17 @@ import LampAnimation from './LampAnimation';
 
 const Footer = () => {
   const { t } = useLanguage();
-  
+
   return (
-    <footer className="relative z-10 bg-[#050505] pt-24 pb-12 px-6 overflow-hidden">
+    <footer className="relative z-10 bg-[#050505] pt-24 pb-12 px-4 sm:px-6 overflow-hidden" aria-label="Pie de página">
       {/* Decorative Gradient Accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
-      
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
-        
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" aria-hidden="true" />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+
         {/* Brand & Tagline */}
         <div className="md:col-span-5 space-y-6">
-          <Link to="/" className="flex items-center gap-3 group relative inline-flex">
+          <Link to="/" className="flex items-center gap-3 group inline-flex" aria-label="3deseos.lab — Inicio">
             <LampAnimation isNavbar={true} />
             <span className="font-reem text-2xl font-medium tracking-wider text-white transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-brand-gradient">
               3deseos<span>.lab</span>
@@ -29,47 +29,51 @@ const Footer = () => {
         </div>
 
         {/* Navigation */}
-        <div className="md:col-span-3 space-y-6">
+        <nav className="md:col-span-3 space-y-6" aria-label="Explorar">
           <h4 className="font-reem text-white/80 font-bold text-lg">{t('footer.explore')}</h4>
-          <ul className="space-y-4">
+          <ul className="space-y-4" role="list">
             {[
-              { to: "/products", label: t('nav.products') },
-              { to: "/custom", label: t('nav.custom') },
-              { to: "/about", label: t('nav.about') }
+              { to: '/products', label: t('nav.products') },
+              { to: '/custom',   label: t('nav.custom')   },
+              { to: '/about',    label: t('nav.about')    },
             ].map(link => (
               <li key={link.to}>
-                <Link to={link.to} className="text-white/60 hover:text-brand-blue transition-colors font-light">
+                <Link to={link.to} className="text-white/60 hover:text-brand-blue transition-colors font-light focus:outline-none focus-visible:underline focus-visible:text-brand-blue">
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* Socials & Contact */}
         <div className="md:col-span-4 space-y-6">
           <h4 className="font-reem text-white/80 font-bold text-lg">{t('footer.social')}</h4>
-          <div className="flex gap-4">
-            <a 
-              href="https://wa.me/573172575398" 
-              target="_blank" 
+          <div className="flex gap-4" role="list">
+            <a
+              href="https://wa.me/573172575398"
+              target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-all group"
+              role="listitem"
+              aria-label="Contactar por WhatsApp"
+              className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
             >
-              <WhatsApp className="w-5 h-5 transition-transform group-hover:scale-110" />
+              <WhatsApp className="w-5 h-5 transition-transform group-hover:scale-110" aria-hidden="true" />
             </a>
-            <a 
-              href="https://www.instagram.com/3deseos.lab" 
-              target="_blank" 
+            <a
+              href="https://www.instagram.com/3deseos.lab"
+              target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center hover:border-brand-purple hover:text-brand-purple transition-all group"
+              role="listitem"
+              aria-label="Visitar Instagram de 3deseos.lab"
+              className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center hover:border-brand-purple hover:text-brand-purple transition-all group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
             >
-              <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" />
+              <Instagram className="w-5 h-5 transition-transform group-hover:scale-110" aria-hidden="true" />
             </a>
           </div>
           <div className="pt-4 flex items-center gap-3 text-white/55">
-             <MapPin className="w-4 h-4" />
-             <span className="text-sm font-light tracking-wide">{t('footer.location')}</span>
+            <MapPin className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+            <span className="text-sm font-light tracking-wide">{t('footer.location')}</span>
           </div>
         </div>
 
