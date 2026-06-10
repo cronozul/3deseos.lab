@@ -75,7 +75,7 @@ const Products = () => {
         </motion.div>
 
         {/* Collection Navigator */}
-        <div className="sticky top-24 z-50 mb-20 flex flex-wrap justify-center md:justify-between items-center gap-3">
+        <div className="sticky top-24 z-50 mb-20 w-full flex flex-wrap justify-center md:justify-between items-center gap-3 overflow-hidden">
           {/* Filter tabs */}
           <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
             <button
@@ -100,24 +100,26 @@ const Products = () => {
             })}
           </div>
 
-          {/* Sort control */}
-          <div className="flex items-center gap-2 p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl shrink-0">
-            <span className="text-[11px] text-white/40 uppercase tracking-widest px-3 font-jost whitespace-nowrap">
+          {/* Sort control — icono en mobile, texto en sm+ */}
+          <div className="flex items-center gap-1 sm:gap-2 p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl shrink-0">
+            <span className="hidden sm:inline text-[11px] text-white/40 uppercase tracking-widest px-3 font-jost whitespace-nowrap">
               {t('products.sort.label')}
             </span>
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'default' : 'asc')}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-reem transition-all whitespace-nowrap ${sortOrder === 'asc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              title={t('products.sort.asc')}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'asc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
               <ArrowUpNarrowWide className="w-3.5 h-3.5 shrink-0" />
-              {t('products.sort.asc')}
+              <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.asc')}</span>
             </button>
             <button
               onClick={() => setSortOrder(sortOrder === 'desc' ? 'default' : 'desc')}
-              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-reem transition-all whitespace-nowrap ${sortOrder === 'desc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              title={t('products.sort.desc')}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'desc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
               <ArrowDownNarrowWide className="w-3.5 h-3.5 shrink-0" />
-              {t('products.sort.desc')}
+              <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.desc')}</span>
             </button>
             {sortOrder !== 'default' && (
               <button
