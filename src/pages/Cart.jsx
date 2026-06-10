@@ -34,20 +34,20 @@ const Cart = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-20 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-12"
       >
-        <h1 className="text-5xl font-reem font-bold mb-4">{t('cart.title')}</h1>
+        <h1 className="text-3xl sm:text-5xl font-reem font-bold mb-4">{t('cart.title')}</h1>
         <Link to="/products" className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
           {t('cart.keepShopping')}
         </Link>
       </motion.div>
 
-      <div className="grid lg:grid-cols-3 gap-16 items-start">
+      <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
         <div className="lg:col-span-2">
           <AnimatePresence>
             {cart.map(item => (

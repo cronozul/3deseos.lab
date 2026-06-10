@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
-import { Sparkles, Home, Zap, ChevronRight } from 'lucide-react';
+import { Sparkles, Home, Zap, ChevronRight, ArrowUpNarrowWide, ArrowDownNarrowWide, ArrowUpDown } from 'lucide-react';
 
 const collectionMeta = {
   tornasol: { 
@@ -33,6 +33,7 @@ const Products = () => {
   const { t, getRaw } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedCollections, setExpandedCollections] = useState({});
+  const [sortOrder, setSortOrder] = useState('default'); // 'default' | 'asc' | 'desc'
 
   const toggleCollection = (key) => {
     setExpandedCollections(prev => ({
@@ -49,7 +50,7 @@ const Products = () => {
         <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-blue/5 blur-[150px] rounded-full" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 relative z-10">
         
         {/* Immersive Header */}
         <motion.div
@@ -74,9 +75,10 @@ const Products = () => {
         </motion.div>
 
         {/* Collection Navigator */}
-        <div className="sticky top-24 z-50 mb-20 flex justify-center md:justify-start">
+        <div className="sticky top-24 z-50 mb-20 flex flex-wrap justify-center md:justify-between items-center gap-3">
+          {/* Filter tabs */}
           <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
-            <button 
+            <button
               onClick={() => setActiveFilter('all')}
               className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
@@ -86,7 +88,7 @@ const Products = () => {
               const meta = collectionMeta[key];
               const Icon = meta.icon;
               return (
-                <button 
+                <button
                   key={key}
                   onClick={() => setActiveFilter(key)}
                   className={`px-6 py-3 rounded-xl text-sm font-reem transition-all flex items-center gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
@@ -96,6 +98,36 @@ const Products = () => {
                 </button>
               );
             })}
+          </div>
+
+          {/* Sort control */}
+          <div className="flex items-center gap-2 p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl shrink-0">
+            <span className="text-[11px] text-white/40 uppercase tracking-widest px-3 font-jost whitespace-nowrap">
+              {t('products.sort.label')}
+            </span>
+            <button
+              onClick={() => setSortOrder(sortOrder === 'asc' ? 'default' : 'asc')}
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-reem transition-all whitespace-nowrap ${sortOrder === 'asc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+            >
+              <ArrowUpNarrowWide className="w-3.5 h-3.5 shrink-0" />
+              {t('products.sort.asc')}
+            </button>
+            <button
+              onClick={() => setSortOrder(sortOrder === 'desc' ? 'default' : 'desc')}
+              className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-reem transition-all whitespace-nowrap ${sortOrder === 'desc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+            >
+              <ArrowDownNarrowWide className="w-3.5 h-3.5 shrink-0" />
+              {t('products.sort.desc')}
+            </button>
+            {sortOrder !== 'default' && (
+              <button
+                onClick={() => setSortOrder('default')}
+                className="p-2 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                title="Restablecer orden"
+              >
+                <ArrowUpDown className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -108,7 +140,14 @@ const Products = () => {
                 const meta = collectionMeta[key];
                 const cData = getRaw(`products.collections.${key}`);
                 const isExpanded = expandedCollections[key];
-                const displayedItems = isExpanded ? meta.items : meta.items.slice(0, 4);
+                const sortedItems = sortOrder === 'default'
+                  ? meta.items
+                  : [...meta.items].sort((a, b) => {
+                      const priceA = getRaw(`products.items.${a}`)?.price ?? 0;
+                      const priceB = getRaw(`products.items.${b}`)?.price ?? 0;
+                      return sortOrder === 'asc' ? priceA - priceB : priceB - priceA;
+                    });
+                const displayedItems = isExpanded ? sortedItems : sortedItems.slice(0, 4);
                 
                 if (!cData) return null;
                 return (
@@ -146,7 +185,7 @@ const Products = () => {
                     </div>
 
                     {/* Product Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
                       {displayedItems.map((productKey, pIdx) => (
                         <motion.div
                           key={productKey}

@@ -48,7 +48,7 @@ const CustomOrders = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-6 mt-4">
             <a 
-              href="https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Estoy%20interesadx%20en%20hacer%20un%20pedido"
+              href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hola!%20Estoy%20interesadx%20en%20hacer%20un%20pedido`}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-10 py-5 rounded-full overflow-hidden transition-all active:scale-95 bg-white text-black font-reem font-bold text-lg shadow-xl"
@@ -62,7 +62,7 @@ const CustomOrders = () => {
             
             <div className="flex gap-4">
               <a 
-                href="https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}" 
+                href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center bg-white/5 hover:border-brand-green hover:text-brand-green transition-all"

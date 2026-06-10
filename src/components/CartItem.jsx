@@ -24,9 +24,9 @@ const CartItem = ({ item }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl bg-surface/30 border border-white/5 hover:border-white/10 transition-colors mb-4"
+      className="flex flex-row items-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-surface/30 border border-white/5 hover:border-white/10 transition-colors mb-4"
     >
-      <div className="w-24 h-24 rounded-xl bg-[#0A0A0A] flex items-center justify-center border border-white/5 overflow-hidden shrink-0">
+      <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-xl bg-[#0A0A0A] flex items-center justify-center border border-white/5 overflow-hidden shrink-0">
         {imageFile ? (
           <img
             src={new URL(`../images/${imageFile}`, import.meta.url).href}
@@ -40,19 +40,19 @@ const CartItem = ({ item }) => {
         )}
       </div>
 
-      <div className="flex-1 text-center sm:text-left">
-        <h3 className="font-reem text-lg text-white mb-1">{product.name}</h3>
-        <p className="text-xs text-white/60 uppercase tracking-widest mb-2">{colorLabel} • {product.size}</p>
+      <div className="flex-1 text-left min-w-0">
+        <h3 className="font-reem text-sm sm:text-lg text-white mb-0.5 sm:mb-1 truncate">{product.name}</h3>
+        <p className="text-[10px] sm:text-xs text-white/60 uppercase tracking-widest mb-1 sm:mb-2 truncate">{colorLabel} • {product.size}</p>
         {opts.painting && (
           <span className="inline-flex items-center gap-1 text-[11px] text-brand-purple bg-brand-purple/10 border border-brand-purple/25 rounded-full px-2 py-0.5 mb-2">
             <Paintbrush className="w-3 h-3" /> {t('products.detail.options.paintBadge')}
           </span>
         )}
-        <div className="text-brand-blue font-jost">{product.priceStr}</div>
+        <div className="text-sm sm:text-base text-brand-blue font-jost">{product.priceStr}</div>
       </div>
 
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-4 bg-background/50 border border-white/10 rounded-full px-3 py-1">
+      <div className="flex items-center gap-2 sm:gap-6 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 bg-background/50 border border-white/10 rounded-full px-2 sm:px-3 py-1">
           <button 
             onClick={() => updateQuantity(item.productKey, item.quantity - 1)}
             className="text-white/60 hover:text-white transition-colors"

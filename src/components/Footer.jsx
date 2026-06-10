@@ -51,7 +51,7 @@ const Footer = () => {
           <h4 className="font-reem text-white/80 font-bold text-lg">{t('footer.social')}</h4>
           <div className="flex gap-4">
             <a 
-              href="https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}" 
+              href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}`}
               target="_blank" 
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-all group"

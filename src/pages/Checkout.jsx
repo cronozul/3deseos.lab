@@ -126,17 +126,17 @@ const Checkout = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-20 min-h-screen">
-      <header className="text-center mb-16">
-        <h1 className="text-5xl font-reem font-bold mb-4">{t('checkout.title')}</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 min-h-screen">
+      <header className="text-center mb-8 sm:mb-16">
+        <h1 className="text-3xl sm:text-5xl font-reem font-bold mb-4">{t('checkout.title')}</h1>
         <p className="text-white/50 max-w-xl mx-auto leading-relaxed">{t('checkout.subtitle')}</p>
       </header>
 
-      <div className="grid lg:grid-cols-3 gap-16 items-start">
+      <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
         <div className="lg:col-span-2">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="bg-surface/20 border border-white/5 p-8 rounded-[2rem] backdrop-blur-sm mb-8">
-              <h3 className="text-2xl font-reem mb-8">{t('checkout.step1')}</h3>
+            <div className="bg-surface/20 border border-white/5 p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-sm mb-8">
+              <h3 className="text-xl sm:text-2xl font-reem mb-5 sm:mb-8">{t('checkout.step1')}</h3>
               <CheckoutForm formData={formData} setFormData={setFormData} />
             </div>
 

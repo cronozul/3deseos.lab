@@ -9,12 +9,12 @@ const CheckoutForm = ({ formData, setFormData }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const inputClasses = "w-full bg-background/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/30 transition-all";
+  const inputClasses = "w-full bg-background/50 border border-white/10 rounded-xl px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue/30 transition-all";
   const labelClasses = "block text-xs font-medium text-white/60 uppercase tracking-widest mb-2 ml-1";
 
   return (
-    <div className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-6">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label className={labelClasses}>{t('checkout.form.name')}</label>
           <input 
@@ -39,7 +39,7 @@ const CheckoutForm = ({ formData, setFormData }) => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label className={labelClasses}>{t('checkout.form.phone')}</label>
           <input 

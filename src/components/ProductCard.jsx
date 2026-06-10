@@ -109,7 +109,7 @@ const ProductCard = ({ productKey, collectionData }) => {
   return (
     <motion.div 
       whileHover={{ y: -8 }}
-      className="group bg-[#0A0A0A] rounded-[2.5rem] overflow-hidden border border-white/5 transition-all duration-500 hover:border-white/10 shadow-2xl flex flex-col h-full"
+      className="group bg-[#0A0A0A] rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border border-white/5 transition-all duration-500 hover:border-white/10 shadow-2xl flex flex-col h-full"
     >
       <Link to={`/products/${productKey}`} className="flex flex-col h-full">
         {/* Top: Image Section */}
@@ -190,18 +190,18 @@ const ProductCard = ({ productKey, collectionData }) => {
         </div>
 
         {/* Bottom: Content Section */}
-        <div className="p-8 flex flex-col gap-5 flex-grow">
+        <div className="p-4 sm:p-6 md:p-8 flex flex-col gap-3 sm:gap-5 flex-grow">
           <div className="space-y-1">
-            <p className="text-[10px] text-white/60 tracking-[0.3em] uppercase font-light">
+            <p className="text-[8px] sm:text-[10px] text-white/60 tracking-[0.2em] sm:tracking-[0.3em] uppercase font-light">
               {collectionData.title}
             </p>
-            <h3 className={`text-xl font-reem font-bold text-white ${colors.text} transition-colors duration-300`}>
+            <h3 className={`text-sm sm:text-base md:text-xl font-reem font-bold text-white ${colors.text} transition-colors duration-300`}>
               {product.name}
             </h3>
           </div>
 
           <div className="flex items-center justify-between">
-            <p className="text-2xl font-jost font-bold text-white tracking-tighter">
+            <p className="text-base sm:text-xl md:text-2xl font-jost font-bold text-white tracking-tighter">
               $ {formattedPrice}
             </p>
             
@@ -224,9 +224,9 @@ const ProductCard = ({ productKey, collectionData }) => {
           </div>
 
           {/* Action Bar (Quantity + Button) */}
-          <div className="mt-auto flex items-center gap-3 z-20">
+          <div className="mt-auto flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 z-20">
             {/* Minimal Quantity Selector */}
-            <div className="flex items-center bg-white/5 border border-white/10 rounded-2xl p-1">
+            <div className="flex items-center bg-white/5 border border-white/10 rounded-2xl p-1 self-start sm:self-auto">
               <button 
                 onClick={(e) => updateQty(e, -1)}
                 className="w-8 h-8 rounded-xl flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-all"
@@ -245,7 +245,7 @@ const ProductCard = ({ productKey, collectionData }) => {
             {/* Compact Add Button */}
             <button 
               onClick={handleAddToCart}
-              className={`flex-grow h-10 rounded-2xl border flex items-center justify-center gap-2 px-4 transition-all duration-500 text-white ${
+              className={`w-full sm:flex-grow h-9 sm:h-10 rounded-2xl border flex items-center justify-center gap-2 px-4 transition-all duration-500 text-white ${
                 isAdded 
                 ? 'bg-brand-green border-brand-green text-[#050505]' 
                 : `bg-white/5 border-white/10 ${colors.bg} ${colors.border} hover:text-[#050505]`
