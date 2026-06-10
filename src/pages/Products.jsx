@@ -108,26 +108,26 @@ const Products = () => {
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'default' : 'asc')}
               title={t('products.sort.asc')}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'asc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'asc' ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/30' : 'text-white/60 hover:text-white'}`}
             >
-              <ArrowUpNarrowWide className="w-3.5 h-3.5 shrink-0" />
+              <ArrowUpNarrowWide className="w-4 h-4 shrink-0" />
               <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.asc')}</span>
             </button>
             <button
               onClick={() => setSortOrder(sortOrder === 'desc' ? 'default' : 'desc')}
               title={t('products.sort.desc')}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'desc' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'desc' ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/30' : 'text-white/60 hover:text-white'}`}
             >
-              <ArrowDownNarrowWide className="w-3.5 h-3.5 shrink-0" />
+              <ArrowDownNarrowWide className="w-4 h-4 shrink-0" />
               <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.desc')}</span>
             </button>
             {sortOrder !== 'default' && (
               <button
                 onClick={() => setSortOrder('default')}
-                className="p-2 rounded-xl text-white/40 hover:text-white hover:bg-white/5 transition-all"
+                className="p-2 rounded-xl text-brand-blue/70 hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
                 title="Restablecer orden"
               >
-                <ArrowUpDown className="w-3.5 h-3.5" />
+                <ArrowUpDown className="w-4 h-4" />
               </button>
             )}
           </div>
