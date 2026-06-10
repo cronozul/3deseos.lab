@@ -27,7 +27,7 @@ const CartSummary = ({ isCheckout = false }) => {
   const subtotal = calculateSubtotal();
 
   return (
-    <div className="bg-surface/30 border border-white/5 rounded-3xl p-5 sm:p-8 backdrop-blur-sm sticky top-32 h-fit">
+    <div className="w-full bg-surface/30 border border-white/5 rounded-3xl p-5 sm:p-8 backdrop-blur-sm sm:sticky sm:top-32 h-fit">
       <h2 className="text-xl font-reem mb-6 text-white">{t('cart.summary')}</h2>
       
       <div className="space-y-4 mb-8">
