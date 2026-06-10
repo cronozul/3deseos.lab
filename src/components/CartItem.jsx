@@ -21,9 +21,9 @@ const CartItem = ({ item }) => {
   return (
     <motion.div 
       layout
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 20 }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
       className="flex flex-row items-center gap-3 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-surface/30 border border-white/5 hover:border-white/10 transition-colors mb-4"
     >
       <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-xl bg-[#0A0A0A] flex items-center justify-center border border-white/5 overflow-hidden shrink-0">
