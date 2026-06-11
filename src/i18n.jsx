@@ -84,11 +84,6 @@ const translations = {
       exploreMore: "Explorar más",
       showless: "Ver menos",
       collectionLabel: "Colección",
-      sort: {
-        label: "Precio",
-        asc: "Menor a mayor",
-        desc: "Mayor a menor",
-      },
       customCTA: {
         title: "¿Tienes un diseño en mente?",
         desc: "Realizamos impresiones personalizadas con la misma calidad y acabado de nuestras colecciones exclusivas.",
@@ -279,11 +274,6 @@ const translations = {
       exploreMore: "Explore more",
       showless: "Show less",
       collectionLabel: "Collection",
-      sort: {
-        label: "Price",
-        asc: "Low to high",
-        desc: "High to low",
-      },
       customCTA: {
         title: "Have a design in mind?",
         desc: "We make custom prints with the same quality and finish as our exclusive collections.",

@@ -3,29 +3,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
-import { Sparkles, Home, Zap, ChevronRight, ArrowUpNarrowWide, ArrowDownNarrowWide, ArrowUpDown } from 'lucide-react';
+import { Sparkles, Home, Zap, ChevronRight } from 'lucide-react';
 
 const collectionMeta = {
-  tornasol: { 
-    id: 'tornasol', 
+  tornasol: {
+    id: 'tornasol',
     icon: Sparkles,
-    gradient: 'from-[#402C5A] to-[#316DBC]', 
+    gradient: 'from-[#402C5A] to-[#316DBC]',
     accent: '#A78BFA',
-    items: ['t-carita', 't-amigos', 't-ballenita', 't-florero', 't-trex', 't-sardinas'] 
+    items: ['t-carita', 't-amigos', 't-ballenita', 't-florero', 't-trex', 't-sardinas']
   },
-  geek: { 
-    id: 'geek', 
+  geek: {
+    id: 'geek',
     icon: Zap,
-    gradient: 'from-[#316DBC] to-[#92DE8B]', 
+    gradient: 'from-[#316DBC] to-[#92DE8B]',
     accent: '#92DE8B',
-    items: ['g-spiderman', 'g-gow', 'g-jinx', 'g-hollow', 'g-dados'] 
+    items: ['g-spiderman', 'g-gow', 'g-jinx', 'g-hollow', 'g-dados']
   },
-  hogar: { 
-    id: 'hogar', 
+  hogar: {
+    id: 'hogar',
     icon: Home,
-    gradient: 'from-[#EAE0D5] to-[#C6AC8F]', 
+    gradient: 'from-[#EAE0D5] to-[#C6AC8F]',
     accent: '#C6AC8F',
-    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita'] 
+    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita']
   }
 };
 
@@ -33,7 +33,6 @@ const Products = () => {
   const { t, getRaw } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedCollections, setExpandedCollections] = useState({});
-  const [sortOrder, setSortOrder] = useState('default'); // 'default' | 'asc' | 'desc'
 
   const toggleCollection = (key) => {
     setExpandedCollections(prev => ({
@@ -51,7 +50,7 @@ const Products = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 relative z-10">
-        
+
         {/* Immersive Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -75,8 +74,7 @@ const Products = () => {
         </motion.div>
 
         {/* Collection Navigator */}
-        <div className="sticky top-24 z-50 mb-20 w-full flex flex-wrap justify-center md:justify-between items-center gap-3 overflow-hidden">
-          {/* Filter tabs */}
+        <div className="sticky top-24 z-50 mb-20 flex justify-center md:justify-start">
           <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
             <button
               onClick={() => setActiveFilter('all')}
@@ -99,38 +97,6 @@ const Products = () => {
               );
             })}
           </div>
-
-          {/* Sort control — icono en mobile, texto en sm+ */}
-          <div className="flex items-center gap-1 sm:gap-2 p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl shrink-0">
-            <span className="hidden sm:inline text-[11px] text-white/40 uppercase tracking-widest px-3 font-jost whitespace-nowrap">
-              {t('products.sort.label')}
-            </span>
-            <button
-              onClick={() => setSortOrder(sortOrder === 'asc' ? 'default' : 'asc')}
-              title={t('products.sort.asc')}
-              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'asc' ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/30' : 'text-white/60 hover:text-white'}`}
-            >
-              <ArrowUpNarrowWide className="w-4 h-4 shrink-0" />
-              <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.asc')}</span>
-            </button>
-            <button
-              onClick={() => setSortOrder(sortOrder === 'desc' ? 'default' : 'desc')}
-              title={t('products.sort.desc')}
-              className={`flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-xl text-xs font-reem transition-all ${sortOrder === 'desc' ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/30' : 'text-white/60 hover:text-white'}`}
-            >
-              <ArrowDownNarrowWide className="w-4 h-4 shrink-0" />
-              <span className="hidden sm:inline whitespace-nowrap">{t('products.sort.desc')}</span>
-            </button>
-            {sortOrder !== 'default' && (
-              <button
-                onClick={() => setSortOrder('default')}
-                className="p-2 rounded-xl text-brand-blue/70 hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
-                title="Restablecer orden"
-              >
-                <ArrowUpDown className="w-4 h-4" />
-              </button>
-            )}
-          </div>
         </div>
 
         {/* Product Sections */}
@@ -142,18 +108,11 @@ const Products = () => {
                 const meta = collectionMeta[key];
                 const cData = getRaw(`products.collections.${key}`);
                 const isExpanded = expandedCollections[key];
-                const sortedItems = sortOrder === 'default'
-                  ? meta.items
-                  : [...meta.items].sort((a, b) => {
-                      const priceA = getRaw(`products.items.${a}`)?.price ?? 0;
-                      const priceB = getRaw(`products.items.${b}`)?.price ?? 0;
-                      return sortOrder === 'asc' ? priceA - priceB : priceB - priceA;
-                    });
-                const displayedItems = isExpanded ? sortedItems : sortedItems.slice(0, 4);
-                
+                const displayedItems = isExpanded ? meta.items : meta.items.slice(0, 4);
+
                 if (!cData) return null;
                 return (
-                  <motion.section 
+                  <motion.section
                     key={key}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -164,7 +123,7 @@ const Products = () => {
                     {/* Section Header */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                       <div className="max-w-2xl">
-                        <motion.div 
+                        <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: 100 }}
                           transition={{ duration: 1, delay: 0.5 }}
@@ -174,7 +133,7 @@ const Products = () => {
                         <p className="text-white/60 font-light leading-relaxed">{cData.desc}</p>
                       </div>
                       {meta.items.length > 4 && (
-                        <div 
+                        <div
                           onClick={() => toggleCollection(key)}
                           className="flex items-center gap-3 group cursor-pointer border-b border-white/5 pb-2"
                         >
@@ -200,7 +159,7 @@ const Products = () => {
                         </motion.div>
                       ))}
                     </div>
-                    
+
                     {/* Dynamic Ambient Light for Section */}
                     <div className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${meta.gradient} blur-[250px] opacity-[0.05] pointer-events-none rounded-full`} />
                   </motion.section>
@@ -210,7 +169,7 @@ const Products = () => {
         </div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -221,7 +180,7 @@ const Products = () => {
           <div className="absolute inset-0 bg-brand-gradient opacity-[0.02] group-hover/cta:opacity-[0.05] transition-opacity duration-1000" />
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-purple/10 blur-[100px] rounded-full" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-blue/10 blur-[100px] rounded-full" />
-          
+
           <div className="relative z-10 max-w-2xl mx-auto">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-reem font-bold mb-6 md:mb-8 tracking-tight leading-none">
               {t('products.customCTA.title')}
@@ -229,9 +188,9 @@ const Products = () => {
             <p className="text-white/60 text-base md:text-lg lg:text-xl font-light mb-10 md:mb-12 leading-relaxed">
               {t('products.customCTA.desc')}
             </p>
-            
+
             <Link to="/custom" className="inline-block">
-              <motion.div 
+              <motion.div
                 whileTap={{ scale: 0.95 }}
                 className="group relative px-12 py-6 rounded-full overflow-hidden transition-all bg-white text-black font-reem font-bold text-xl shadow-[0_20px_50px_rgba(255,255,255,0.1)]"
               >
