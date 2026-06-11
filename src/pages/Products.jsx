@@ -74,7 +74,7 @@ const Products = () => {
         </motion.div>
 
         {/* Collection Navigator */}
-        <div className="sticky top-24 z-50 mb-20 flex justify-center md:justify-start">
+        <div className="sticky top-24 z-50 mb-20 w-full flex justify-center md:justify-start overflow-hidden">
           <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
             <button
               onClick={() => setActiveFilter('all')}
