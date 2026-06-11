@@ -74,12 +74,12 @@ const Products = () => {
       </div>
 
       {/* ── Collection Navigator — sticky al nivel raíz del componente ── */}
-      <div className="sticky top-20 z-40 w-full py-3 bg-[#050505]/95 backdrop-blur-xl border-b border-white/5">
+      <div className="sticky top-20 z-40 w-full py-2 sm:py-3 bg-[#050505]/95 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-center md:justify-start">
-          <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar">
+          <div className="flex p-1 sm:p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-xl sm:rounded-2xl shadow-2xl overflow-x-auto no-scrollbar">
             <button
               onClick={() => setActiveFilter('all')}
-              className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
               {t('products.all')}
             </button>
@@ -90,9 +90,9 @@ const Products = () => {
                 <button
                   key={key}
                   onClick={() => setActiveFilter(key)}
-                  className={`px-6 py-3 rounded-xl text-sm font-reem transition-all flex items-center gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+                  className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
                 >
-                  <Icon className={`w-4 h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
+                  <Icon className={`w-3 h-3 sm:w-4 sm:h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
                   {getRaw(`products.collections.${key}.title`)}
                 </button>
               );
