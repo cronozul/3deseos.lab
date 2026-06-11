@@ -49,14 +49,13 @@ const Products = () => {
         <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-brand-blue/5 blur-[150px] rounded-full" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 relative z-10">
-
-        {/* Immersive Header */}
+      {/* ── Page Header ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-20 text-center md:text-left"
+          className="text-center md:text-left"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-brand-yellow" />
@@ -72,10 +71,12 @@ const Products = () => {
             {t('products.subtitle')}
           </p>
         </motion.div>
+      </div>
 
-        {/* Collection Navigator */}
-        <div className="sticky top-24 z-50 mb-20 w-full flex justify-center md:justify-start overflow-hidden">
-          <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar max-w-full">
+      {/* ── Collection Navigator — sticky al nivel raíz del componente ── */}
+      <div className="sticky top-20 z-40 w-full py-3 bg-[#050505]/95 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-center md:justify-start">
+          <div className="flex p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl overflow-x-auto no-scrollbar">
             <button
               onClick={() => setActiveFilter('all')}
               className={`px-6 py-3 rounded-xl text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
@@ -98,8 +99,10 @@ const Products = () => {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Product Sections */}
+      {/* ── Product Sections ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-20 relative z-10">
         <div>
           <AnimatePresence mode="wait">
             {Object.keys(collectionMeta)
