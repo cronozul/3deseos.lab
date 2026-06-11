@@ -15,7 +15,7 @@ import Checkout from './pages/Checkout';
 
 function App() {
   return (
-    <div className="min-h-screen relative overflow-x-hidden max-w-[100vw] bg-background text-white font-jost noise-bg">
+    <div style={{overflowX:'clip', maxWidth:'100%'}} className="min-h-screen relative bg-background text-white font-jost noise-bg">
       <Navbar />
       
       <main id="main-content" tabIndex={-1} className="relative z-10 pt-20 min-h-[calc(100vh-80px)]">
