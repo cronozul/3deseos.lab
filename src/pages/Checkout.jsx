@@ -133,7 +133,7 @@ const Checkout = () => {
       </header>
 
       <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 min-w-0">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <div className="bg-surface/20 border border-white/5 p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-sm mb-8">
               <h3 className="text-xl sm:text-2xl font-reem mb-5 sm:mb-8">{t('checkout.step1')}</h3>

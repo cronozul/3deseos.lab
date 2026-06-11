@@ -48,7 +48,7 @@ const Cart = () => {
       </motion.div>
 
       <div className="grid lg:grid-cols-3 gap-8 lg:gap-16 items-start">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 min-w-0">
           <AnimatePresence>
             {cart.map(item => (
               <CartItem key={item.productKey} item={item} />
