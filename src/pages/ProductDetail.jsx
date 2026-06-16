@@ -91,7 +91,8 @@ const ProductDetail = () => {
     const gradients = {
       tornasol: 'from-[#402C5A] to-[#316DBC]',
       geek: 'from-[#316DBC] to-[#92DE8B]',
-      hogar: 'from-[#EAE0D5] to-[#C6AC8F]'
+      hogar: 'from-[#EAE0D5] to-[#C6AC8F]',
+      bisuteria: 'from-[#F5C00C] to-[#B1311A]'
     };
     return gradients[collectionId] || 'from-brand-purple/20 to-brand-blue/20';
   };

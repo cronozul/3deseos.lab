@@ -101,6 +101,10 @@ const translations = {
         hogar: {
           title: "Hogar",
           desc: "Organizadores minimalistas y decoración funcional para espacios contemporáneos.",
+        },
+        bisuteria: {
+          title: "Bisutería",
+          desc: "Accesorios de moda impresos en 3D. Piezas únicas que combinan diseño contemporáneo con técnica artesanal.",
         }
       },
       detail: {
@@ -150,7 +154,13 @@ const translations = {
         'g-gow': { name: "Llavero Espadas GOW", image: "god of war.png", price: 38000, priceStr: "$38.000 COP", desc: "Réplicas milimétricas del mundo de Kratos.", size: "2.6 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "4 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
         'g-jinx': { name: "Bomba Jinx", image: "jinx bomb.png", price: 55000, priceStr: "$55.000 COP", desc: "Caos en la palma de tu mano. Reproducción fiel y detallada pintada a mano para elevar tu setup o llaves.", size: "50 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "7 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
         'g-hollow': { name: "Llavero Hollow Knight", image: "hollow knight.png", price: 32000, priceStr: "$32.000 COP", desc: "El guardián de Hollownest materializado.", size: "49 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
-        'g-dados': { name: "Castillo Torre de Dados", image: "dice tower.png", price: 24000, priceStr: "$24.000 COP", desc: "Estructura funcional para tabletop gaming. Cada lanzamiento de dados se convierte en una experiencia.", size: "178 mm", material: "Filamento PLA", color: "Azul Geométrico", weight: "116 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" }
+        'g-dados': { name: "Castillo Torre de Dados", image: "dice tower.png", price: 24000, priceStr: "$24.000 COP", desc: "Estructura funcional para tabletop gaming. Cada lanzamiento de dados se convierte en una experiencia.", size: "178 mm", material: "Filamento PLA", color: "Azul Geométrico", weight: "116 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        't-corazon': { name: "Matera Corazón", image: "corazón.png", price: 19200, priceStr: "$19.200 COP", desc: "Una matera con forma de corazón que llena de amor cualquier espacio. Perfecta para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "90 g", collection: "tornasol", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-elefante': { name: "Porta Incienso Elefante", image: "elefante.png", price: 25000, priceStr: "$25.000 COP", desc: "Porta incienso con forma de elefante, símbolo de buena fortuna. Un detalle funcional y decorativo para tu hogar.", size: "35 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "12 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-arbol': { name: "Joyero Árbol Seco", image: "arbol.png", price: 13000, priceStr: "$13.000 COP", desc: "Joyero con diseño de árbol seco. Organiza tus piezas de joyería de manera artística y minimalista.", size: "120 mm", material: "Filamento PLA", color: "Negro Matte", weight: "50 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-starwars': { name: "Portavasos Star Wars", image: "starwars.png", price: 26600, priceStr: "$26.600 COP", desc: "El lado oscuro también organiza. Portavasos con iconografía de Star Wars para los fans que cuidan su mesa.", size: "2 mm", material: "Filamento PLA", color: "Negro Matte", weight: "144 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-monstera': { name: "Portavasos Monstera", image: "monstera.png", price: 46000, priceStr: "$46.000 COP", desc: "Trae la naturaleza tropical a tu mesa. Portavasos inspirado en la hoja de monstera, funcional y estético.", size: "225 mm", material: "Filamento PLA", color: "Verde", weight: "156 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'b-orquidea': { name: "Anillo Orquídea", image: "orchid.png", price: 15000, priceStr: "$15.000 COP", desc: "Un anillo delicado con forma de orquídea, impreso en 3D y pintado a mano. La naturaleza en tu dedo.", size: "40 mm", material: "Filamento PLA Flexible", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "bisuteria", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" }
       }
     },
     cart: {
@@ -294,6 +304,10 @@ const translations = {
         hogar: {
           title: "Home",
           desc: "Minimalist organizers and functional decor for contemporary spaces.",
+        },
+        bisuteria: {
+          title: "Jewelry",
+          desc: "3D-printed fashion accessories. Unique pieces blending contemporary design with artisan craft.",
         }
       },
       detail: {
@@ -343,7 +357,13 @@ const translations = {
         'g-gow': { name: "GOW Blades Keychain", image: "god of war.png", price: 38000, priceStr: "$38,000 COP", desc: "Life-size replicas of Kratos' world.", size: "2.6 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "4 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
         'g-jinx': { name: "Jinx Bomb Keychain", image: "jinx bomb.png", price: 55000, priceStr: "$55,000 COP", desc: "Chaos in the palm of your hand. A faithful, detailed hand-painted reproduction to elevate your setup or keys.", size: "50 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "7 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
         'g-hollow': { name: "Hollow Knight Keychain", image: "hollow knight.png", price: 32000, priceStr: "$32,000 COP", desc: "The guardian of Hollownest materialized.", size: "49 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
-        'g-dados': { name: "Dice Tower Castle", image: "dice tower.png", price: 24000, priceStr: "$24,000 COP", desc: "A functional framework for tabletop gaming. Every roll of the dice becomes an experience.", size: "178 mm", material: "PLA Filament", color: "Geometric Blue", weight: "116 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" }
+        'g-dados': { name: "Dice Tower Castle", image: "dice tower.png", price: 24000, priceStr: "$24,000 COP", desc: "A functional framework for tabletop gaming. Every roll of the dice becomes an experience.", size: "178 mm", material: "PLA Filament", color: "Geometric Blue", weight: "116 g", collection: "geek", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        't-corazon': { name: "Heart Planter", image: "corazón.png", price: 19200, priceStr: "$19,200 COP", desc: "A heart-shaped planter that fills any space with love. Perfect for succulents and small plants.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "90 g", collection: "tornasol", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-elefante': { name: "Elephant Incense Holder", image: "elefante.png", price: 25000, priceStr: "$25,000 COP", desc: "Elephant-shaped incense holder, a symbol of good fortune. A functional and decorative detail for your home.", size: "35 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "12 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-arbol': { name: "Dry Tree Jewelry Box", image: "arbol.png", price: 13000, priceStr: "$13,000 COP", desc: "Jewelry box with a dry tree design. Organize your jewelry pieces in an artistic, minimalist way.", size: "120 mm", material: "PLA Filament", color: "Matte Black", weight: "50 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-starwars': { name: "Star Wars Coaster", image: "starwars.png", price: 26600, priceStr: "$26,600 COP", desc: "The dark side also organizes. Star Wars-themed coaster for fans who care about their table.", size: "2 mm", material: "PLA Filament", color: "Matte Black", weight: "144 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'h-monstera': { name: "Monstera Coaster", image: "monstera.png", price: 46000, priceStr: "$46,000 COP", desc: "Bring tropical nature to your table. Monstera leaf-inspired coaster, functional and aesthetic.", size: "225 mm", material: "PLA Filament", color: "Green", weight: "156 g", collection: "hogar", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
+        'b-orquidea': { name: "Orchid Ring", image: "orchid.png", price: 15000, priceStr: "$15,000 COP", desc: "A delicate orchid-shaped ring, 3D printed and hand-painted. Nature on your finger.", size: "40 mm", material: "Flexible PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "bisuteria", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" }
       }
     },
     cart: {
