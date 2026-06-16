@@ -5,35 +5,22 @@ import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
 import { Sparkles, Home, Zap, ChevronRight, Gem } from 'lucide-react';
 
-const collectionMeta = {
-  tornasol: {
-    id: 'tornasol',
-    icon: Sparkles,
-    gradient: 'from-[#402C5A] to-[#316DBC]',
-    accent: '#A78BFA',
-    items: ['t-carita', 't-amigos', 't-ballenita', 't-florero', 't-trex', 't-sardinas', 't-corazon']
-  },
-  geek: {
-    id: 'geek',
-    icon: Zap,
-    gradient: 'from-[#316DBC] to-[#92DE8B]',
-    accent: '#92DE8B',
-    items: ['g-spiderman', 'g-gow', 'g-jinx', 'g-hollow', 'g-dados']
-  },
-  hogar: {
-    id: 'hogar',
-    icon: Home,
-    gradient: 'from-[#EAE0D5] to-[#C6AC8F]',
-    accent: '#C6AC8F',
-    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita', 'h-elefante', 'h-arbol', 'h-starwars', 'h-monstera']
-  },
-  bisuteria: {
-    id: 'bisuteria',
-    icon: Gem,
-    gradient: 'from-[#F5C00C] to-[#B1311A]',
-    accent: '#F5C00C',
-    items: ['b-orquidea']
-  }
+/**
+ * collectionConfig — metadatos visuales por colección.
+ *
+ * Al añadir una colección nueva:
+ *   1. Agrega su título/desc en src/i18n.jsx  →  products.collections.<id>
+ *   2. Agrega una entrada aquí con icon, gradient y accent.
+ *
+ * Al añadir un producto nuevo:
+ *   Solo edita src/i18n.jsx  →  products.items.<id>  con el campo  collection: "<id>"
+ *   No hay que tocar este archivo.
+ */
+const collectionConfig = {
+  tornasol:  { icon: Sparkles, gradient: 'from-[#402C5A] to-[#316DBC]', accent: '#A78BFA' },
+  geek:      { icon: Zap,      gradient: 'from-[#316DBC] to-[#92DE8B]', accent: '#92DE8B' },
+  hogar:     { icon: Home,     gradient: 'from-[#EAE0D5] to-[#C6AC8F]', accent: '#C6AC8F' },
+  bisuteria: { icon: Gem,      gradient: 'from-[#F5C00C] to-[#B1311A]', accent: '#F5C00C' },
 };
 
 const Products = () => {
@@ -42,11 +29,23 @@ const Products = () => {
   const [expandedCollections, setExpandedCollections] = useState({});
 
   const toggleCollection = (key) => {
-    setExpandedCollections(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+    setExpandedCollections(prev => ({ ...prev, [key]: !prev[key] }));
   };
+
+  // ── Construir colecciones dinámicamente desde i18n ──────────────────────
+  // El orden de display lo marca collectionConfig (insertion order).
+  const allProducts = getRaw('products.items') || {};
+
+  const collectionsData = Object.keys(collectionConfig)
+    .map(key => ({
+      key,
+      ...collectionConfig[key],
+      // Productos de esta colección, en el orden que aparecen en i18n.jsx
+      items: Object.keys(allProducts).filter(
+        pid => allProducts[pid]?.collection === key
+      ),
+    }))
+    .filter(c => c.items.length > 0); // omitir colecciones vacías
 
   return (
     <div className="relative min-h-screen bg-[#050505]">
@@ -80,7 +79,7 @@ const Products = () => {
         </motion.div>
       </div>
 
-      {/* ── Collection Navigator — sticky al nivel raíz del componente ── */}
+      {/* ── Collection Navigator — sticky ── */}
       <div className="sticky top-20 z-40 w-full py-2 sm:py-3 bg-[#050505]/95 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-center md:justify-start">
           <div className="flex p-1 sm:p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-xl sm:rounded-2xl shadow-2xl overflow-x-auto no-scrollbar">
@@ -90,20 +89,16 @@ const Products = () => {
             >
               {t('products.all')}
             </button>
-            {Object.keys(collectionMeta).map((key) => {
-              const meta = collectionMeta[key];
-              const Icon = meta.icon;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setActiveFilter(key)}
-                  className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
-                >
-                  <Icon className={`w-3 h-3 sm:w-4 sm:h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
-                  {getRaw(`products.collections.${key}.title`)}
-                </button>
-              );
-            })}
+            {collectionsData.map(({ key, icon: Icon }) => (
+              <button
+                key={key}
+                onClick={() => setActiveFilter(key)}
+                className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
+              >
+                <Icon className={`w-3 h-3 sm:w-4 sm:h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
+                {getRaw(`products.collections.${key}.title`)}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -112,13 +107,12 @@ const Products = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-20 relative z-10">
         <div>
           <AnimatePresence mode="wait">
-            {Object.keys(collectionMeta)
-              .filter(key => activeFilter === 'all' || activeFilter === key)
-              .map((key) => {
-                const meta = collectionMeta[key];
+            {collectionsData
+              .filter(c => activeFilter === 'all' || activeFilter === c.key)
+              .map(({ key, gradient, items }) => {
                 const cData = getRaw(`products.collections.${key}`);
                 const isExpanded = expandedCollections[key];
-                const displayedItems = isExpanded ? meta.items : meta.items.slice(0, 4);
+                const displayedItems = isExpanded ? items : items.slice(0, 4);
 
                 if (!cData) return null;
                 return (
@@ -142,7 +136,7 @@ const Products = () => {
                         <h2 className="text-4xl md:text-5xl font-reem font-bold mb-4">{cData.title}</h2>
                         <p className="text-white/60 font-light leading-relaxed">{cData.desc}</p>
                       </div>
-                      {meta.items.length > 4 && (
+                      {items.length > 4 && (
                         <div
                           onClick={() => toggleCollection(key)}
                           className="flex items-center gap-3 group cursor-pointer border-b border-white/5 pb-2"
@@ -165,13 +159,13 @@ const Products = () => {
                           viewport={{ once: true, margin: "-100px" }}
                           transition={{ duration: 0.8, delay: pIdx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                         >
-                          <ProductCard productKey={productKey} collectionData={{ ...cData, gradient: meta.gradient }} />
+                          <ProductCard productKey={productKey} collectionData={{ ...cData, gradient }} />
                         </motion.div>
                       ))}
                     </div>
 
                     {/* Dynamic Ambient Light for Section */}
-                    <div className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${meta.gradient} blur-[250px] opacity-[0.05] pointer-events-none rounded-full`} />
+                    <div className={`absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br ${gradient} blur-[250px] opacity-[0.05] pointer-events-none rounded-full`} />
                   </motion.section>
                 );
               })}
@@ -186,7 +180,6 @@ const Products = () => {
           transition={{ duration: 1 }}
           className="mt-60 p-12 md:p-24 rounded-[4rem] bg-[#0A0A0A] border border-white/5 text-center relative overflow-hidden group/cta shadow-2xl"
         >
-          {/* Decorative Gradients */}
           <div className="absolute inset-0 bg-brand-gradient opacity-[0.02] group-hover/cta:opacity-[0.05] transition-opacity duration-1000" />
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-purple/10 blur-[100px] rounded-full" />
           <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-blue/10 blur-[100px] rounded-full" />
@@ -198,7 +191,6 @@ const Products = () => {
             <p className="text-white/60 text-base md:text-lg lg:text-xl font-light mb-10 md:mb-12 leading-relaxed">
               {t('products.customCTA.desc')}
             </p>
-
             <Link to="/custom" className="inline-block">
               <motion.div
                 whileTap={{ scale: 0.95 }}
