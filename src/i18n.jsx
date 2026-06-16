@@ -113,6 +113,9 @@ const translations = {
         addedBtn: "Agregado",
         shippingInfo: "Tiempo estimado: 5-7 días hábiles. Puede extenderse según referencias o complejidad del modelo.",
         madeToOrder: "Hecho por encargo · 5–7 días",
+        viewPhotos: "Fotos",
+        view3d: "Ver en 3D",
+        model3dAR: "En móvil: usa el botón AR para ver el objeto en tu espacio real",
         options: {
           color: "Selecciona un color:",
           paint: "¿Te gustaría que pintemos tu pieza?",
@@ -134,7 +137,7 @@ const translations = {
         't-carita': { name: "Matera Carita Feliz", image: "happy pot.png", price: 30000, priceStr: "$30.000 COP", desc: "Aporta energía y diseño a tus espacios con esta maceta, ideal para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "124 g", collection: "tornasol" },
         't-amigos': { name: "Matera Amigos", image: "buddies.png", price: 27000, priceStr: "$27.000 COP", desc: "Un diseño doble y equilibrado, ideal para exhibir plantas complementarias en tu escritorio o estudio.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
         't-ballenita': { name: "Matera Ballenita", image: "little whale.png", price: 28000, priceStr: "$28.000 COP", desc: "Maceta inspirada en la vida marina. Un toque estético único.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "116 g", collection: "tornasol" },
-        't-florero': { name: "Florero Prisma", image: "vase.png", price: 36000, priceStr: "$36.000 COP", desc: "Elegancia paramétrica. Este florero transforma el ambiente de cualquier habitación.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "144 g", collection: "tornasol" },
+        't-florero': { name: "Florero Prisma", image: "vase.png", price: 36000, priceStr: "$36.000 COP", desc: "Elegancia paramétrica. Este florero transforma el ambiente de cualquier habitación.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "144 g", collection: "tornasol", model3d: "https://modelviewer.dev/shared-assets/models/Astronaut.glb" },
         't-trex': { name: "Portalápices T-Rex", image: "dinosaur.png", price: 27000, priceStr: "$27.000 COP", desc: "Portalápices para tus esenciales. Mantén tu espacio de trabajo ordenado con una estética tierna.", size: "120 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "76 g", collection: "tornasol" },
         't-sardinas': { name: "Joyero Sardinas", image: "sardines.png", price: 21000, priceStr: "$21.000 COP", desc: "Protege y exhibe tus joyas con un diseño inspirado en latas de conserva.", size: "26 mm", material: "Filamento PLA", color: "Tornasol y Blanco", weight: "27 g", collection: "tornasol" },
         'h-latas': { name: "Organizador de latas", image: "can dispenser.jpg", price: 47000, priceStr: "$47.000 COP", desc: "Dispensador de latas diseñado para maximizar el almacenamiento de tu refrigerador.", size: "180 mm", material: "Filamento PLA Premium", color: "Blanco", weight: "260 g", collection: "hogar" },
@@ -303,6 +306,9 @@ const translations = {
         addedBtn: "Added",
         shippingInfo: "Estimated time: 5-7 business days. May vary based on references or model complexity.",
         madeToOrder: "Made to order · 5–7 days",
+        viewPhotos: "Photos",
+        view3d: "View in 3D",
+        model3dAR: "On mobile: tap the AR button to place the object in your real space",
         options: {
           color: "Select a color:",
           paint: "Would you like us to paint your piece?",

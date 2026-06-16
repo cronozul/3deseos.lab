@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Box, ShoppingBag, Check, Paintbrush, Palette, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+import { Box, ShoppingBag, Check, Paintbrush, Palette, ChevronLeft, ChevronRight, Clock, LayoutGrid } from 'lucide-react';
 import { useLanguage } from '../i18n';
 import { useCart } from '../context/CartContext';
+import ModelViewer3D from '../components/ModelViewer3D';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const ProductDetail = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [selectedColor, setSelectedColor] = useState('white');
   const [wantsPainting, setWantsPainting] = useState(false);
+  const [viewMode, setViewMode] = useState('photos'); // 'photos' | '3d'
 
   const product = getRaw(`products.items.${id}`);
   const [[currentSlide, direction], setSlide] = useState([0, 0]);
@@ -101,45 +103,90 @@ const ProductDetail = () => {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
         
         <div className="relative group">
-          <motion.div 
+          {/* Tab switcher — solo visible si el producto tiene modelo 3D */}
+          {product.model3d && (
+            <div className="flex gap-2 justify-center mb-5">
+              <button
+                onClick={() => setViewMode('photos')}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-jost font-medium transition-all duration-300 ${
+                  viewMode === 'photos'
+                    ? 'bg-white/10 border border-white/20 text-white shadow-md'
+                    : 'text-white/40 hover:text-white/70'
+                }`}
+              >
+                <LayoutGrid className="w-4 h-4" />
+                {t('products.detail.viewPhotos')}
+              </button>
+              <button
+                onClick={() => setViewMode('3d')}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-jost font-medium transition-all duration-300 ${
+                  viewMode === '3d'
+                    ? 'bg-brand-blue/20 border border-brand-blue/50 text-brand-blue shadow-md shadow-brand-blue/10'
+                    : 'text-white/40 hover:text-white/70'
+                }`}
+              >
+                <Box className="w-4 h-4" />
+                {t('products.detail.view3d')}
+              </button>
+            </div>
+          )}
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             className="relative aspect-square rounded-[3rem] border border-white/5 bg-transparent overflow-hidden shadow-2xl"
           >
-            {/* Animated Glow (Light Curtain) */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none z-20" />
-            
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-[0.05] mix-blend-overlay" />
-            
-            <div className="absolute inset-0 flex items-center justify-center p-0 overflow-hidden">
-              {totalSlides > 0 ? (
-                <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                  <motion.img
-                    key={currentSlide}
-                    custom={direction}
-                    variants={variants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                      rotateY: { duration: 0.4 }
-                    }}
-                    src={new URL(`../images/${images[currentSlide]}`, import.meta.url).href}
-                    alt={product.name}
-                    className="w-full h-full object-contain relative z-10 drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)] scale-110"
-                    style={{ perspective: 1000 }}
-                  />
-                </AnimatePresence>
-              ) : (
-                <Box className="w-48 h-48 text-white/50" strokeWidth={1} />
-              )}
-            </div>
+            {/* Animated Glow (Light Curtain) — solo en modo fotos */}
+            {viewMode !== '3d' && (
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none z-20" />
+            )}
 
-            {/* Carousel Arrows — solo si hay 2+ imágenes */}
-            {hasCarousel && (
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
+
+            {/* Modo 3D */}
+            {viewMode === '3d' && product.model3d ? (
+              <div className="absolute inset-0 z-10">
+                <ModelViewer3D
+                  src={product.model3d}
+                  alt={product.name}
+                  poster={totalSlides > 0
+                    ? new URL(`../images/${images[0]}`, import.meta.url).href
+                    : undefined
+                  }
+                />
+              </div>
+            ) : (
+              /* Modo fotos — carrusel existente */
+              <div className="absolute inset-0 flex items-center justify-center p-0 overflow-hidden">
+                {totalSlides > 0 ? (
+                  <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                    <motion.img
+                      key={currentSlide}
+                      custom={direction}
+                      variants={variants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                        rotateY: { duration: 0.4 }
+                      }}
+                      src={new URL(`../images/${images[currentSlide]}`, import.meta.url).href}
+                      alt={product.name}
+                      className="w-full h-full object-contain relative z-10 drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)] scale-110"
+                      style={{ perspective: 1000 }}
+                    />
+                  </AnimatePresence>
+                ) : (
+                  <Box className="w-48 h-48 text-white/50" strokeWidth={1} />
+                )}
+              </div>
+            )}
+
+            {/* Carousel Arrows — solo en modo fotos con 2+ imágenes */}
+            {viewMode !== '3d' && hasCarousel && (
             <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 flex justify-between opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 z-30">
               <button
                 onClick={() => paginate(-1)}
@@ -156,8 +203,8 @@ const ProductDetail = () => {
             </div>
             )}
 
-            {/* Carousel Dots — solo si hay 2+ imágenes */}
-            {hasCarousel && (
+            {/* Carousel Dots — solo en modo fotos con 2+ imágenes */}
+            {viewMode !== '3d' && hasCarousel && (
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-30">
               {[...Array(totalSlides)].map((_, i) => (
                 <button
@@ -173,6 +220,18 @@ const ProductDetail = () => {
             </div>
             )}
           </motion.div>
+
+          {/* Badge AR — solo en modo 3D si hay soporte */}
+          {viewMode === '3d' && product.model3d && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="text-center text-[11px] text-white/30 mt-4 font-jost tracking-wide"
+            >
+              {t('products.detail.model3dAR')}
+            </motion.p>
+          )}
         </div>
 
         <motion.div 
