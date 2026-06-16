@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
-import { Sparkles, Home, Zap, ChevronRight } from 'lucide-react';
+import { Sparkles, Home, Zap, ChevronRight, Gem } from 'lucide-react';
 
 const collectionMeta = {
   tornasol: {
@@ -11,7 +11,7 @@ const collectionMeta = {
     icon: Sparkles,
     gradient: 'from-[#402C5A] to-[#316DBC]',
     accent: '#A78BFA',
-    items: ['t-carita', 't-amigos', 't-ballenita', 't-florero', 't-trex', 't-sardinas']
+    items: ['t-carita', 't-amigos', 't-ballenita', 't-florero', 't-trex', 't-sardinas', 't-corazon']
   },
   geek: {
     id: 'geek',
@@ -25,7 +25,14 @@ const collectionMeta = {
     icon: Home,
     gradient: 'from-[#EAE0D5] to-[#C6AC8F]',
     accent: '#C6AC8F',
-    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita']
+    items: ['h-osito', 'h-latas', 'h-waffle', 'h-angel', 'h-llaves', 'h-ovejita', 'h-elefante', 'h-arbol', 'h-starwars', 'h-monstera']
+  },
+  bisuteria: {
+    id: 'bisuteria',
+    icon: Gem,
+    gradient: 'from-[#F5C00C] to-[#B1311A]',
+    accent: '#F5C00C',
+    items: ['b-orquidea']
   }
 };
 
