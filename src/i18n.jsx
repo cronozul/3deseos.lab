@@ -158,6 +158,7 @@ const translations = {
             tornasol: "Tornasol"
           },
           colorApproxNote: "Los colores en el visor 3D son una aproximación al filamento PLA real. El tono y brillo exactos pueden variar según el acabado y la iluminación.",
+          partFallback: "Parte {{n}}",
         }
       },
       items: {
@@ -175,7 +176,7 @@ const translations = {
         'h-osito': { name: "Angel Osito", image: "angel osito.png", price: 18000, priceStr: "$18.000 COP", desc: "Un tierno osito con alas de ángel. Ideal para decorar habitaciones infantiles o como un detalle lleno de ternura.", size: "75 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "22 g", collection: "hogar", model3d: "/models/h-osito.glb" },
         'g-spiderman': { name: "Llavero Spiderman", image: "spiderman.png", price: 22000, priceStr: "$22.000 COP", desc: "Llavero inspirado en Spiderman. Un tributo pintado a mano.", size: "4 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek", model3d: "/models/g-spiderman.glb" },
         'g-gow': { name: "Llavero Espadas GOW", image: "god of war.png", price: 38000, priceStr: "$38.000 COP", desc: "Réplicas milimétricas del mundo de Kratos.", size: "2.6 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "4 g", collection: "geek", model3d: "/models/g-gow.glb" },
-        'g-jinx': { name: "Bomba Jinx", image: "jinx bomb.png", price: 55000, priceStr: "$55.000 COP", desc: "Caos en la palma de tu mano. Reproducción fiel y detallada pintada a mano para elevar tu setup o llaves.", size: "50 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "7 g", collection: "geek", model3d: "/models/g-jinx.glb" },
+        'g-jinx': { name: "Bomba Jinx", image: "jinx bomb.png", price: 55000, priceStr: "$55.000 COP", desc: "Caos en la palma de tu mano. Reproducción fiel y detallada pintada a mano para elevar tu setup o llaves.", size: "50 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "7 g", collection: "geek", model3d: "/models/g-jinx.glb", parts: ["Cuerpo / Bomba", "Mecha / Detalles"] },
         'g-hollow': { name: "Llavero Hollow Knight", image: "hollow knight.png", price: 32000, priceStr: "$32.000 COP", desc: "El guardián de Hollownest materializado.", size: "49 mm", material: "Filamento PLA", color: "Blanco (Pintado a mano)", weight: "5 g", collection: "geek", model3d: "/models/g-hollow.glb" },
         'g-dados': { name: "Castillo Torre de Dados", image: "dice tower.png", price: 24000, priceStr: "$24.000 COP", desc: "Estructura funcional para tabletop gaming. Cada lanzamiento de dados se convierte en una experiencia.", size: "178 mm", material: "Filamento PLA", color: "Azul Geométrico", weight: "116 g", collection: "geek", model3d: "/models/g-dados.glb" },
         't-corazon': { name: "Matera Corazón", image: "corazón.png", price: 19400, priceStr: "$19.400 COP", desc: "Una matera con forma de corazón que llena de amor cualquier espacio. Perfecta para suculentas y plantas pequeñas.", size: "85 mm", material: "Filamento PLA Biodegradable", color: "Tornasol (Iridiscente)", weight: "90 g", collection: "tornasol", model3d: "/models/t-corazon.glb" },
@@ -384,6 +385,7 @@ const translations = {
             tornasol: "Tornasol"
           },
           colorApproxNote: "Colors shown in the 3D viewer are an approximation of the actual PLA filament. The exact shade and finish may vary depending on the material and lighting.",
+          partFallback: "Part {{n}}",
         }
       },
       items: {
@@ -401,7 +403,7 @@ const translations = {
         'h-osito': { name: "Angel Teddy Bear", image: "angel osito.png", price: 18000, priceStr: "$18,000 COP", desc: "A cute teddy bear with angel wings. Ideal for decorating children's rooms or as a gift full of tenderness.", size: "75 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "22 g", collection: "hogar", model3d: "/models/h-osito.glb" },
         'g-spiderman': { name: "Spiderman Keychain", image: "spiderman.png", price: 22000, priceStr: "$22,000 COP", desc: "Spider-Man-inspired keychain. A hand-painted tribute.", size: "4 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek", model3d: "/models/g-spiderman.glb" },
         'g-gow': { name: "GOW Blades Keychain", image: "god of war.png", price: 38000, priceStr: "$38,000 COP", desc: "Life-size replicas of Kratos' world.", size: "2.6 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "4 g", collection: "geek", model3d: "/models/g-gow.glb" },
-        'g-jinx': { name: "Jinx Bomb Keychain", image: "jinx bomb.png", price: 55000, priceStr: "$55,000 COP", desc: "Chaos in the palm of your hand. A faithful, detailed hand-painted reproduction to elevate your setup or keys.", size: "50 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "7 g", collection: "geek", model3d: "/models/g-jinx.glb" },
+        'g-jinx': { name: "Jinx Bomb Keychain", image: "jinx bomb.png", price: 55000, priceStr: "$55,000 COP", desc: "Chaos in the palm of your hand. A faithful, detailed hand-painted reproduction to elevate your setup or keys.", size: "50 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "7 g", collection: "geek", model3d: "/models/g-jinx.glb", parts: ["Body / Bomb", "Fuse / Details"] },
         'g-hollow': { name: "Hollow Knight Keychain", image: "hollow knight.png", price: 32000, priceStr: "$32,000 COP", desc: "The guardian of Hollownest materialized.", size: "49 mm", material: "PLA Filament", color: "White (Hand-painted)", weight: "5 g", collection: "geek", model3d: "/models/g-hollow.glb" },
         'g-dados': { name: "Dice Tower Castle", image: "dice tower.png", price: 24000, priceStr: "$24,000 COP", desc: "A functional framework for tabletop gaming. Every roll of the dice becomes an experience.", size: "178 mm", material: "PLA Filament", color: "Geometric Blue", weight: "116 g", collection: "geek", model3d: "/models/g-dados.glb" },
         't-corazon': { name: "Heart Planter", image: "corazón.png", price: 19400, priceStr: "$19,400 COP", desc: "A heart-shaped planter that fills any space with love. Perfect for succulents and small plants.", size: "85 mm", material: "Biodegradable PLA Filament", color: "Tornasol (Iridescent)", weight: "90 g", collection: "tornasol", model3d: "/models/t-corazon.glb" },

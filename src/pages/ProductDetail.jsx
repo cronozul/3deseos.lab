@@ -16,6 +16,10 @@ const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState('white');
   const [wantsPainting, setWantsPainting] = useState(false);
   const [viewMode, setViewMode] = useState('photos'); // 'photos' | '3d'
+  // Per-part color: { [materialIdx]: colorId }  — solo activo en modo 3D multimaterial
+  const [partColors, setPartColors] = useState({});
+  // Materiales detectados por el modelo al cargarse
+  const [detectedMaterials, setDetectedMaterials] = useState([]);
 
   const product = getRaw(`products.items.${id}`);
   const [[currentSlide, direction], setSlide] = useState([0, 0]);
@@ -37,6 +41,23 @@ const ProductDetail = () => {
       }
     }
   }, [product, navigate]);
+
+  // Resetear partColors al cambiar de producto o salir del modo 3D
+  useEffect(() => {
+    setPartColors({});
+    setDetectedMaterials([]);
+  }, [id, viewMode]);
+
+  const handleMaterialsLoaded = (materials) => {
+    setDetectedMaterials(Array.from(materials));
+  };
+
+  const setPartColor = (matIdx, colorId) => {
+    setPartColors(prev => ({ ...prev, [matIdx]: colorId }));
+  };
+
+  // Un modelo "multimaterial" tiene 2+ materiales — muestra picker por partes
+  const isMultiMaterial = detectedMaterials.length > 1;
 
   const paginate = (newDirection) => {
     const nextSlide = (currentSlide + newDirection + totalSlides) % totalSlides;
@@ -152,6 +173,8 @@ const ProductDetail = () => {
                   src={product.model3d}
                   alt={product.name}
                   selectedColor={selectedColor}
+                  partColors={isMultiMaterial ? partColors : undefined}
+                  onMaterialsLoaded={handleMaterialsLoaded}
                   poster={totalSlides > 0
                     ? new URL(`../images/${images[0]}`, import.meta.url).href
                     : undefined
@@ -265,35 +288,80 @@ const ProductDetail = () => {
                   <Palette className="w-4 h-4" />
                   {t('products.detail.options.color')}
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  {availableColors.map((color) => (
-                    <button
-                      key={color.id}
-                      onClick={() => setSelectedColor(color.id)}
-                      className={`relative w-10 h-10 rounded-full transition-all duration-300 ${
-                        selectedColor === color.id 
-                        ? 'ring-2 ring-white ring-offset-4 ring-offset-[#050505] scale-110' 
-                        : 'opacity-40 hover:opacity-100 scale-100'
-                      }`}
-                      style={{ background: color.code, border: color.id === 'white' ? '1px solid rgba(255,255,255,0.1)' : 'none' }}
-                      title={t(`products.detail.options.colors.${color.id}`)}
-                    >
-                      {selectedColor === color.id && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Check className={`w-4 h-4 ${color.id === 'white' ? 'text-black' : 'text-white'}`} />
+
+                {/* ── Modo por partes (solo cuando modelo 3D multimaterial está activo) ── */}
+                {viewMode === '3d' && isMultiMaterial ? (
+                  <div className="space-y-4">
+                    {detectedMaterials.map((mat, idx) => {
+                      const partLabel = product.parts?.[idx]
+                        ?? t('products.detail.options.partFallback').replace('{{n}}', idx + 1);
+                      const activeColor = partColors[idx] ?? selectedColor;
+                      return (
+                        <div key={idx} className="space-y-2">
+                          <p className="text-[11px] text-white/50 uppercase tracking-widest font-jost">
+                            {partLabel}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {availableColors.map((color) => (
+                              <button
+                                key={color.id}
+                                onClick={() => setPartColor(idx, color.id)}
+                                className={`relative w-8 h-8 rounded-full transition-all duration-300 ${
+                                  activeColor === color.id
+                                  ? 'ring-2 ring-white ring-offset-2 ring-offset-[#050505] scale-110'
+                                  : 'opacity-40 hover:opacity-100 scale-100'
+                                }`}
+                                style={{ background: color.code, border: color.id === 'white' ? '1px solid rgba(255,255,255,0.1)' : 'none' }}
+                                title={t(`products.detail.options.colors.${color.id}`)}
+                              >
+                                {activeColor === color.id && (
+                                  <div className="absolute inset-0 flex items-center justify-center">
+                                    <Check className={`w-3 h-3 ${color.id === 'white' ? 'text-black' : 'text-white'}`} />
+                                  </div>
+                                )}
+                              </button>
+                            ))}
+                          </div>
                         </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-white/60 font-medium italic">
-                  {t(`products.detail.options.colors.${selectedColor}`)}
-                </p>
-                {/* Nota de aproximación de color — solo visible en modo 3D */}
-                {viewMode === '3d' && (
-                  <p className="text-xs text-white/60 font-light">
-                    {t('products.detail.options.colorApproxNote')}
-                  </p>
+                      );
+                    })}
+                    <p className="text-xs text-white/40 font-light">
+                      {t('products.detail.options.colorApproxNote')}
+                    </p>
+                  </div>
+                ) : (
+                  /* ── Modo color global (un tono para todo el modelo) ── */
+                  <>
+                    <div className="flex flex-wrap gap-3">
+                      {availableColors.map((color) => (
+                        <button
+                          key={color.id}
+                          onClick={() => setSelectedColor(color.id)}
+                          className={`relative w-10 h-10 rounded-full transition-all duration-300 ${
+                            selectedColor === color.id
+                            ? 'ring-2 ring-white ring-offset-4 ring-offset-[#050505] scale-110'
+                            : 'opacity-40 hover:opacity-100 scale-100'
+                          }`}
+                          style={{ background: color.code, border: color.id === 'white' ? '1px solid rgba(255,255,255,0.1)' : 'none' }}
+                          title={t(`products.detail.options.colors.${color.id}`)}
+                        >
+                          {selectedColor === color.id && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Check className={`w-4 h-4 ${color.id === 'white' ? 'text-black' : 'text-white'}`} />
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="text-xs text-white/60 font-medium italic">
+                      {t(`products.detail.options.colors.${selectedColor}`)}
+                    </p>
+                    {viewMode === '3d' && (
+                      <p className="text-xs text-white/60 font-light">
+                        {t('products.detail.options.colorApproxNote')}
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
 
