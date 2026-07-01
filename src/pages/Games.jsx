@@ -50,11 +50,8 @@ const Games = () => {
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-reem font-bold mb-6 tracking-tight leading-none">
-            <span className="text-white opacity-90 block">{t('games.title').split(' ')[0]}</span>
-            <span className="text-transparent bg-clip-text bg-brand-gradient block">
-              {t('games.title').split(' ').slice(1).join(' ')}
-            </span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-reem font-bold mb-6 tracking-tight leading-none text-white opacity-90">
+            {t('games.title')}
           </h1>
 
           <p className="text-white/60 font-light max-w-2xl text-base md:text-lg lg:text-xl leading-relaxed mx-auto md:mx-0">
