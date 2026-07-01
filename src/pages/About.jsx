@@ -75,9 +75,9 @@ const About = () => {
                 const IconComponent = iconMap[item.icon] || Heart;
                 const colors = [
                   { text: 'text-brand-blue', bg: 'bg-brand-blue/10' },
-                  { text: 'text-brand-purple', bg: 'bg-brand-purple/10' },
+                  { text: 'text-brand-green', bg: 'bg-brand-green/10' },
                   { text: 'text-brand-yellow', bg: 'bg-brand-yellow/10' },
-                  { text: 'text-brand-yellow', bg: 'bg-brand-yellow/10' }
+                  { text: 'text-brand-red', bg: 'bg-brand-red/10' }
                 ][idx];
                 return (
                   <div
@@ -113,9 +113,9 @@ const About = () => {
                   const IconComponent = iconMap[item.icon] || Heart;
                   const colors = [
                     { text: 'text-brand-blue', hover: 'group-hover:text-brand-blue', bg: 'group-hover:bg-brand-blue/10' },
-                    { text: 'text-brand-purple', hover: 'group-hover:text-brand-purple', bg: 'group-hover:bg-brand-purple/10' },
+                    { text: 'text-brand-green', hover: 'group-hover:text-brand-green', bg: 'group-hover:bg-brand-green/10' },
                     { text: 'text-brand-yellow', hover: 'group-hover:text-brand-yellow', bg: 'group-hover:bg-brand-yellow/10' },
-                    { text: 'text-brand-yellow', hover: 'group-hover:text-brand-yellow', bg: 'group-hover:bg-brand-yellow/10' }
+                    { text: 'text-brand-red', hover: 'group-hover:text-brand-red', bg: 'group-hover:bg-brand-red/10' }
                   ][idx];
                   const alignClasses = [
                     'justify-self-end self-end',
