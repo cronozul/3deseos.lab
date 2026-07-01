@@ -114,7 +114,6 @@ const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
   const [resolvedSrc, setResolvedSrc] = useState(null);
   const mvRef   = useRef(null);
   const blobRef = useRef(null);
-  const rafRef  = useRef(null);
 
   // 1. Patch Draco + resolver src
   useEffect(() => {
@@ -141,34 +140,39 @@ const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
   }, [resolvedSrc]);
 
   // 3. Aplicar color al material (o animar tornasol)
+  //
+  // Usamos `cancelled` local + `frameId` local en lugar de un rafRef compartido.
+  // Esto evita la condición de carrera donde el cleanup del efecto anterior
+  // borra rafRef.current justo cuando el nuevo efecto ya lo está usando.
   useEffect(() => {
     if (!loaded || !mvRef.current) return;
-    const mv = mvRef.current;
 
-    // Detener animación previa si existía
-    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    let cancelled = false;
 
     if (selectedColor === 'tornasol') {
-      // Animación cíclica: recorre los keyframes del degradado firma
       const startTime = performance.now();
+      let frameId;
+
       const tick = (now) => {
+        if (cancelled) return;
+        const mv = mvRef.current;
+        if (!mv) return;
         const t      = ((now - startTime) % TORNASOL_PERIOD) / TORNASOL_PERIOD;
         const scaled = t * (TORNASOL_KF.length - 1);
         const idx    = Math.floor(scaled);
         const frac   = scaled - idx;
         const color  = lerpColor(TORNASOL_KF[idx], TORNASOL_KF[Math.min(idx + 1, TORNASOL_KF.length - 1)], frac);
         applyMaterialColor(mv, [...color, 1.0], 0.95, 0.10);
-        rafRef.current = requestAnimationFrame(tick);
+        frameId = requestAnimationFrame(tick);
       };
-      rafRef.current = requestAnimationFrame(tick);
+
+      frameId = requestAnimationFrame(tick);
+      return () => { cancelled = true; cancelAnimationFrame(frameId); };
     } else {
       const def = SOLID_COLORS[selectedColor] ?? SOLID_COLORS.white;
-      applyMaterialColor(mv, def.base, def.metallic, def.roughness);
+      applyMaterialColor(mvRef.current, def.base, def.metallic, def.roughness);
+      return () => { cancelled = true; };
     }
-
-    return () => {
-      if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
-    };
   }, [loaded, selectedColor]);
 
   if (!resolvedSrc) return null;
