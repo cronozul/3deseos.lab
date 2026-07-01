@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import { Gamepad2, ExternalLink, Sparkles } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
+import { phackerLogo } from '../assets/phackerLogo.js';
 
 const PHACKER_URL = 'https://deploy-preview-53--p-hacker-game.netlify.app/';
 
@@ -88,48 +89,37 @@ const Games = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr]">
 
               {/* ── Left: Visual Panel ── */}
-              <div className="relative min-h-[380px] lg:min-h-[560px] bg-[#060608] flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.04]">
+              <div className="relative min-h-[380px] lg:min-h-[560px] bg-[#050505] flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.04]">
 
-                {/* Subtle code lines — aligned with site's minimal aesthetic */}
+                {/* Subtle terminal lines as background texture */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 font-mono text-white/[0.035] text-[11px] leading-7 overflow-hidden select-none p-8"
+                  className="absolute inset-0 font-mono text-white/[0.025] text-[11px] leading-7 overflow-hidden select-none p-8"
                 >
                   {Array.from({ length: 24 }).map((_, i) => (
                     <div key={i}>{`> ${terminalLines[i % terminalLines.length]}`}</div>
                   ))}
                 </div>
 
-                {/* Brand gradient glow blob */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/10 to-brand-blue/10 pointer-events-none" />
+                {/* Brand glow behind the logo */}
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-purple/8 via-transparent to-brand-blue/8 pointer-events-none" />
 
-                {/* Central hero text — brand typography */}
-                <div className="relative z-10 text-center px-8 select-none">
-                  <motion.div
-                    animate={{ opacity: [0.8, 1, 0.8] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <p className="font-mono text-white/25 text-xs tracking-[0.4em] uppercase mb-5">
-                      $ p-hacker v1.0
-                    </p>
-                    <h2 className="font-reem font-bold text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-none text-transparent bg-clip-text bg-brand-gradient mb-4">
-                      P-Hacker
-                    </h2>
-                    <p className="text-white/30 font-light text-sm tracking-widest italic">
-                      science_and_cheating
-                    </p>
-                  </motion.div>
-                </div>
+                {/* P-Hacker logo */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative z-10 px-6 py-4"
+                >
+                  <img
+                    src={phackerLogo}
+                    alt="P-Hacker logo — taza de café con personalidad"
+                    className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-contain drop-shadow-[0_20px_60px_rgba(49,109,188,0.3)]"
+                  />
+                </motion.div>
 
-                {/* Scanlines — very subtle */}
-                <div
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,rgba(0,0,0,0.06)_3px,rgba(0,0,0,0.06)_4px)] pointer-events-none"
-                />
-
-                {/* Corner accent ring */}
-                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-brand-purple/10 blur-[60px] pointer-events-none" />
-                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-brand-blue/10 blur-[60px] pointer-events-none" />
+                {/* Corner accents */}
+                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-brand-purple/10 blur-[80px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-brand-blue/10 blur-[80px] pointer-events-none" />
               </div>
 
               {/* ── Right: Game Info ── */}
