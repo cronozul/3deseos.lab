@@ -12,6 +12,7 @@ import CustomOrders from './pages/CustomOrders';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Games from './pages/Games';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/custom" element={<CustomOrders />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/games" element={<Games />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>

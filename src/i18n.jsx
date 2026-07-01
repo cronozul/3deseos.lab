@@ -5,10 +5,12 @@ const translations = {
     nav: {
       home: "Inicio",
       products: "Colecciones",
+      games: "Juegos",
       about: "Sobre nosotros",
       custom: "Pedidos",
       contact: "Contacto",
-      cart: "Carrito"
+      cart: "Carrito",
+      language: "Idioma"
     },
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
@@ -21,7 +23,8 @@ const translations = {
       heroTitle: "Creamos",
       heroHighlight: "mundos y objetos.",
       heroDesc: "Somos un estudio creativo de Bogotá apasionados por dos mundos: el desarrollo de videojuegos y la impresión 3D artesanal. Diseñamos experiencias digitales y damos vida a objetos únicos — del píxel a la pieza.",
-      explore: "Explorar Colecciones",
+      explore: "Colecciones 3D",
+      games: "Nuestros Juegos",
       customOrder: "Pedido Personalizado"
     },
     about: {
@@ -53,6 +56,25 @@ const translations = {
       step4Desc: "Hacemos envíos por medio de Uber en Bogotá, y a nivel nacional mediante transportadora. Recibes tu pedido directo en tus manos.",
       ctaTitle: "¿Listo para ver tu deseo materializado?",
       ctaButton: "Iniciar Conversación"
+    },
+    games: {
+      badge: "Estudios",
+      title: "Nuestros Juegos",
+      subtitle: "Desarrollamos videojuegos que exploran ideas poco convencionales. Cada título es una nueva forma de ver el mundo.",
+      featured: "Juego Destacado",
+      available: "Disponible ahora",
+      comingSoon: "Próximamente",
+      playNow: "Jugar ahora",
+      moreGames: {
+        title: "Más juegos en camino",
+        desc: "Estamos construyendo nuevos mundos. Síguenos en redes para ser el primero en saber cuándo llegan."
+      },
+      phacker: {
+        name: "P-Hacker",
+        tagline: "A game of science and cheating",
+        desc: "Publica investigaciones, vota en hallazgos científicos y decide si revelar la verdad... o manipularla. Una sátira estratégica sobre la integridad en la ciencia.",
+        genre: ["Estrategia", "Educativo", "Sátira"]
+      }
     },
     contact: {
       badge: "Contacto Directo",
@@ -208,10 +230,12 @@ const translations = {
     nav: {
       home: "Home",
       products: "Collections",
+      games: "Games",
       about: "About us",
       custom: "Custom",
       contact: "Contact",
-      cart: "Cart"
+      cart: "Cart",
+      language: "Language"
     },
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
@@ -224,7 +248,8 @@ const translations = {
       heroTitle: "We create",
       heroHighlight: "worlds & objects.",
       heroDesc: "We're a creative studio from Bogotá passionate about two worlds: video game development and artisan 3D printing. We design digital experiences and bring unique objects to life — from pixel to piece.",
-      explore: "Explore Collections",
+      explore: "3D Collections",
+      games: "Our Games",
       customOrder: "Custom Order"
     },
     about: {
@@ -256,6 +281,25 @@ const translations = {
       step4Desc: "We ship via Uber in Bogotá and through a shipping carrier nationwide. Your order will be delivered directly to you.",
       ctaTitle: "Ready to make it real?",
       ctaButton: "Send Request"
+    },
+    games: {
+      badge: "Studio",
+      title: "Our Games",
+      subtitle: "We develop video games that explore unconventional ideas. Each title is a new way of seeing the world.",
+      featured: "Featured Game",
+      available: "Available now",
+      comingSoon: "Coming soon",
+      playNow: "Play now",
+      moreGames: {
+        title: "More games on the way",
+        desc: "We're building new worlds. Follow us to be the first to know when they arrive."
+      },
+      phacker: {
+        name: "P-Hacker",
+        tagline: "A game of science and cheating",
+        desc: "Publish research, vote on scientific findings, and decide whether to reveal the truth... or not. A strategic satire on scientific integrity.",
+        genre: ["Strategy", "Educational", "Satire"]
+      }
     },
     contact: {
       badge: "Direct Contact",
