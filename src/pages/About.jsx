@@ -100,7 +100,7 @@ const About = () => {
               {/* Central 3D Circle */}
               <div className="relative z-10 w-24 h-24 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.05)] group">
                 <div className="absolute inset-0 bg-brand-blue/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-                <span className="text-2xl font-reem font-bold text-white tracking-widest relative z-10" aria-hidden="true">3D</span>
+                <span className="text-2xl font-reem font-bold text-transparent bg-clip-text bg-brand-gradient tracking-widest relative z-10" aria-hidden="true">lab</span>
               </div>
 
               {/* Rings */}
