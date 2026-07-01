@@ -70,24 +70,25 @@ async function patchGlbDracoAttrs(src) {
 }
 
 // ── Sistema de colores ────────────────────────────────────────────────────────
-// base: [R, G, B, A] en 0-1  |  metallic: 0-1  |  roughness: 0-1
+// base en espacio lineal (sRGB→lineal) para PBR correcto.
+// metallic: 0-1  |  roughness: 0-1
 const SOLID_COLORS = {
-  white: { base: [1.00, 1.00, 1.00, 1], metallic: 0.00, roughness: 0.80 },
-  black: { base: [0.07, 0.07, 0.07, 1], metallic: 0.10, roughness: 0.55 },
-  red:   { base: [0.90, 0.24, 0.24, 1], metallic: 0.00, roughness: 0.70 },
-  blue:  { base: [0.19, 0.51, 0.81, 1], metallic: 0.00, roughness: 0.70 },
-  gold:  { base: [0.83, 0.69, 0.22, 1], metallic: 0.90, roughness: 0.22 },
-  gray:  { base: [0.44, 0.50, 0.59, 1], metallic: 0.65, roughness: 0.30 },
+  white: { base: [1.0000, 1.0000, 1.0000, 1], metallic: 0.00, roughness: 0.80 }, // #FFFFFF
+  black: { base: [0.0452, 0.0452, 0.0452, 1], metallic: 0.10, roughness: 0.55 }, // #3C3C3C
+  red:   { base: [0.4508, 0.0513, 0.0578, 1], metallic: 0.00, roughness: 0.70 }, // #B34044
+  blue:  { base: [0.0000, 0.1248, 0.3515, 1], metallic: 0.00, roughness: 0.70 }, // #0063A0
+  gold:  { base: [0.6514, 0.2961, 0.0467, 1], metallic: 0.90, roughness: 0.22 }, // #D3943D
+  gray:  { base: [0.5647, 0.5972, 0.6308, 1], metallic: 0.65, roughness: 0.30 }, // #C6CBD0 silver
 };
 
-// Tornasol: degradado firma 3deseos.lab morado→azul→cian→verde (loop)
-// Colores en sRGB lineal (0-1) correspondientes a #402C5A #316DBC #34B6E4 #92DE8B
+// Tornasol: ciclo morado→rojo→azul→verde, referencia matera corazón
+// Valores lineales de: #7A2DB5 #C83545 #1459C8 #28A85A
 const TORNASOL_KF = [
-  [0.251, 0.173, 0.353], // #402C5A morado
-  [0.192, 0.427, 0.737], // #316DBC azul
-  [0.204, 0.714, 0.894], // #34B6E4 cian
-  [0.573, 0.871, 0.545], // #92DE8B verde
-  [0.251, 0.173, 0.353], // vuelve al morado (cierra el loop)
+  [0.1946, 0.0262, 0.4621], // #7A2DB5 morado
+  [0.5776, 0.0356, 0.0595], // #C83545 rojo
+  [0.0070, 0.0999, 0.5776], // #1459C8 azul
+  [0.0212, 0.3916, 0.1022], // #28A85A verde
+  [0.1946, 0.0262, 0.4621], // vuelve al morado (cierra el loop)
 ];
 const TORNASOL_PERIOD = 4200; // ms para un ciclo completo
 
