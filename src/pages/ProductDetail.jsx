@@ -291,7 +291,7 @@ const ProductDetail = () => {
                 </p>
                 {/* Nota de aproximación de color — solo visible en modo 3D */}
                 {viewMode === '3d' && (
-                  <p className="text-[11px] text-white/30 font-light leading-relaxed">
+                  <p className="text-xs text-white/60 font-light">
                     {t('products.detail.options.colorApproxNote')}
                   </p>
                 )}
