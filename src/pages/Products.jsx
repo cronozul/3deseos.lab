@@ -23,13 +23,34 @@ const collectionConfig = {
   bisuteria: { icon: Gem,      gradient: 'from-[#F5C00C] to-[#B1311A]', accent: '#F5C00C' },
 };
 
+// ── Claves de sessionStorage ──────────────────────────────────────────────────
+const SS_FILTER   = 'col_filter';
+const SS_EXPANDED = 'col_expanded';
+
+const ssGet = (key, fallback) => {
+  try { const v = sessionStorage.getItem(key); return v !== null ? JSON.parse(v) : fallback; }
+  catch { return fallback; }
+};
+const ssSet = (key, value) => { try { sessionStorage.setItem(key, JSON.stringify(value)); } catch {} };
+
 const Products = () => {
   const { t, getRaw } = useLanguage();
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [expandedCollections, setExpandedCollections] = useState({});
+
+  // Inicialización lazy desde sessionStorage: restaura el estado al navegar de vuelta
+  const [activeFilter, setActiveFilter] = useState(() => ssGet(SS_FILTER, 'all'));
+  const [expandedCollections, setExpandedCollections] = useState(() => ssGet(SS_EXPANDED, {}));
+
+  const setFilter = (key) => {
+    setActiveFilter(key);
+    ssSet(SS_FILTER, key);
+  };
 
   const toggleCollection = (key) => {
-    setExpandedCollections(prev => ({ ...prev, [key]: !prev[key] }));
+    setExpandedCollections(prev => {
+      const next = { ...prev, [key]: !prev[key] };
+      ssSet(SS_EXPANDED, next);
+      return next;
+    });
   };
 
   // ── Construir colecciones dinámicamente desde i18n ──────────────────────
@@ -84,7 +105,7 @@ const Products = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-center md:justify-start">
           <div className="flex p-1 sm:p-1.5 bg-[#111111]/80 backdrop-blur-xl border border-white/5 rounded-xl sm:rounded-2xl shadow-2xl overflow-x-auto no-scrollbar">
             <button
-              onClick={() => setActiveFilter('all')}
+              onClick={() => setFilter('all')}
               className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all whitespace-nowrap ${activeFilter === 'all' ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
             >
               {t('products.all')}
@@ -92,7 +113,7 @@ const Products = () => {
             {collectionsData.map(({ key, icon: Icon }) => (
               <button
                 key={key}
-                onClick={() => setActiveFilter(key)}
+                onClick={() => setFilter(key)}
                 className={`px-3 py-1.5 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-reem transition-all flex items-center gap-1.5 sm:gap-2 whitespace-nowrap ${activeFilter === key ? 'bg-white text-black shadow-lg' : 'text-white/60 hover:text-white'}`}
               >
                 <Icon className={`w-3 h-3 sm:w-4 sm:h-4 ${activeFilter === key ? 'text-brand-blue' : 'text-inherit'}`} />
