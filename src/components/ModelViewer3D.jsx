@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
@@ -14,10 +14,24 @@ import { motion, AnimatePresence } from 'framer-motion';
  *   1. Exporta tu modelo 3D como .glb desde Blender, PrusaSlicer o similar.
  *   2. Colócalo en public/models/<product-id>.glb
  *   3. En i18n.jsx agrega  model3d: '/models/<product-id>.glb'  al producto.
+ *
+ * NOTA: <model-viewer> es un web component y React no puede capturar su evento
+ * 'load' via prop onLoad (React usa delegación sintética que no funciona con
+ * custom elements). Se usa useRef + addEventListener para detectar carga real.
  */
 
 const ModelViewer3D = ({ src, alt, poster }) => {
   const [loaded, setLoaded] = useState(false);
+  const mvRef = useRef(null);
+
+  // Escucha el evento 'load' nativo del web component
+  useEffect(() => {
+    const el = mvRef.current;
+    if (!el) return;
+    const handleLoad = () => setLoaded(true);
+    el.addEventListener('load', handleLoad);
+    return () => el.removeEventListener('load', handleLoad);
+  }, []);
 
   // Usamos spread para pasar atributos con guiones (ej: auto-rotate)
   // ya que JSX no permite auto-rotate={true} directamente.
@@ -43,7 +57,6 @@ const ModelViewer3D = ({ src, alt, poster }) => {
       '--progress-bar-color': '#316DBC',
       '--progress-bar-height': '2px',
     },
-    onLoad: () => setLoaded(true),
     ...(poster ? { poster } : {}),
   };
 
@@ -64,8 +77,8 @@ const ModelViewer3D = ({ src, alt, poster }) => {
         )}
       </AnimatePresence>
 
-      {/* El web component de Google */}
-      <model-viewer {...mvProps} />
+      {/* El web component de Google — ref se pasa directo, no en el spread */}
+      <model-viewer ref={mvRef} {...mvProps} />
 
       {/* Hint de interacción — pointer-events-none para no bloquear el viewer */}
       <AnimatePresence>
