@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../i18n.jsx';
-import { Code, PenTool, Music, Heart, MapPin } from 'lucide-react';
+import { Code, PenTool, Music, Heart, MapPin, Gamepad2 } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
 
 const About = () => {
@@ -9,6 +9,7 @@ const About = () => {
   const features = getRaw('about.features') || [];
 
   const iconMap = {
+    Gamepad2: Gamepad2,
     Code: Code,
     PenTool: PenTool,
     Music: Music,
@@ -35,7 +36,7 @@ const About = () => {
 
               
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
-                <Heart className="w-4 h-4 text-brand-red" />
+                <Heart className="w-4 h-4 text-brand-yellow" />
                 <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('about.badge')}</span>
               </div>
               
@@ -74,7 +75,7 @@ const About = () => {
                 const IconComponent = iconMap[item.icon] || Heart;
                 const colors = [
                   { text: 'text-brand-blue', bg: 'bg-brand-blue/10' },
-                  { text: 'text-brand-purple', bg: 'bg-brand-purple/10' },
+                  { text: 'text-brand-green', bg: 'bg-brand-green/10' },
                   { text: 'text-brand-yellow', bg: 'bg-brand-yellow/10' },
                   { text: 'text-brand-red', bg: 'bg-brand-red/10' }
                 ][idx];
@@ -99,7 +100,7 @@ const About = () => {
               {/* Central 3D Circle */}
               <div className="relative z-10 w-24 h-24 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.05)] group">
                 <div className="absolute inset-0 bg-brand-blue/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-                <span className="text-2xl font-reem font-bold text-white tracking-widest relative z-10" aria-hidden="true">3D</span>
+                <span className="text-2xl font-reem font-bold text-transparent bg-clip-text bg-brand-gradient tracking-widest relative z-10" aria-hidden="true">lab</span>
               </div>
 
               {/* Rings */}
@@ -112,7 +113,7 @@ const About = () => {
                   const IconComponent = iconMap[item.icon] || Heart;
                   const colors = [
                     { text: 'text-brand-blue', hover: 'group-hover:text-brand-blue', bg: 'group-hover:bg-brand-blue/10' },
-                    { text: 'text-brand-purple', hover: 'group-hover:text-brand-purple', bg: 'group-hover:bg-brand-purple/10' },
+                    { text: 'text-brand-green', hover: 'group-hover:text-brand-green', bg: 'group-hover:bg-brand-green/10' },
                     { text: 'text-brand-yellow', hover: 'group-hover:text-brand-yellow', bg: 'group-hover:bg-brand-yellow/10' },
                     { text: 'text-brand-red', hover: 'group-hover:text-brand-red', bg: 'group-hover:bg-brand-red/10' }
                   ][idx];

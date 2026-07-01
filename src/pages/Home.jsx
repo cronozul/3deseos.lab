@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Gamepad2 } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
 import StarCursor from '../components/StarCursor';
 
@@ -75,13 +75,23 @@ const Home = () => {
               </Link>
 
               <Link
-                to="/custom"
+                to="/games"
                 style={{ cursor: 'pointer' }}
-                className="px-10 py-5 rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 backdrop-blur-md transition-all text-white font-reem font-bold text-lg active:scale-95"
+                className="group px-10 py-5 rounded-full border border-brand-yellow/30 hover:border-brand-yellow hover:bg-brand-yellow/10 backdrop-blur-md transition-all text-white font-reem font-bold text-lg active:scale-95 flex items-center gap-3"
               >
-                {t('home.customOrder')}
+                <Gamepad2 className="w-4 h-4 text-brand-yellow" />
+                {t('home.games')}
               </Link>
             </div>
+
+            {/* Sub-link: pedido personalizado */}
+            <Link
+              to="/custom"
+              style={{ cursor: 'pointer' }}
+              className="mt-4 text-white/30 hover:text-white/60 text-sm font-light transition-colors tracking-wide"
+            >
+              {t('home.customOrder')} →
+            </Link>
           </motion.div>
         </div>
 

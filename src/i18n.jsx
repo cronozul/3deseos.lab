@@ -5,44 +5,47 @@ const translations = {
     nav: {
       home: "Inicio",
       products: "Colecciones",
+      games: "Juegos",
       about: "Sobre nosotros",
       custom: "Pedidos",
       contact: "Contacto",
-      cart: "Carrito"
+      cart: "Carrito",
+      language: "Idioma"
     },
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explorar",
-      social: "Redes Sociales",
-      tagline: "El laboratorio donde creamos lo que sueñas."
+      social: "Contacto",
+      tagline: "Del píxel a la pieza. El estudio donde tus deseos cobran vida."
     },
     home: {
-      heroSubtitle: "Hecho para ti",
+      heroSubtitle: "Estudio Híbrido · Bogotá",
       heroTitle: "Creamos",
       heroHighlight: "lo que sueñas.",
-      heroDesc: "Somos un pequeño laboratorio de personas curiosas y apasionadas por la impresión 3D. Transformamos archivos digitales en objetos reales mediante cuidado técnico, precisión en cada capa y acabados únicos.",
-      explore: "Explorar Colecciones",
+      heroDesc: "Somos un estudio creativo de Bogotá apasionados por dos mundos: el desarrollo de videojuegos y la impresión 3D artesanal. Diseñamos experiencias digitales y damos vida a objetos únicos — del píxel a la pieza.",
+      explore: "Colecciones 3D",
+      games: "Nuestros Juegos",
       customOrder: "Pedido Personalizado"
     },
     about: {
       badge: "Nuestro ADN",
       title: "Jessica & Gabriel",
       subtitle: "¿Quiénes hacemos 3deseos.lab?",
-      desc1: "Somos una pareja joven, unidos por la curiosidad técnica y la fijación por lo estético. 3deseos.lab es el punto de encuentro entre nuestros conocimientos y nuestra pasión compartida por la creación de objetos únicos y funcionales.",
-      desc2: "Gabriel es el encargado de la precisión técnica, la optimización de cada capa y la calidad de cada impresión. Jessica es quien maneja la contabilidad, marketing y comunicación con ustedes.",
-      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de objetos que nadie más tiene. No somos genéricos, creamos piezas que proyectan personalidad y propósito.",
+      desc1: "Somos una pareja joven unida por la curiosidad técnica y la fijación por lo estético. 3deseos.lab es el cruce entre el desarrollo de videojuegos y la impresión 3D artesanal: dos formas de crear que comparten el mismo amor por el detalle y la originalidad.",
+      desc2: "Gabriel lidera el desarrollo técnico — desde la programación y diseño de videojuegos hasta la optimización capa a capa de cada impresión 3D. Jessica se encarga del diseño, marketing y la comunicación con ustedes.",
+      desc3: "Amamos la música, la creatividad disruptiva y la búsqueda constante de experiencias que nadie más tiene. No somos genéricos: construimos mundos digitales y objetos físicos que proyectan personalidad y propósito.",
       location: "BOGOTÁ, COLOMBIA",
       features: [
-        { icon: 'Code', label: 'Ciencias de la Computación' },
-        { icon: 'PenTool', label: 'Diseño y Escritura' },
-        { icon: 'Music', label: 'Amantes de la música' },
+        { icon: 'Gamepad2', label: 'Desarrollo de Videojuegos' },
+        { icon: 'Code', label: 'Ingeniería & 3D' },
+        { icon: 'PenTool', label: 'Diseño y Arte' },
         { icon: 'Heart', label: 'Pareja Creativa' }
       ]
     },
     custom: {
       badge: "Proceso Creativo",
       title: "Diseño Personalizado",
-      subtitle: "Trae tu propio diseño 3D o cuéntanos tu idea. Nosotros lo hacemos realidad.",
+      subtitle: "Trae tu propio diseño 3D, cuéntanos tu idea o pídenos materializar un personaje o asset de videojuego. Nosotros lo hacemos realidad.",
       step1Title: "La Idea",
       step1Desc: "Envíanos un boceto, imagen o referencia de lo que quieres crear. También puedes compartirnos un archivo 3D (MakerWorld, Cults3D, Thingiverse, Printables, etc).",
       step2Title: "Validación",
@@ -54,10 +57,29 @@ const translations = {
       ctaTitle: "¿Listo para ver tu deseo materializado?",
       ctaButton: "Iniciar Conversación"
     },
+    games: {
+      badge: "Estudio",
+      title: "Nuestros Juegos",
+      subtitle: "Desarrollamos videojuegos que exploran ideas poco convencionales. Cada título es una nueva forma de ver el mundo.",
+      featured: "Juego Destacado",
+      available: "Disponible ahora",
+      comingSoon: "Próximamente",
+      playNow: "Jugar ahora",
+      moreGames: {
+        title: "Más juegos en camino",
+        desc: "Estamos construyendo nuevos mundos. Síguenos en redes para ser el primero en saber cuándo llegan."
+      },
+      phacker: {
+        name: "P-Hacker",
+        tagline: "A game of science and cheating",
+        desc: "Publica investigaciones, vota en hallazgos científicos y decide si revelar la verdad... o manipularla. Una sátira estratégica sobre la integridad en la ciencia.",
+        genre: ["Estrategia", "Educativo", "Sátira"]
+      }
+    },
     contact: {
       badge: "Contacto Directo",
       title: "Contacto",
-      subtitle: "Inicia una conversación. Cuéntanos qué sueño quieres materializar.",
+      subtitle: "Inicia una conversación. Cuéntanos tu proyecto — digital o físico.",
       whatsapp: "WhatsApp",
       instagram: "@3deseos.lab",
       location: "Bogotá, Colombia",
@@ -77,16 +99,16 @@ const translations = {
       ]
     },
     products: {
-      badge: "Artesanía Digital",
+      badge: "Del Píxel a la Pieza",
       title: "Colecciones",
-      subtitle: "Explora nuestros archivos de impresión 3D. Cada colección es una exploración de materiales, formas y funcionalidad.",
+      subtitle: "Explora nuestras colecciones de impresión 3D artesanal. Cada pieza nace de la misma pasión creativa que impulsa nuestro estudio de videojuegos.",
       all: "Todos",
       exploreMore: "Explorar más",
       showless: "Ver menos",
       collectionLabel: "Colección",
       customCTA: {
-        title: "¿Tienes un diseño en mente?",
-        desc: "Realizamos impresiones personalizadas con la misma calidad y acabado de nuestras colecciones exclusivas.",
+        title: "¿Tienes un proyecto en mente?",
+        desc: "Ya sea un objeto 3D o un personaje de tu videojuego favorito materializado en una pieza, lo hacemos realidad con la misma calidad y precisión de nuestras colecciones.",
         button: "Pedido Personalizado"
       },
       collections: {
@@ -96,7 +118,7 @@ const translations = {
         },
         geek: {
           title: "Geek",
-          desc: "Figuras personalizadas inspiradas en tus personajes favoritos.",
+          desc: "Figuras y coleccionables de tus videojuegos y universos favoritos — hechos por gente que los ama tanto como tú.",
         },
         hogar: {
           title: "Hogar",
@@ -208,44 +230,47 @@ const translations = {
     nav: {
       home: "Home",
       products: "Collections",
+      games: "Games",
       about: "About us",
       custom: "Custom",
       contact: "Contact",
-      cart: "Cart"
+      cart: "Cart",
+      language: "Language"
     },
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explore",
-      social: "Social",
-      tagline: "The lab where we bring your dreams to life."
+      social: "Contact",
+      tagline: "From pixel to piece. The studio where your wishes come to life."
     },
     home: {
-      heroSubtitle: "Made for you",
+      heroSubtitle: "Hybrid Studio · Bogotá",
       heroTitle: "We create",
       heroHighlight: "what you dream of.",
-      heroDesc: "We are a small studio made up of curious people who are passionate about 3D printing. We transform digital files into real objects through technical expertise, precision in every layer, and unique finishes.",
-      explore: "Explore Collections",
+      heroDesc: "We're a creative studio from Bogotá passionate about two worlds: video game development and artisan 3D printing. We design digital experiences and bring unique objects to life — from pixel to piece.",
+      explore: "3D Collections",
+      games: "Our Games",
       customOrder: "Custom Order"
     },
     about: {
       badge: "Our DNA",
       title: "Jessica & Gabriel",
       subtitle: "Who are the people behind 3deseos.lab?",
-      desc1: "We are a young couple, united by a shared interest in technology and a passion for aesthetics. 3deseos.lab is where our expertise and our shared passion for creating unique and functional objects come together.",
-      desc2: "Gabriel is responsible for technical precision, optimizing each layer, and ensuring the quality of every print. Jessica handles accounting, marketing, and communication with you.",
-      desc3: "We love music, disruptive creativity, and the constant search for unique items. We don't do run-of-the-mill; we create pieces that exude personality and purpose.",
+      desc1: "We are a young couple united by technical curiosity and a passion for aesthetics. 3deseos.lab is where video game development and artisan 3D printing meet: two forms of creation that share the same love for detail and originality.",
+      desc2: "Gabriel leads technical development — from game programming and design to layer-by-layer optimization of every 3D print. Jessica handles design, marketing, and communication with you.",
+      desc3: "We love music, disruptive creativity, and the constant search for experiences no one else has. We don't do run-of-the-mill: we build digital worlds and physical objects that project personality and purpose.",
       location: "BOGOTÁ, COLOMBIA",
       features: [
-        { icon: 'Code', label: 'Computer Science' },
-        { icon: 'PenTool', label: 'Design & Writing' },
-        { icon: 'Music', label: 'Music Lovers' },
+        { icon: 'Gamepad2', label: 'Game Development' },
+        { icon: 'Code', label: 'Engineering & 3D' },
+        { icon: 'PenTool', label: 'Design & Art' },
         { icon: 'Heart', label: 'Creative Couple' }
       ]
     },
     custom: {
       badge: "Creative Process",
       title: "Custom Design",
-      subtitle: "Bring your own 3D design or tell us your idea. We make it physical with the highest quality in Bogotá.",
+      subtitle: "Bring your own 3D design, tell us your idea, or ask us to turn a video game character or asset into a real object. We make it happen.",
       step1Title: "The Idea",
       step1Desc: "Send us a sketch, a reference image, or a digital file (Thingiverse, Printables).",
       step2Title: "Validation",
@@ -257,10 +282,29 @@ const translations = {
       ctaTitle: "Ready to make it real?",
       ctaButton: "Send Request"
     },
+    games: {
+      badge: "Studio",
+      title: "Our Games",
+      subtitle: "We develop video games that explore unconventional ideas. Each title is a new way of seeing the world.",
+      featured: "Featured Game",
+      available: "Available now",
+      comingSoon: "Coming soon",
+      playNow: "Play now",
+      moreGames: {
+        title: "More games on the way",
+        desc: "We're building new worlds. Follow us to be the first to know when they arrive."
+      },
+      phacker: {
+        name: "P-Hacker",
+        tagline: "A game of science and cheating",
+        desc: "Publish research, vote on scientific findings, and decide whether to reveal the truth... or not. A strategic satire on scientific integrity.",
+        genre: ["Strategy", "Educational", "Satire"]
+      }
+    },
     contact: {
       badge: "Direct Contact",
       title: "Contact",
-      subtitle: "Start a conversation. Tell us what dream you want to make come true.",
+      subtitle: "Start a conversation. Tell us about your project — digital or physical.",
       whatsapp: "WhatsApp",
       instagram: "@3deseos.lab",
       location: "Bogotá, Colombia",
@@ -280,16 +324,16 @@ const translations = {
       ]
     },
     products: {
-      badge: "Digital Craftsmanship",
+      badge: "Pixel to Piece",
       title: "Collections",
-      subtitle: "Explore our 3D printed collections. Each collection is an exploration of materials, shapes, and functionality.",
+      subtitle: "Explore our artisan 3D printing collections. Every piece is born from the same creative passion that drives our game studio.",
       all: "All",
       exploreMore: "Explore more",
       showless: "Show less",
       collectionLabel: "Collection",
       customCTA: {
-        title: "Have a design in mind?",
-        desc: "We make custom prints with the same quality and finish as our exclusive collections.",
+        title: "Have a project in mind?",
+        desc: "Whether it's a 3D object or a video game character brought to life as a physical piece, we make it real with the same quality and precision of our collections.",
         button: "Custom Order"
       },
       collections: {
@@ -299,7 +343,7 @@ const translations = {
         },
         geek: {
           title: "Geek",
-          desc: "Hand-painted artifacts for collectors and digital setups.",
+          desc: "Figures and collectibles from your favorite video games and universes — made by people who love them as much as you do.",
         },
         hogar: {
           title: "Home",

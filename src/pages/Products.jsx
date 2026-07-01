@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import ProductCard from '../components/ProductCard';
-import { Sparkles, Home, Zap, ChevronRight, Gem } from 'lucide-react';
+import { Sparkles, Home, Gamepad2, ChevronRight, Gem } from 'lucide-react';
 
 /**
  * collectionConfig — metadatos visuales por colección.
@@ -18,7 +18,7 @@ import { Sparkles, Home, Zap, ChevronRight, Gem } from 'lucide-react';
  */
 const collectionConfig = {
   tornasol:  { icon: Sparkles, gradient: 'from-[#402C5A] to-[#316DBC]', accent: '#A78BFA' },
-  geek:      { icon: Zap,      gradient: 'from-[#316DBC] to-[#92DE8B]', accent: '#92DE8B' },
+  geek:      { icon: Gamepad2, gradient: 'from-[#316DBC] to-[#92DE8B]', accent: '#92DE8B' },
   hogar:     { icon: Home,     gradient: 'from-[#EAE0D5] to-[#C6AC8F]', accent: '#C6AC8F' },
   bisuteria: { icon: Gem,      gradient: 'from-[#F5C00C] to-[#B1311A]', accent: '#F5C00C' },
 };
