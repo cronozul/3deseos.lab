@@ -39,7 +39,7 @@ const Footer = () => {
               { to: "/about", label: t('nav.about') }
             ].map(link => (
               <li key={link.to}>
-                <Link to={link.to} className="text-white/60 hover:text-brand-blue transition-colors font-light">
+                <Link to={link.to} className="text-white/60 hover:text-brand-yellow transition-colors font-light">
                   {link.label}
                 </Link>
               </li>

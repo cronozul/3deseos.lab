@@ -15,7 +15,7 @@ const translations = {
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explorar",
-      social: "Redes Sociales",
+      social: "Contacto",
       tagline: "Del píxel a la pieza. El estudio donde tus deseos cobran vida."
     },
     home: {
@@ -240,7 +240,7 @@ const translations = {
     footer: {
       location: "3deseos.lab • Bogotá, Colombia",
       explore: "Explore",
-      social: "Social",
+      social: "Contact",
       tagline: "From pixel to piece. The studio where your wishes come to life."
     },
     home: {
