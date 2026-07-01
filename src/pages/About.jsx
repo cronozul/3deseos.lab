@@ -36,7 +36,7 @@ const About = () => {
 
               
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md self-start">
-                <Heart className="w-4 h-4 text-brand-red" />
+                <Heart className="w-4 h-4 text-brand-yellow" />
                 <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">{t('about.badge')}</span>
               </div>
               
@@ -77,7 +77,7 @@ const About = () => {
                   { text: 'text-brand-blue', bg: 'bg-brand-blue/10' },
                   { text: 'text-brand-purple', bg: 'bg-brand-purple/10' },
                   { text: 'text-brand-yellow', bg: 'bg-brand-yellow/10' },
-                  { text: 'text-brand-red', bg: 'bg-brand-red/10' }
+                  { text: 'text-brand-yellow', bg: 'bg-brand-yellow/10' }
                 ][idx];
                 return (
                   <div
@@ -115,7 +115,7 @@ const About = () => {
                     { text: 'text-brand-blue', hover: 'group-hover:text-brand-blue', bg: 'group-hover:bg-brand-blue/10' },
                     { text: 'text-brand-purple', hover: 'group-hover:text-brand-purple', bg: 'group-hover:bg-brand-purple/10' },
                     { text: 'text-brand-yellow', hover: 'group-hover:text-brand-yellow', bg: 'group-hover:bg-brand-yellow/10' },
-                    { text: 'text-brand-red', hover: 'group-hover:text-brand-red', bg: 'group-hover:bg-brand-red/10' }
+                    { text: 'text-brand-yellow', hover: 'group-hover:text-brand-yellow', bg: 'group-hover:bg-brand-yellow/10' }
                   ][idx];
                   const alignClasses = [
                     'justify-self-end self-end',
