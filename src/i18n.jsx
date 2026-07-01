@@ -21,7 +21,7 @@ const translations = {
     home: {
       heroSubtitle: "Estudio Híbrido · Bogotá",
       heroTitle: "Creamos",
-      heroHighlight: "mundos y objetos.",
+      heroHighlight: "lo que sueñas.",
       heroDesc: "Somos un estudio creativo de Bogotá apasionados por dos mundos: el desarrollo de videojuegos y la impresión 3D artesanal. Diseñamos experiencias digitales y damos vida a objetos únicos — del píxel a la pieza.",
       explore: "Colecciones 3D",
       games: "Nuestros Juegos",
@@ -246,7 +246,7 @@ const translations = {
     home: {
       heroSubtitle: "Hybrid Studio · Bogotá",
       heroTitle: "We create",
-      heroHighlight: "worlds & objects.",
+      heroHighlight: "what you dream of.",
       heroDesc: "We're a creative studio from Bogotá passionate about two worlds: video game development and artisan 3D printing. We design digital experiences and bring unique objects to life — from pixel to piece.",
       explore: "3D Collections",
       games: "Our Games",
