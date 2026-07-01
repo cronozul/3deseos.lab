@@ -163,23 +163,16 @@ const Games = () => {
                     {t('games.phacker.desc')}
                   </p>
 
-                  {/* Genre tags — styled like About page feature cards */}
+                  {/* Genre tags */}
                   <div className="flex flex-wrap gap-3">
-                    {genres.map((g, i) => {
-                      const colors = [
-                        { text: 'text-brand-blue', bg: 'bg-brand-blue/10', border: 'border-brand-blue/20' },
-                        { text: 'text-brand-purple', bg: 'bg-brand-purple/10', border: 'border-brand-purple/20' },
-                        { text: 'text-white/60', bg: 'bg-white/[0.03]', border: 'border-white/10' },
-                      ][i] || { text: 'text-white/60', bg: 'bg-white/[0.03]', border: 'border-white/10' };
-                      return (
-                        <span
-                          key={i}
-                          className={`px-4 py-2 rounded-xl border text-xs font-bold tracking-wider uppercase ${colors.bg} ${colors.border} ${colors.text}`}
-                        >
-                          {g}
-                        </span>
-                      );
-                    })}
+                    {genres.map((g, i) => (
+                      <span
+                        key={i}
+                        className="px-4 py-2 rounded-xl border border-white/10 bg-white/[0.04] text-white/50 text-xs font-bold tracking-wider uppercase"
+                      >
+                        {g}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
