@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../i18n.jsx';
-import { Code, PenTool, Music, Heart, MapPin } from 'lucide-react';
+import { Code, PenTool, Music, Heart, MapPin, Gamepad2 } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
 
 const About = () => {
@@ -9,6 +9,7 @@ const About = () => {
   const features = getRaw('about.features') || [];
 
   const iconMap = {
+    Gamepad2: Gamepad2,
     Code: Code,
     PenTool: PenTool,
     Music: Music,
