@@ -289,6 +289,12 @@ const ProductDetail = () => {
                 <p className="text-xs text-white/60 font-medium italic">
                   {t(`products.detail.options.colors.${selectedColor}`)}
                 </p>
+                {/* Nota de aproximación de color — solo visible en modo 3D */}
+                {viewMode === '3d' && (
+                  <p className="text-[11px] text-white/30 font-light leading-relaxed">
+                    {t('products.detail.options.colorApproxNote')}
+                  </p>
+                )}
               </div>
 
               {/* Painting Option */}
