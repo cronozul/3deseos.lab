@@ -58,7 +58,7 @@ const translations = {
       ctaButton: "Iniciar Conversación"
     },
     games: {
-      badge: "Estudios",
+      badge: "Estudio",
       title: "Nuestros Juegos",
       subtitle: "Desarrollamos videojuegos que exploran ideas poco convencionales. Cada título es una nueva forma de ver el mundo.",
       featured: "Juego Destacado",
@@ -117,7 +117,7 @@ const translations = {
           desc: "Objetos con acabados iridiscentes que cambian con la luz. Arte decorativo que puedes tener en cualquier modelo impreso en 3D.",
         },
         geek: {
-          title: "Gaming & Geek",
+          title: "Geek",
           desc: "Figuras y coleccionables de tus videojuegos y universos favoritos — hechos por gente que los ama tanto como tú.",
         },
         hogar: {
@@ -342,7 +342,7 @@ const translations = {
           desc: "Objects with iridescent finishes that change with the light. 3D decorative art.",
         },
         geek: {
-          title: "Gaming & Geek",
+          title: "Geek",
           desc: "Figures and collectibles from your favorite video games and universes — made by people who love them as much as you do.",
         },
         hogar: {
