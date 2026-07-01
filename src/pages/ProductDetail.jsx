@@ -151,6 +151,7 @@ const ProductDetail = () => {
                 <ModelViewer3D
                   src={product.model3d}
                   alt={product.name}
+                  selectedColor={selectedColor}
                   poster={totalSlides > 0
                     ? new URL(`../images/${images[0]}`, import.meta.url).href
                     : undefined
@@ -288,6 +289,12 @@ const ProductDetail = () => {
                 <p className="text-xs text-white/60 font-medium italic">
                   {t(`products.detail.options.colors.${selectedColor}`)}
                 </p>
+                {/* Nota de aproximación de color — solo visible en modo 3D */}
+                {viewMode === '3d' && (
+                  <p className="text-xs text-white/60 font-light">
+                    {t('products.detail.options.colorApproxNote')}
+                  </p>
+                )}
               </div>
 
               {/* Painting Option */}

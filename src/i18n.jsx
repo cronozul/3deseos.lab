@@ -156,7 +156,8 @@ const translations = {
             gold: "Dorado",
             gray: "Gris Metálico",
             tornasol: "Tornasol"
-          }
+          },
+          colorApproxNote: "Los colores en el visor 3D son una aproximación al filamento PLA real. El tono y brillo exactos pueden variar según el acabado y la iluminación.",
         }
       },
       items: {
@@ -381,7 +382,8 @@ const translations = {
             gold: "Gold",
             gray: "Metallic Gray",
             tornasol: "Tornasol"
-          }
+          },
+          colorApproxNote: "Colors shown in the 3D viewer are an approximation of the actual PLA filament. The exact shade and finish may vary depending on the material and lighting.",
         }
       },
       items: {
