@@ -18,11 +18,98 @@ import { motion, AnimatePresence } from 'framer-motion';
  * NOTA: <model-viewer> es un web component y React no puede capturar su evento
  * 'load' via prop onLoad (React usa delegación sintética que no funciona con
  * custom elements). Se usa useRef + addEventListener para detectar carga real.
+ *
+ * PATCH: algunos GLB exportados tienen dracoExt.attributes vacío — el mapeo
+ * que le dice al DRACOLoader qué atributo Draco corresponde a POSITION. Sin
+ * ese mapeo, model-viewer no encuentra la geometría y WebGL falla con
+ * "Framebuffer is incomplete: Attachment has zero size". Se parchea en runtime
+ * antes de pasar la URL a model-viewer.
  */
+
+/**
+ * Parchea GLBs con dracoExt.attributes vacío: agrega POSITION:0 al mapeo.
+ * Devuelve un Blob URL con el JSON chunk corregido (el Draco binary no cambia).
+ */
+async function patchGlbDracoAttrs(src) {
+  try {
+    const resp = await fetch(src);
+    if (!resp.ok) return src;
+    const ab = await resp.arrayBuffer();
+    const buf = new Uint8Array(ab);
+    const dv = new DataView(ab);
+
+    // Buscar el chunk JSON (type = 0x4E4F534A)
+    let jsonStart = -1, jsonChunkLen = 0;
+    let offset = 12;
+    while (offset < buf.length) {
+      const cLen  = dv.getUint32(offset, true);
+      const cType = dv.getUint32(offset + 4, true);
+      if (cType === 0x4E4F534A) { jsonStart = offset + 8; jsonChunkLen = cLen; break; }
+      offset += 8 + cLen;
+    }
+    if (jsonStart === -1) return src;
+
+    const jsonText = new TextDecoder().decode(buf.slice(jsonStart, jsonStart + jsonChunkLen)).replace(/\0+$/, '');
+    const gltf = JSON.parse(jsonText);
+
+    let changed = false;
+    for (const mesh of gltf.meshes || []) {
+      for (const prim of mesh.primitives || []) {
+        const dracoExt = prim.extensions?.KHR_draco_mesh_compression;
+        if (dracoExt && Object.keys(dracoExt.attributes).length === 0) {
+          dracoExt.attributes['POSITION'] = 0;
+          changed = true;
+        }
+      }
+    }
+    if (!changed) return src;
+
+    // Reconstruir el chunk JSON con el fix
+    const newJson    = new TextEncoder().encode(JSON.stringify(gltf));
+    const newPadded  = Math.ceil(newJson.length / 4) * 4;
+    const newPad     = new Uint8Array(newPadded - newJson.length).fill(0x20);
+
+    const oldJsonPaddedLen = Math.ceil(jsonChunkLen / 4) * 4;
+    const restStart  = jsonStart + oldJsonPaddedLen;
+    const rest       = buf.slice(restStart);
+
+    const newTotal = 12 + 8 + newPadded + rest.length;
+    const out    = new Uint8Array(newTotal);
+    const outDV  = new DataView(out.buffer);
+    let p = 0;
+    const w32 = (v) => { outDV.setUint32(p, v, true); p += 4; };
+    const wb  = (a) => { out.set(a, p); p += a.length; };
+
+    w32(0x46546C67); w32(2); w32(newTotal);      // GLB header
+    w32(newPadded); w32(0x4E4F534A); wb(newJson); wb(newPad); // JSON chunk
+    wb(rest);                                      // BIN chunk as-is
+
+    return URL.createObjectURL(new Blob([out], { type: 'model/gltf-binary' }));
+  } catch (e) {
+    console.warn('[ModelViewer3D] GLB patch failed:', e);
+    return src;
+  }
+}
 
 const ModelViewer3D = ({ src, alt, poster }) => {
   const [loaded, setLoaded] = useState(false);
+  const [resolvedSrc, setResolvedSrc] = useState(null);
   const mvRef = useRef(null);
+  const blobRef = useRef(null);
+
+  // Parchea el GLB si es necesario, luego pasa la URL resuelta a model-viewer
+  useEffect(() => {
+    let revoked = false;
+    patchGlbDracoAttrs(src).then((url) => {
+      if (revoked) { if (url !== src) URL.revokeObjectURL(url); return; }
+      if (url !== src) blobRef.current = url;
+      setResolvedSrc(url);
+    });
+    return () => {
+      revoked = true;
+      if (blobRef.current) { URL.revokeObjectURL(blobRef.current); blobRef.current = null; }
+    };
+  }, [src]);
 
   // Escucha el evento 'load' nativo del web component
   useEffect(() => {
@@ -31,12 +118,14 @@ const ModelViewer3D = ({ src, alt, poster }) => {
     const handleLoad = () => setLoaded(true);
     el.addEventListener('load', handleLoad);
     return () => el.removeEventListener('load', handleLoad);
-  }, []);
+  }, [resolvedSrc]);
 
   // Usamos spread para pasar atributos con guiones (ej: auto-rotate)
   // ya que JSX no permite auto-rotate={true} directamente.
+  if (!resolvedSrc) return null; // Espera el patch async antes de montar model-viewer
+
   const mvProps = {
-    src,
+    src: resolvedSrc,
     alt: alt || 'Modelo 3D del producto',
     'camera-controls': '',
     'auto-rotate': '',
