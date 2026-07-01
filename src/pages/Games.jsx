@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n';
-import { Gamepad2, ExternalLink, Sparkles, FlaskConical } from 'lucide-react';
+import { Gamepad2, ExternalLink, Sparkles } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
 
 const PHACKER_URL = 'https://deploy-preview-53--p-hacker-game.netlify.app/';
@@ -15,20 +16,22 @@ const terminalLines = [
   'conceal_results()',
   'submit_paper(journal="Nature")',
   'peer_review(status="pending")',
+  'manipulate_data(careful=False)',
+  'run_test(n=1000, cheat=True)',
 ];
 
 const Games = () => {
-  const { t, getRaw } = useLanguage();
+  const { t, getRaw, lang } = useLanguage();
   const genres = getRaw('games.phacker.genre') || [];
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-white overflow-hidden font-jost">
       <WishesBackground />
 
-      {/* Ambient glows */}
+      {/* Ambient glows — brand palette */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-yellow/5 blur-[180px] rounded-full" />
-        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-brand-green/5 blur-[180px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-5%] w-[700px] h-[700px] bg-brand-purple/10 blur-[200px] rounded-full" />
+        <div className="absolute bottom-[5%] right-[-10%] w-[600px] h-[600px] bg-brand-blue/8 blur-[180px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-24">
@@ -38,7 +41,7 @@ const Games = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="pt-12 pb-20"
+          className="pt-12 pb-20 text-center md:text-left"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
             <Gamepad2 className="w-4 h-4 text-brand-yellow" />
@@ -48,14 +51,13 @@ const Games = () => {
           </div>
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-reem font-bold mb-6 tracking-tight leading-none">
-            <span className="text-white opacity-90">{t('games.title').split(' ')[0]}</span>{' '}
-            <br />
-            <span className="text-transparent bg-clip-text bg-brand-gradient">
+            <span className="text-white opacity-90 block">{t('games.title').split(' ')[0]}</span>
+            <span className="text-transparent bg-clip-text bg-brand-gradient block">
               {t('games.title').split(' ').slice(1).join(' ')}
             </span>
           </h1>
 
-          <p className="text-white/60 font-light max-w-2xl text-base md:text-lg lg:text-xl leading-relaxed">
+          <p className="text-white/60 font-light max-w-2xl text-base md:text-lg lg:text-xl leading-relaxed mx-auto md:mx-0">
             {t('games.subtitle')}
           </p>
         </motion.div>
@@ -67,120 +69,136 @@ const Games = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-28"
         >
-          {/* Section divider */}
-          <div className="flex items-center gap-4 mb-10">
+          {/* Section marker — same style as Products page */}
+          <div className="mb-14">
             <motion.div
               initial={{ width: 0 }}
-              animate={{ width: 80 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="h-px bg-gradient-to-r from-brand-yellow to-transparent"
+              animate={{ width: 100 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="h-px bg-gradient-to-r from-brand-blue to-transparent mb-6"
             />
-            <span className="text-xs tracking-[0.3em] uppercase text-brand-yellow font-bold whitespace-nowrap">
+            <span className="text-xs tracking-[0.3em] uppercase text-white/40 font-bold">
               {t('games.featured')}
             </span>
           </div>
 
-          <div className="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-[#0A0A0A] hover:border-brand-yellow/20 transition-all duration-500 shadow-2xl">
-            {/* Hover glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-yellow/[0.04] via-transparent to-brand-green/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          {/* ── Main card ── */}
+          <div className="group relative rounded-[2.5rem] overflow-hidden border border-white/5 bg-[#0A0A0A] hover:border-white/10 transition-all duration-700 shadow-2xl">
 
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Card ambient glow on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/5 via-transparent to-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-              {/* ── Left: Terminal Visual ── */}
-              <div className="relative h-72 lg:h-auto min-h-[360px] bg-[#050505] flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.04]">
-                {/* Scrolling terminal code */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr]">
+
+              {/* ── Left: Visual Panel ── */}
+              <div className="relative min-h-[380px] lg:min-h-[560px] bg-[#060608] flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/[0.04]">
+
+                {/* Subtle code lines — aligned with site's minimal aesthetic */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 font-mono text-brand-green/[0.09] text-[11px] leading-6 overflow-hidden select-none p-6"
+                  className="absolute inset-0 font-mono text-white/[0.035] text-[11px] leading-7 overflow-hidden select-none p-8"
                 >
-                  {Array.from({ length: 28 }).map((_, i) => (
+                  {Array.from({ length: 24 }).map((_, i) => (
                     <div key={i}>{`> ${terminalLines[i % terminalLines.length]}`}</div>
                   ))}
                 </div>
 
-                {/* Central icon */}
-                <div className="relative z-10 text-center px-8">
+                {/* Brand gradient glow blob */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/10 to-brand-blue/10 pointer-events-none" />
+
+                {/* Central hero text — brand typography */}
+                <div className="relative z-10 text-center px-8 select-none">
                   <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center shadow-[0_0_40px_rgba(245,192,12,0.15)]"
+                    animate={{ opacity: [0.8, 1, 0.8] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                   >
-                    <FlaskConical className="w-11 h-11 text-brand-yellow" />
+                    <p className="font-mono text-white/25 text-xs tracking-[0.4em] uppercase mb-5">
+                      $ p-hacker v1.0
+                    </p>
+                    <h2 className="font-reem font-bold text-6xl sm:text-7xl lg:text-8xl tracking-tight leading-none text-transparent bg-clip-text bg-brand-gradient mb-4">
+                      P-Hacker
+                    </h2>
+                    <p className="text-white/30 font-light text-sm tracking-widest italic">
+                      science_and_cheating
+                    </p>
                   </motion.div>
-                  <div className="font-mono text-brand-green text-sm mb-1.5 tracking-[0.2em]">
-                    $ P-HACKER
-                  </div>
-                  <div className="text-white/30 text-xs font-mono tracking-widest">
-                    v1.0 · science_and_cheating
-                  </div>
                 </div>
 
-                {/* Scanlines */}
+                {/* Scanlines — very subtle */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,rgba(0,0,0,0.12)_3px,rgba(0,0,0,0.12)_4px)] pointer-events-none"
+                  className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_3px,rgba(0,0,0,0.06)_3px,rgba(0,0,0,0.06)_4px)] pointer-events-none"
                 />
 
-                {/* Corner decoration */}
-                <div className="absolute top-4 left-4 flex gap-1.5" aria-hidden="true">
-                  <span className="w-2.5 h-2.5 rounded-full bg-brand-red/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-brand-yellow/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-brand-green/60" />
-                </div>
+                {/* Corner accent ring */}
+                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-brand-purple/10 blur-[60px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-brand-blue/10 blur-[60px] pointer-events-none" />
               </div>
 
               {/* ── Right: Game Info ── */}
-              <div className="p-8 md:p-12 xl:p-16 flex flex-col justify-between gap-10">
-                <div className="space-y-6">
-                  {/* Live badge */}
-                  <div>
-                    <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-green/10 border border-brand-green/20 text-brand-green text-xs font-bold tracking-wider">
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
+              <div className="p-8 md:p-12 xl:p-16 flex flex-col justify-between gap-10 min-h-[480px] lg:min-h-0">
+
+                <div className="space-y-7">
+
+                  {/* Status badge — site style */}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
+                    <span className="text-xs font-jost tracking-[0.3em] uppercase text-white/60">
                       {t('games.available')}
                     </span>
                   </div>
 
                   {/* Name + tagline */}
                   <div>
-                    <h2 className="text-4xl md:text-5xl xl:text-6xl font-reem font-bold tracking-tight leading-none mb-3">
+                    <h3 className="text-5xl md:text-6xl font-reem font-bold tracking-tight leading-none mb-3">
                       {t('games.phacker.name')}
-                    </h2>
-                    <p className="text-brand-yellow/70 italic font-light text-lg">
+                    </h3>
+                    <p className="text-brand-blue font-medium italic text-lg md:text-xl">
                       {t('games.phacker.tagline')}
                     </p>
                   </div>
 
                   {/* Description */}
-                  <p className="text-white/55 font-light leading-relaxed text-base md:text-lg">
+                  <p className="text-white/55 font-light leading-relaxed text-base md:text-lg max-w-md">
                     {t('games.phacker.desc')}
                   </p>
 
-                  {/* Genre tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {genres.map((g, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-white/50 text-xs font-bold tracking-wider uppercase"
-                      >
-                        {g}
-                      </span>
-                    ))}
+                  {/* Genre tags — styled like About page feature cards */}
+                  <div className="flex flex-wrap gap-3">
+                    {genres.map((g, i) => {
+                      const colors = [
+                        { text: 'text-brand-blue', bg: 'bg-brand-blue/10', border: 'border-brand-blue/20' },
+                        { text: 'text-brand-purple', bg: 'bg-brand-purple/10', border: 'border-brand-purple/20' },
+                        { text: 'text-white/60', bg: 'bg-white/[0.03]', border: 'border-white/10' },
+                      ][i] || { text: 'text-white/60', bg: 'bg-white/[0.03]', border: 'border-white/10' };
+                      return (
+                        <span
+                          key={i}
+                          className={`px-4 py-2 rounded-xl border text-xs font-bold tracking-wider uppercase ${colors.bg} ${colors.border} ${colors.text}`}
+                        >
+                          {g}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
-                {/* CTA */}
-                <div>
+                {/* CTA — site standard style (white + blue hover, matching Home/Products) */}
+                <div className="space-y-4">
                   <a
                     href={PHACKER_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-brand-yellow text-[#050505] font-reem font-bold text-lg hover:bg-white transition-colors duration-300 group/btn active:scale-95"
+                    className="group/btn relative inline-flex items-center gap-3 px-10 py-5 rounded-full overflow-hidden transition-all active:scale-95 bg-white text-black font-reem font-bold text-lg"
                   >
-                    {t('games.playNow')}
-                    <ExternalLink className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    <div className="absolute inset-0 bg-brand-blue translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
+                    <span className="relative z-10 flex items-center gap-3 group-hover/btn:text-white transition-colors">
+                      {t('games.playNow')}
+                      <ExternalLink className="w-4 h-4" />
+                    </span>
                   </a>
-                  <p className="mt-4 text-white/30 text-xs">
-                    {t('games.available')} · ES / EN
+                  <p className="text-white/25 text-xs font-light tracking-wide pl-1">
+                    ES / EN · Gratis en navegador
                   </p>
                 </div>
               </div>
@@ -188,30 +206,36 @@ const Games = () => {
           </div>
         </motion.div>
 
-        {/* ── Coming Soon ── */}
+        {/* ── Coming Soon — same style as Products bottom CTA ── */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative p-12 md:p-20 rounded-[3rem] bg-[#0A0A0A] border border-white/5 text-center overflow-hidden"
+          transition={{ duration: 1 }}
+          className="p-12 md:p-24 rounded-[4rem] bg-[#0A0A0A] border border-white/5 text-center relative overflow-hidden group/cta shadow-2xl"
         >
-          <div className="absolute inset-0 bg-brand-gradient opacity-[0.025] pointer-events-none" />
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-brand-purple/10 blur-[120px] rounded-full pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-brand-blue/10 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute inset-0 bg-brand-gradient opacity-[0.02] group-hover/cta:opacity-[0.05] transition-opacity duration-1000" />
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-purple/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-brand-blue/10 blur-[100px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 max-w-xl mx-auto">
-            <Sparkles className="w-8 h-8 text-brand-yellow/40 mx-auto mb-6" />
-            <h3 className="text-3xl md:text-4xl font-reem font-bold mb-4">
+            <Sparkles className="w-8 h-8 text-white/20 mx-auto mb-6" />
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-reem font-bold mb-6 tracking-tight leading-none">
               {t('games.moreGames.title')}
             </h3>
-            <p className="text-white/50 font-light leading-relaxed mb-8">
+            <p className="text-white/50 font-light leading-relaxed text-base md:text-lg mb-10">
               {t('games.moreGames.desc')}
             </p>
-            <div className="inline-flex items-center gap-2 text-white/30 text-sm">
-              <span className="w-2 h-2 rounded-full bg-brand-green/60 animate-pulse" />
-              {t('games.comingSoon')}
-            </div>
+            <Link
+              to="/contact"
+              className="group/btn relative inline-flex items-center gap-3 px-10 py-5 rounded-full overflow-hidden transition-all active:scale-95 bg-white text-black font-reem font-bold text-lg shadow-[0_20px_50px_rgba(255,255,255,0.08)]"
+            >
+              <div className="absolute inset-0 bg-brand-blue translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500" />
+              <span className="relative z-10 flex items-center gap-3 group-hover/btn:text-white transition-colors">
+                {lang === 'es' ? 'Mantente en contacto' : 'Stay in touch'}
+                <Sparkles className="w-4 h-4 transition-transform group-hover/btn:rotate-12" />
+              </span>
+            </Link>
           </div>
         </motion.div>
 
