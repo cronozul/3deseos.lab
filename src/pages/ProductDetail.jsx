@@ -151,6 +151,7 @@ const ProductDetail = () => {
                 <ModelViewer3D
                   src={product.model3d}
                   alt={product.name}
+                  selectedColor={selectedColor}
                   poster={totalSlides > 0
                     ? new URL(`../images/${images[0]}`, import.meta.url).href
                     : undefined

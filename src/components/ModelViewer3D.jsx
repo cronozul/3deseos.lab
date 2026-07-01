@@ -6,41 +6,28 @@ import { motion, AnimatePresence } from 'framer-motion';
  * Wrapper de React para el web component <model-viewer> de Google.
  *
  * Props:
- *   src      — URL del archivo .glb (puede ser absoluta o relativa a /public)
- *   alt      — texto alternativo del modelo
- *   poster   — imagen de loading (opcional; usa la foto del producto si se pasa)
+ *   src           — URL del archivo .glb
+ *   alt           — texto alternativo
+ *   poster        — imagen de loading (opcional)
+ *   selectedColor — color activo: 'white'|'black'|'red'|'blue'|'gold'|'gray'|'tornasol'
  *
- * Uso en producción:
- *   1. Exporta tu modelo 3D como .glb desde Blender, PrusaSlicer o similar.
- *   2. Colócalo en public/models/<product-id>.glb
- *   3. En i18n.jsx agrega  model3d: '/models/<product-id>.glb'  al producto.
- *
- * NOTA: <model-viewer> es un web component y React no puede capturar su evento
- * 'load' via prop onLoad (React usa delegación sintética que no funciona con
- * custom elements). Se usa useRef + addEventListener para detectar carga real.
- *
- * PATCH: algunos GLB exportados tienen dracoExt.attributes vacío — el mapeo
- * que le dice al DRACOLoader qué atributo Draco corresponde a POSITION. Sin
- * ese mapeo, model-viewer no encuentra la geometría y WebGL falla con
- * "Framebuffer is incomplete: Attachment has zero size". Se parchea en runtime
- * antes de pasar la URL a model-viewer.
+ * Funcionalidades:
+ *   - Patch en runtime de GLBs con dracoExt.attributes vacío (bug de exportador).
+ *   - Cambio de color en tiempo real via model-viewer Material API.
+ *   - Tornasol: animación cíclica con requestAnimationFrame a través del
+ *     degradado firma de 3deseos.lab (morado→azul→cian→verde).
  */
 
-/**
- * Parchea GLBs con dracoExt.attributes vacío: agrega POSITION:0 al mapeo.
- * Devuelve un Blob URL con el JSON chunk corregido (el Draco binary no cambia).
- */
+// ── Patch Draco ───────────────────────────────────────────────────────────────
 async function patchGlbDracoAttrs(src) {
   try {
     const resp = await fetch(src);
     if (!resp.ok) return src;
-    const ab = await resp.arrayBuffer();
+    const ab  = await resp.arrayBuffer();
     const buf = new Uint8Array(ab);
-    const dv = new DataView(ab);
+    const dv  = new DataView(ab);
 
-    // Buscar el chunk JSON (type = 0x4E4F534A)
-    let jsonStart = -1, jsonChunkLen = 0;
-    let offset = 12;
+    let jsonStart = -1, jsonChunkLen = 0, offset = 12;
     while (offset < buf.length) {
       const cLen  = dv.getUint32(offset, true);
       const cType = dv.getUint32(offset + 4, true);
@@ -49,9 +36,7 @@ async function patchGlbDracoAttrs(src) {
     }
     if (jsonStart === -1) return src;
 
-    const jsonText = new TextDecoder().decode(buf.slice(jsonStart, jsonStart + jsonChunkLen)).replace(/\0+$/, '');
-    const gltf = JSON.parse(jsonText);
-
+    const gltf = JSON.parse(new TextDecoder().decode(buf.slice(jsonStart, jsonStart + jsonChunkLen)).replace(/\0+$/, ''));
     let changed = false;
     for (const mesh of gltf.meshes || []) {
       for (const prim of mesh.primitives || []) {
@@ -64,26 +49,19 @@ async function patchGlbDracoAttrs(src) {
     }
     if (!changed) return src;
 
-    // Reconstruir el chunk JSON con el fix
-    const newJson    = new TextEncoder().encode(JSON.stringify(gltf));
-    const newPadded  = Math.ceil(newJson.length / 4) * 4;
-    const newPad     = new Uint8Array(newPadded - newJson.length).fill(0x20);
-
-    const oldJsonPaddedLen = Math.ceil(jsonChunkLen / 4) * 4;
-    const restStart  = jsonStart + oldJsonPaddedLen;
-    const rest       = buf.slice(restStart);
-
-    const newTotal = 12 + 8 + newPadded + rest.length;
-    const out    = new Uint8Array(newTotal);
-    const outDV  = new DataView(out.buffer);
+    const newJson   = new TextEncoder().encode(JSON.stringify(gltf));
+    const newPadded = Math.ceil(newJson.length / 4) * 4;
+    const newPad    = new Uint8Array(newPadded - newJson.length).fill(0x20);
+    const rest      = buf.slice(jsonStart + Math.ceil(jsonChunkLen / 4) * 4);
+    const newTotal  = 12 + 8 + newPadded + rest.length;
+    const out = new Uint8Array(newTotal);
+    const outDV = new DataView(out.buffer);
     let p = 0;
     const w32 = (v) => { outDV.setUint32(p, v, true); p += 4; };
     const wb  = (a) => { out.set(a, p); p += a.length; };
-
-    w32(0x46546C67); w32(2); w32(newTotal);      // GLB header
-    w32(newPadded); w32(0x4E4F534A); wb(newJson); wb(newPad); // JSON chunk
-    wb(rest);                                      // BIN chunk as-is
-
+    w32(0x46546C67); w32(2); w32(newTotal);
+    w32(newPadded); w32(0x4E4F534A); wb(newJson); wb(newPad);
+    wb(rest);
     return URL.createObjectURL(new Blob([out], { type: 'model/gltf-binary' }));
   } catch (e) {
     console.warn('[ModelViewer3D] GLB patch failed:', e);
@@ -91,15 +69,56 @@ async function patchGlbDracoAttrs(src) {
   }
 }
 
-const ModelViewer3D = ({ src, alt, poster }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [resolvedSrc, setResolvedSrc] = useState(null);
-  const mvRef = useRef(null);
-  const blobRef = useRef(null);
+// ── Sistema de colores ────────────────────────────────────────────────────────
+// base: [R, G, B, A] en 0-1  |  metallic: 0-1  |  roughness: 0-1
+const SOLID_COLORS = {
+  white: { base: [1.00, 1.00, 1.00, 1], metallic: 0.00, roughness: 0.80 },
+  black: { base: [0.07, 0.07, 0.07, 1], metallic: 0.10, roughness: 0.55 },
+  red:   { base: [0.90, 0.24, 0.24, 1], metallic: 0.00, roughness: 0.70 },
+  blue:  { base: [0.19, 0.51, 0.81, 1], metallic: 0.00, roughness: 0.70 },
+  gold:  { base: [0.83, 0.69, 0.22, 1], metallic: 0.90, roughness: 0.22 },
+  gray:  { base: [0.44, 0.50, 0.59, 1], metallic: 0.65, roughness: 0.30 },
+};
 
-  // Parchea el GLB si es necesario, luego pasa la URL resuelta a model-viewer
+// Tornasol: degradado firma 3deseos.lab morado→azul→cian→verde (loop)
+// Colores en sRGB lineal (0-1) correspondientes a #402C5A #316DBC #34B6E4 #92DE8B
+const TORNASOL_KF = [
+  [0.251, 0.173, 0.353], // #402C5A morado
+  [0.192, 0.427, 0.737], // #316DBC azul
+  [0.204, 0.714, 0.894], // #34B6E4 cian
+  [0.573, 0.871, 0.545], // #92DE8B verde
+  [0.251, 0.173, 0.353], // vuelve al morado (cierra el loop)
+];
+const TORNASOL_PERIOD = 4200; // ms para un ciclo completo
+
+const lerp = (a, b, t) => a + (b - a) * t;
+const lerpColor = (c1, c2, t) => c1.map((v, i) => lerp(v, c2[i], t));
+
+function applyMaterialColor(mv, base, metallic, roughness) {
+  const model = mv.model;
+  if (!model?.materials?.length) return;
+  for (const mat of model.materials) {
+    const pbr = mat.pbrMetallicRoughness;
+    try {
+      pbr.setBaseColorFactor(base);
+      pbr.setMetallicFactor(metallic);
+      pbr.setRoughnessFactor(roughness);
+    } catch (_) { /* material sin PBR — ignorar */ }
+  }
+}
+
+// ── Componente ────────────────────────────────────────────────────────────────
+const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
+  const [loaded, setLoaded]         = useState(false);
+  const [resolvedSrc, setResolvedSrc] = useState(null);
+  const mvRef   = useRef(null);
+  const blobRef = useRef(null);
+  const rafRef  = useRef(null);
+
+  // 1. Patch Draco + resolver src
   useEffect(() => {
     let revoked = false;
+    setLoaded(false);
     patchGlbDracoAttrs(src).then((url) => {
       if (revoked) { if (url !== src) URL.revokeObjectURL(url); return; }
       if (url !== src) blobRef.current = url;
@@ -111,7 +130,7 @@ const ModelViewer3D = ({ src, alt, poster }) => {
     };
   }, [src]);
 
-  // Escucha el evento 'load' nativo del web component
+  // 2. Escucha evento 'load' nativo del web component
   useEffect(() => {
     const el = mvRef.current;
     if (!el) return;
@@ -120,9 +139,38 @@ const ModelViewer3D = ({ src, alt, poster }) => {
     return () => el.removeEventListener('load', handleLoad);
   }, [resolvedSrc]);
 
-  // Usamos spread para pasar atributos con guiones (ej: auto-rotate)
-  // ya que JSX no permite auto-rotate={true} directamente.
-  if (!resolvedSrc) return null; // Espera el patch async antes de montar model-viewer
+  // 3. Aplicar color al material (o animar tornasol)
+  useEffect(() => {
+    if (!loaded || !mvRef.current) return;
+    const mv = mvRef.current;
+
+    // Detener animación previa si existía
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+
+    if (selectedColor === 'tornasol') {
+      // Animación cíclica: recorre los keyframes del degradado firma
+      const startTime = performance.now();
+      const tick = (now) => {
+        const t      = ((now - startTime) % TORNASOL_PERIOD) / TORNASOL_PERIOD;
+        const scaled = t * (TORNASOL_KF.length - 1);
+        const idx    = Math.floor(scaled);
+        const frac   = scaled - idx;
+        const color  = lerpColor(TORNASOL_KF[idx], TORNASOL_KF[Math.min(idx + 1, TORNASOL_KF.length - 1)], frac);
+        applyMaterialColor(mv, [...color, 1.0], 0.95, 0.10);
+        rafRef.current = requestAnimationFrame(tick);
+      };
+      rafRef.current = requestAnimationFrame(tick);
+    } else {
+      const def = SOLID_COLORS[selectedColor] ?? SOLID_COLORS.white;
+      applyMaterialColor(mv, def.base, def.metallic, def.roughness);
+    }
+
+    return () => {
+      if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    };
+  }, [loaded, selectedColor]);
+
+  if (!resolvedSrc) return null;
 
   const mvProps = {
     src: resolvedSrc,
@@ -166,10 +214,10 @@ const ModelViewer3D = ({ src, alt, poster }) => {
         )}
       </AnimatePresence>
 
-      {/* El web component de Google — ref se pasa directo, no en el spread */}
+      {/* El web component de Google */}
       <model-viewer ref={mvRef} {...mvProps} />
 
-      {/* Hint de interacción — pointer-events-none para no bloquear el viewer */}
+      {/* Hint de interacción */}
       <AnimatePresence>
         {loaded && (
           <motion.div
