@@ -6,7 +6,7 @@ import { Gamepad2, ExternalLink, Sparkles } from 'lucide-react';
 import WishesBackground from '../components/WishesBackground';
 import { phackerLogo } from '../assets/phackerLogo.js';
 
-const PHACKER_URL = 'https://deploy-preview-53--p-hacker-game.netlify.app/';
+const PHACKER_URL = 'https://deploy-preview-57--p-hacker-game.netlify.app/';
 
 const terminalLines = [
   'publish_research(hypothesis)',
