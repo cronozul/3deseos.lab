@@ -95,21 +95,62 @@ const TORNASOL_PERIOD = 4200; // ms para un ciclo completo
 const lerp = (a, b, t) => a + (b - a) * t;
 const lerpColor = (c1, c2, t) => c1.map((v, i) => lerp(v, c2[i], t));
 
+/**
+ * Aplica color a UN material específico por índice.
+ */
+function applyColorToMaterial(mat, base, metallic, roughness) {
+  const pbr = mat.pbrMetallicRoughness;
+  try {
+    pbr.setBaseColorFactor(base);
+    pbr.setMetallicFactor(metallic);
+    pbr.setRoughnessFactor(roughness);
+  } catch (_) { /* material sin PBR — ignorar */ }
+}
+
+/**
+ * Aplica color a TODOS los materiales (modo global, retrocompatible).
+ */
 function applyMaterialColor(mv, base, metallic, roughness) {
   const model = mv.model;
   if (!model?.materials?.length) return;
   for (const mat of model.materials) {
-    const pbr = mat.pbrMetallicRoughness;
-    try {
-      pbr.setBaseColorFactor(base);
-      pbr.setMetallicFactor(metallic);
-      pbr.setRoughnessFactor(roughness);
-    } catch (_) { /* material sin PBR — ignorar */ }
+    applyColorToMaterial(mat, base, metallic, roughness);
   }
 }
 
+/**
+ * Aplica colores individuales por índice de material.
+ * partColors: { [materialIdx]: colorId }
+ * Los índices sin definir heredan selectedColor.
+ */
+function applyPartColors(mv, partColors, fallbackColorId) {
+  const model = mv.model;
+  if (!model?.materials?.length) return;
+  model.materials.forEach((mat, idx) => {
+    const colorId = partColors[idx] ?? fallbackColorId;
+    const def = SOLID_COLORS[colorId] ?? SOLID_COLORS.white;
+    applyColorToMaterial(mat, def.base, def.metallic, def.roughness);
+  });
+}
+
 // ── Componente ────────────────────────────────────────────────────────────────
-const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
+/**
+ * Props adicionales:
+ *   partColors        — { [materialIdx]: colorId }  (opcional)
+ *                       Si se provee, cada material se pinta independientemente.
+ *                       Los índices sin definir heredan selectedColor.
+ *   onMaterialsLoaded — (materials: Material[]) => void  (opcional)
+ *                       Se llama una vez cuando el modelo termina de cargar,
+ *                       pasando el array de materiales detectados.
+ */
+const ModelViewer3D = ({
+  src,
+  alt,
+  poster,
+  selectedColor = 'white',
+  partColors,
+  onMaterialsLoaded,
+}) => {
   const [loaded, setLoaded]         = useState(false);
   const [resolvedSrc, setResolvedSrc] = useState(null);
   const mvRef   = useRef(null);
@@ -134,21 +175,33 @@ const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
   useEffect(() => {
     const el = mvRef.current;
     if (!el) return;
-    const handleLoad = () => setLoaded(true);
+    const handleLoad = () => {
+      setLoaded(true);
+      // Notificar materiales detectados al padre (para UI de color por partes)
+      if (onMaterialsLoaded && el.model?.materials) {
+        onMaterialsLoaded(el.model.materials);
+      }
+    };
     el.addEventListener('load', handleLoad);
     return () => el.removeEventListener('load', handleLoad);
-  }, [resolvedSrc]);
+  }, [resolvedSrc, onMaterialsLoaded]);
 
   // 3. Aplicar color al material (o animar tornasol)
   //
   // Usamos `cancelled` local + `frameId` local en lugar de un rafRef compartido.
   // Esto evita la condición de carrera donde el cleanup del efecto anterior
   // borra rafRef.current justo cuando el nuevo efecto ya lo está usando.
+  //
+  // Si se provee `partColors`, se aplican colores individuales por índice de
+  // material. En ese caso `selectedColor` actúa como fallback para partes sin
+  // color asignado. Tornasol SIEMPRE aplica a todas las partes (es un efecto
+  // de marca, no tiene sentido parcial).
   useEffect(() => {
     if (!loaded || !mvRef.current) return;
 
     let cancelled = false;
 
+    // Tornasol tiene prioridad — anima todos los materiales
     if (selectedColor === 'tornasol') {
       const startTime = performance.now();
       let frameId;
@@ -168,12 +221,18 @@ const ModelViewer3D = ({ src, alt, poster, selectedColor = 'white' }) => {
 
       frameId = requestAnimationFrame(tick);
       return () => { cancelled = true; cancelAnimationFrame(frameId); };
+    }
+
+    // Modo por partes: si partColors tiene al menos una entrada, usar per-material
+    const hasPartColors = partColors && Object.keys(partColors).length > 0;
+    if (hasPartColors) {
+      applyPartColors(mvRef.current, partColors, selectedColor);
     } else {
       const def = SOLID_COLORS[selectedColor] ?? SOLID_COLORS.white;
       applyMaterialColor(mvRef.current, def.base, def.metallic, def.roughness);
-      return () => { cancelled = true; };
     }
-  }, [loaded, selectedColor]);
+    return () => { cancelled = true; };
+  }, [loaded, selectedColor, partColors]);
 
   if (!resolvedSrc) return null;
 
