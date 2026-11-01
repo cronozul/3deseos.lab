@@ -390,7 +390,7 @@
       bNativo.hidden = false;
       bNativo.addEventListener('click', () => {
         const titulo = (C.perfil && C.perfil.nombre) || '3deseos.lab';
-        const texto = (C.perfil && C.perfil.eslogan) || '';
+        const texto = (C.perfil && (C.perfil.eslogan || C.perfil.bio)) || '';
         navigator.share({ title: titulo, text: texto, url }).catch(() => {});
       });
     }
@@ -412,6 +412,32 @@
     hoja.addEventListener('click', (e) => { if (e.target === hoja) hoja.close(); });
   }
 
+  /* ── Grano fino del fondo (evita franjas en el degradado) ────────────── */
+  function granoFino() {
+    try {
+      const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 3);
+      const lado = 192;                         // en píxeles reales de la pantalla
+      const lienzo = document.createElement('canvas');
+      lienzo.width = lienzo.height = lado;
+      const ctx = lienzo.getContext('2d');
+      const img = ctx.createImageData(lado, lado);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        // Puntos oscuros o claros casi invisibles (±1 o 2 tonos sobre fondo oscuro)
+        const r = Math.random();
+        if (r < 0.5) { d[i] = d[i + 1] = d[i + 2] = 0; d[i + 3] = Math.round((0.5 - r) * 2 * 22); }
+        else { d[i] = d[i + 1] = d[i + 2] = 255; d[i + 3] = Math.round((r - 0.5) * 2 * 3); }
+      }
+      ctx.putImageData(img, 0, 0);
+      const aplicar = (url) => {
+        raiz.style.setProperty('--grano', `url("${url}")`);
+        raiz.style.setProperty('--grano-tam', `${lado / dpr}px`);
+      };
+      if (lienzo.toBlob) lienzo.toBlob((b) => { if (b) aplicar(URL.createObjectURL(b)); }, 'image/png');
+      else aplicar(lienzo.toDataURL('image/png'));
+    } catch (_) { /* sin grano: el fondo se ve igual */ }
+  }
+
   /* ── Si config.js tiene un error ─────────────────────────────────── */
   function avisarError(detalle) {
     raiz.classList.add('js-error');
@@ -424,6 +450,8 @@
   }
 
   /* ── Arranque ────────────────────────────────────────────────────── */
+  granoFino();
+
   if (!C || typeof C !== 'object') {
     const e = window.__errorConfig;
     avisarError(e ? `${e.mensaje} (revisa la línea ${e.linea} o la de arriba).` : 'El archivo no cargó.');

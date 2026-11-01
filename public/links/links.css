@@ -66,40 +66,59 @@ a { color: inherit; }
   pointer-events: none;
 }
 
+
+/* Cada brillo se desvanece con una curva suave (muchas paradas) para que
+   el degradado no se vea a escalones. */
 .brillo {
   position: absolute;
   border-radius: 50%;
   will-change: transform;
+  --c: 64, 44, 90;
+  --a: 0.85;
+  background: radial-gradient(closest-side,
+    rgba(var(--c), var(--a)) 0%,
+    rgba(var(--c), calc(var(--a) * 0.92)) 12%,
+    rgba(var(--c), calc(var(--a) * 0.74)) 26%,
+    rgba(var(--c), calc(var(--a) * 0.5)) 40%,
+    rgba(var(--c), calc(var(--a) * 0.28)) 54%,
+    rgba(var(--c), calc(var(--a) * 0.12)) 68%,
+    rgba(var(--c), calc(var(--a) * 0.035)) 84%,
+    rgba(var(--c), 0) 100%);
 }
 
 .brillo--1 {
+  --c: var(--morado-rgb);
+  --a: 0.85;
   width: 125vmax; height: 125vmax;
   left: -45vmax; top: -62vmax;
-  background: radial-gradient(closest-side, rgba(var(--morado-rgb), 0.85), rgba(var(--morado-rgb), 0) 72%);
   animation: deriva-1 19s ease-in-out infinite alternate;
 }
 
 .brillo--2 {
+  --c: var(--azul-rgb);
+  --a: 0.42;
   width: 95vmax; height: 95vmax;
   right: -55vmax; top: 18vh;
-  background: radial-gradient(closest-side, rgba(var(--azul-rgb), 0.42), rgba(var(--azul-rgb), 0) 72%);
   animation: deriva-2 23s ease-in-out infinite alternate;
 }
 
 .brillo--3 {
+  --c: var(--verde-rgb);
+  --a: 0.2;
   width: 90vmax; height: 90vmax;
   left: -38vmax; bottom: -58vmax;
-  background: radial-gradient(closest-side, rgba(var(--verde-rgb), 0.2), rgba(var(--verde-rgb), 0) 72%);
   animation: deriva-3 27s ease-in-out infinite alternate;
 }
 
+/* Grano finísimo (1 punto = 1 píxel real de la pantalla) que evita las
+   franjas del degradado. Lo genera links.js; si no carga, no pasa nada. */
 .fondo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  opacity: 0.13;
-  mix-blend-mode: overlay;
+  background-image: var(--grano, none);
+  background-size: var(--grano-tam, 64px) var(--grano-tam, 64px);
+  background-repeat: repeat;
 }
 
 [data-fondo="noche"] .brillo { display: none; }

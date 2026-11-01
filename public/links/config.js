@@ -24,7 +24,7 @@ window.LINKS = {
   /* ─── Perfil: lo primero que se ve ─────────────────────────────── */
   perfil: {
     nombre: "3deseos.lab",                 // título de la pestaña del navegador
-    eslogan: "Creamos lo que sueñas",      // se muestra en MAYÚSCULAS
+    eslogan: "",                           // lema bajo el logo, en MAYÚSCULAS. Vacío = no se muestra
     bio: "Videojuegos e impresiones 3D hechos a cuatro manos.",
 
     // Etiquetas pequeñas debajo de la bio
@@ -47,6 +47,7 @@ window.LINKS = {
     instagram: "3deseos.lab",
     whatsapp: "573172575398",              // con el 57 adelante, sin + ni espacios
     correo: "3deseos.lab@gmail.com",
+    web: "https://3deseoslab.netlify.app/",   // el globo: lleva a la página principal
     tiktok: "",
     youtube: "",
   },
@@ -141,6 +142,6 @@ window.LINKS = {
 
   /* ─── Compartir y pie de página ────────────────────────────────── */
   url: "https://3deseoslab.netlify.app/links",   // el enlace que se copia y va en el código QR
-  pie: "© {año} 3deseos.lab · Del píxel a la pieza",  // {año} se cambia solo por el año actual
+  pie: "© {año} 3deseos.lab · Creamos lo que sueñas",  // {año} se cambia solo por el año actual
 
 };
