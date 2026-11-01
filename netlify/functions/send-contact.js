@@ -11,7 +11,7 @@
 //   3. Agrega RESEND_API_KEY como variable de entorno en Netlify
 //   4. Opcional: verifica tu dominio para enviar desde un email personalizado
 
-exports.handler = async function (event) {
+export const handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
