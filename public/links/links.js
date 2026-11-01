@@ -145,7 +145,12 @@
     const eslogan = $('.eslogan');
     const bio = $('.bio');
     if (typeof p.eslogan === 'string') { eslogan.textContent = p.eslogan; eslogan.hidden = !p.eslogan; }
-    if (typeof p.bio === 'string') { bio.textContent = p.bio; bio.hidden = !p.bio; }
+    if (typeof p.bio === 'string') {
+      // Cada | de la bio es un salto de línea (así un emoji nunca queda suelto)
+      const lineas = p.bio.split('|').map((t) => t.trim()).filter(Boolean);
+      bio.replaceChildren(...lineas.map((t) => crear('span', 'bio__linea', t)));
+      bio.hidden = !lineas.length;
+    }
 
     if (p.foto) {
       const avatar = $('.avatar');

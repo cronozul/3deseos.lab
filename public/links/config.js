@@ -25,7 +25,7 @@ window.LINKS = {
   perfil: {
     nombre: "3deseos.lab",                 // título de la pestaña del navegador
     eslogan: "",                           // lema bajo el logo, en MAYÚSCULAS. Vacío = no se muestra
-    bio: "Videojuegos e impresiones 3D hechos a cuatro manos.",
+    bio: "🎮 Estudio de videojuegos | 🖨️ Impresiones 3D personalizadas",   // cada | es un salto de línea
 
     // Etiquetas pequeñas debajo de la bio
     datos: [

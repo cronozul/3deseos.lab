@@ -252,7 +252,7 @@ a { color: inherit; }
 
 .bio {
   margin: 0.75rem 0 0;
-  max-width: 28ch;
+  max-width: 32ch;
   font-size: 1.05rem;
   line-height: 1.5;
   color: var(--texto-2);
@@ -281,6 +281,13 @@ a { color: inherit; }
   color: var(--texto-2);
 }
 .dato .icono { width: 0.95rem; height: 0.95rem; color: var(--acento); flex: none; }
+.bio__linea { display: block; }
+
+/* Celulares angostos (360 px): las dos etiquetas caben en una sola fila */
+@media (max-width: 23.75rem) {
+  .datos { gap: 0.4rem; }
+  .dato { padding: 0.34rem 0.66rem; font-size: 0.8rem; gap: 0.32rem; }
+}
 
 .redes {
   display: flex;
