@@ -115,10 +115,12 @@ window.LINKS = {
       ],
     },
     {
+      // Escondido: el globo de las redes ya lleva a la página principal.
       titulo: "Nuestra web",
       detalle: "Colecciones, pedidos y juegos",
       url: "https://3deseoslab.netlify.app/",
       icono: "web",
+      oculto: true,
     },
     {
       titulo: "Escríbenos",
