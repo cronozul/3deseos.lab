@@ -67,8 +67,8 @@ a { color: inherit; }
 }
 
 
-/* Cada brillo se desvanece con una curva suave (muchas paradas) para que
-   el degradado no se vea a escalones. */
+/* Cada brillo se desvanece en forma de campana (17 paradas) para que el
+   degradado no se vea a escalones ni con pliegues. */
 .brillo {
   position: absolute;
   border-radius: 50%;
@@ -77,18 +77,27 @@ a { color: inherit; }
   --a: 0.85;
   background: radial-gradient(closest-side,
     rgba(var(--c), var(--a)) 0%,
-    rgba(var(--c), calc(var(--a) * 0.92)) 12%,
-    rgba(var(--c), calc(var(--a) * 0.74)) 26%,
-    rgba(var(--c), calc(var(--a) * 0.5)) 40%,
-    rgba(var(--c), calc(var(--a) * 0.28)) 54%,
-    rgba(var(--c), calc(var(--a) * 0.12)) 68%,
-    rgba(var(--c), calc(var(--a) * 0.035)) 84%,
+    rgba(var(--c), calc(var(--a) * 0.9805)) 6.25%,
+    rgba(var(--c), calc(var(--a) * 0.9243)) 12.5%,
+    rgba(var(--c), calc(var(--a) * 0.8377)) 18.75%,
+    rgba(var(--c), calc(var(--a) * 0.7298)) 25%,
+    rgba(var(--c), calc(var(--a) * 0.6111)) 31.25%,
+    rgba(var(--c), calc(var(--a) * 0.4916)) 37.5%,
+    rgba(var(--c), calc(var(--a) * 0.3799)) 43.75%,
+    rgba(var(--c), calc(var(--a) * 0.2817)) 50%,
+    rgba(var(--c), calc(var(--a) * 0.2002)) 56.25%,
+    rgba(var(--c), calc(var(--a) * 0.1360)) 62.5%,
+    rgba(var(--c), calc(var(--a) * 0.0880)) 68.75%,
+    rgba(var(--c), calc(var(--a) * 0.0537)) 75%,
+    rgba(var(--c), calc(var(--a) * 0.0303)) 81.25%,
+    rgba(var(--c), calc(var(--a) * 0.0151)) 87.5%,
+    rgba(var(--c), calc(var(--a) * 0.0056)) 93.75%,
     rgba(var(--c), 0) 100%);
 }
 
 .brillo--1 {
   --c: var(--morado-rgb);
-  --a: 0.85;
+  --a: 0.95;
   width: 125vmax; height: 125vmax;
   left: -45vmax; top: -62vmax;
   animation: deriva-1 19s ease-in-out infinite alternate;
@@ -96,7 +105,7 @@ a { color: inherit; }
 
 .brillo--2 {
   --c: var(--azul-rgb);
-  --a: 0.42;
+  --a: 0.5;
   width: 95vmax; height: 95vmax;
   right: -55vmax; top: 18vh;
   animation: deriva-2 23s ease-in-out infinite alternate;
@@ -104,7 +113,7 @@ a { color: inherit; }
 
 .brillo--3 {
   --c: var(--verde-rgb);
-  --a: 0.2;
+  --a: 0.24;
   width: 90vmax; height: 90vmax;
   left: -38vmax; bottom: -58vmax;
   animation: deriva-3 27s ease-in-out infinite alternate;
